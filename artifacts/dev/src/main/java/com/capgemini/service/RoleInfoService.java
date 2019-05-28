@@ -77,13 +77,18 @@ public class RoleInfoService {
             Integer id = dto.getPoId();
             RoleInfoEntity entity = new RoleInfoEntity();
             entity.setPoRole(dto.getPoRole());
-            entity.setRate(dto.getRate());
-            entity.setStartDate(DateUtil.yyyyMMdd2timestamp(dto.getStartDate()));
-            entity.setEndDate(DateUtil.yyyyMMdd2timestamp(dto.getEndDate()));
+            entity.setRateIn(dto.getRate());
             entity.setRoleComment(dto.getRoleComment());
-            entity.setCreateDate(timestamp);
-            entity.setLastupdateDate(timestamp);
             entity.setPoId(id);
+            entity.setStartDate(dto.getStartDate());
+            entity.setEndDate(dto.getEndDate());
+            
+            entity.setBalanceAmountIn(dto.getBalanceAmount());
+            entity.setBalanceManday(dto.getBalanceManday());
+            entity.setBillableManday(dto.getBillableManday());
+            entity.setBurnedAmountIn(dto.getBurnedAmount());
+            entity.setBurnedManday(dto.getBurnedManday());
+            entity.setTotalAmountIn(dto.getTotalAmount());
             dbs.add(entity);
 
         }
@@ -162,7 +167,7 @@ public class RoleInfoService {
             dto.setBurnedManday(dto.getBurnedManday() + dto.getAccrueManday());
             poInfoEntity.setTotalBurnedManday(poInfoEntity.getTotalBurnedManday() + dto.getBurnedManday() - entity.getBurnedManday());
             poInfoEntity.setBalanceManday(poInfoEntity.getPoInitialTotalManday() - poInfoEntity.getTotalBurnedManday());
-            poInfoEntity.setBilledAmtIn(poInfoEntity.getTotalBurnedManday() * entity.getRate() * (1 + poInfoEntity.getVat() * 0.01));
+            poInfoEntity.setBilledAmtIn(poInfoEntity.getTotalBurnedManday() * entity.getRateIn() * (1 + poInfoEntity.getVat() * 0.01));
             poInfoEntity.setPoAvailableAmtIn(poInfoEntity.getPoTotalAmountIn() - poInfoEntity.getBilledAmtIn());
 
             RoleInfoEntity roleInfoEntity = new RoleInfoEntity();
@@ -171,9 +176,9 @@ public class RoleInfoService {
             roleInfoEntity.setBillableManday(dto.getBillableManday());
             roleInfoEntity.setBurnedManday(dto.getBurnedManday());
             roleInfoEntity.setBalanceManday(dto.getBillableManday() - dto.getBurnedManday());
-            roleInfoEntity.setTotalAmount(dto.getTotalAmount());
-            roleInfoEntity.setBurnedAmount(dto.getBurnedManday() * dto.getRate());
-            roleInfoEntity.setBalanceAmount(dto.getTotalAmount() - dto.getBurnedManday() * dto.getRate());
+            roleInfoEntity.setTotalAmountIn(dto.getTotalAmount());
+            roleInfoEntity.setBurnedAmountIn(dto.getBurnedManday() * dto.getRate());
+            roleInfoEntity.setBalanceAmountIn(dto.getTotalAmount() - dto.getBurnedManday() * dto.getRate());
             roleInfoEntity.setRoleComment(dto.getRoleComment());
             roleInfoEntity.setLastupdateDate(timestamp);
 
@@ -279,16 +284,16 @@ public class RoleInfoService {
 
         dto.setId(entity.getId());
         dto.setPoRole(entity.getPoRole());
-        dto.setTotalAmount(entity.getTotalAmount());
-        dto.setBurnedAmount(entity.getBurnedAmount());
-        dto.setBalanceAmount(entity.getBalanceAmount());
+        dto.setTotalAmount(entity.getTotalAmountIn());
+        dto.setBurnedAmount(entity.getBurnedAmountIn());
+        dto.setBalanceAmount(entity.getBalanceAmountIn());
         dto.setCreateDate(DateUtil.timestamp2yyyyMMdd(entity.getCreateDate()));
         dto.setLastupdateDate(DateUtil.timestamp2yyyyMMdd(entity.getLastupdateDate()));
         dto.setPoId(entity.getPoId());
         dto.setBillableManday(entity.getBillableManday());
         dto.setBurnedManday(entity.getBurnedManday());
         dto.setBalanceManday(entity.getBalanceManday());
-        dto.setRate(entity.getRate());
+        dto.setRate(entity.getRateIn());
         dto.setRoleComment(entity.getRoleComment());
 
         return dto;

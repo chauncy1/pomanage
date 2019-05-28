@@ -184,7 +184,6 @@
 
                                 <td>
                                     <input type="text" width="25" class="project_txt_projectDesc"
-                                           onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
                                            onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
                                            oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
                                 </td>
@@ -215,7 +214,6 @@
 
                                 <td>
                                     <input type="text" width="25" class="project_txt_projectComment"
-                                           onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
                                            onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
                                            oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
                                 </td>
@@ -257,7 +255,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
+                    <span aria-hidden="true">脳</span>
                 </button>
             </div>
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -290,42 +288,42 @@
         }
 
         if($(".project_txt_projectName").val() == null || $(".project_txt_projectName").val() == ''){
-            swal("PROJECT NAME：Can not be empty!");
+            swal("PROJECT NAME锛欳an not be empty!");
             return
         }
 
         if($(".project_txt_projectEm").val() == null || $(".project_txt_projectEm").val() == ''){
-            swal("EM：Can not be empty!");
+            swal("EM锛欳an not be empty!");
             return
         }
 
         if($(".project_txt_projectDm").val() == null || $(".project_txt_projectDm").val() == ''){
-            swal("DE：Can not be empty!");
+            swal("DE锛欳an not be empty!");
             return
         }
 
         if($(".project_txt_projectDesc").val().length > 250){
-            swal("PROJECT DESCRIPTION：Too long!");
+            swal("PROJECT DESCRIPTION锛歍oo long!");
             return
         }
 
         if($(".project_txt_startDate").val() == null || $(".project_txt_startDate").val() == ''){
-            swal("START DATE：Can not be empty!");
+            swal("START DATE锛欳an not be empty!");
             return
         }
 
         if($(".project_txt_endDate").val() == null || $(".project_txt_endDate").val() == ''){
-            swal("END DATE：Can not be empty!");
+            swal("END DATE锛欳an not be empty!");
             return
         }
 
         if($(".project_txt_startDate").val() > $(".project_txt_endDate").val()){
-            swal("DATE：START DATE can't be later than END DATE!");
+            swal("DATE锛歋TART DATE can't be later than END DATE!");
             return
         }
 
         if($(".project_txt_projectComment").val().length > 50){
-            swal("COMMENTS：Too long!");
+            swal("COMMENTS锛歍oo long!");
             return
         }
 
@@ -349,7 +347,7 @@
 
         console.log(data);
 
-        // 录入项目信息
+        // 褰曞叆椤圭洰淇℃伅
         $.ajax({
             type: "post",
             url:"adminController/save_project_info",

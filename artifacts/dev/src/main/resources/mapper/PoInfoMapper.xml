@@ -21,22 +21,79 @@
     </select>
 
     <insert id="savePoInfoEntity" parameterType="PoInfoEntity">
-        insert into
-          po_info(code,po_name,start_date,end_date,create_date,lastupdate_date,creat_by,lastupdate_by,po_no,po_desc,
-          po_status,content_type,vat,po_comment)
-         values
-        (#{code},#{poName},#{startDate},#{endDate},#{createDate},#{lastupdateDate},#{creatBy},#{lastupdateBy},#{poNo},
-        #{poDesc},#{poStatus},#{contentType},#{vat},#{poComment})
+        insert into po_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	        <if test="code!=null">code,</if>
+	        <if test="poName!=null">po_name,</if>
+	        <if test="startDate!=null">start_date,</if>
+	        <if test="endDate!=null">end_date,</if>
+	        <if test="poNo!=null">po_no,</if>
+	        <if test="poDesc!=null">po_desc,</if>
+	        <if test="poStatus!=null">po_status,</if>
+	        <if test="poInitialTotalManday!=null">PO_INITIAL_TOTAL_MANDAY,</if>
+	        <if test="poTotalAmountEx!=null">PO_TOTAL_AMOUNT_EX,</if>
+	        <if test="poTotalAmountIn!=null">PO_TOTAL_AMOUNT_IN,</if>
+	        <if test="billedAmtIn!=null">BILLED_AMT_IN,</if>
+	        <if test="poAvailableAmtIn!=null">PO_AVAILABLE_AMT_EX,</if>
+	        <if test="totalBurnedManday!=null">TOTAL_BURNED_MANDAY,</if>
+	        <if test="balanceManday!=null">BALANCE_MANDAY,</if>
+	        <if test="contentType!=null">content_type,</if>
+	        <if test="vat!=null">vat,</if>
+	        <if test="poComment!=null">po_comment,</if>
+	        <if test="createDate!=null">create_date,</if>
+	        <if test="lastupdateDate!=null">lastupdate_date,</if>
+	        <if test="creatBy!=null">creat_by,</if>
+	        <if test="lastupdateBy!=null">lastupdate_by,</if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+        	<if test="code!=null">#{code},</if>
+	        <if test="poName!=null">#{poName},</if>
+	        <if test="startDate!=null">#{startDate},</if>
+	        <if test="endDate!=null">#{endDate},</if>
+	        <if test="poNo!=null">#{poNo},</if>
+	        <if test="poDesc!=null">#{poDesc},</if>
+	        <if test="poStatus!=null">#{poStatus},</if>
+	        <if test="poInitialTotalManday!=null">#{poInitialTotalManday},</if>
+	        <if test="poTotalAmountEx!=null">#{poTotalAmountEx},</if>
+	        <if test="poTotalAmountIn!=null">#{poTotalAmountIn},</if>
+	        <if test="billedAmtIn!=null">#{billedAmtIn},</if>
+	        <if test="poAvailableAmtIn!=null">#{poAvailableAmtIn},</if>
+	        <if test="totalBurnedManday!=null">#{totalBurnedManday},</if>
+	        <if test="balanceManday!=null">#{balanceManday},</if>
+	        <if test="contentType!=null">#{contentType},</if>
+	        <if test="vat!=null">#{vat},</if>
+	        <if test="poComment!=null">#{poComment},</if>
+	        <if test="createDate!=null">CURRENT_TIMESTAMP,</if>
+	        <if test="lastupdateDate!=null">CURRENT_TIMESTAMP,</if>
+	        <if test="creatBy!=null">#{creatBy},</if>
+	        <if test="lastupdateBy!=null">#{lastupdateBy},</if>
+        </trim>
     </insert>
 
     <update id="updatePoInfoEntity" parameterType="PoInfoEntity">
         UPDATE po_info
-        SET po_name=#{poName},start_date=#{startDate}, end_date=#{endDate},create_date=#{createDate},
-          lastupdate_date=#{lastupdateDate},creat_by=#{creatBy},lastupdate_by=#{lastupdateBy},
-          po_no=#{poNo},po_desc=#{poDesc},po_status=#{poStatus},po_initial_total_manday=#{poInitialTotalManday},
-          po_total_amount_ex=#{poTotalAmountEx},po_total_amount_in=#{poTotalAmountIn},billed_amt_in=#{billedAmtIn},
-          po_available_amt_in=#{poAvailableAmtIn},total_burned_manday=#{totalBurnedManday},balance_manday=#{balanceManday},
-          content_type=#{contentType},vat=#{vat},po_comment=#{poComment}
+        <set>
+	        <if test="poName!=null">po_name=#{poName},</if>
+	        <if test="startDate!=null">start_date=#{startDate},</if>
+	        <if test="endDate!=null">end_date=#{endDate},</if>
+	        <if test="createDate!=null">create_date=#{createDate},</if>
+	        <if test="lastupdateDate!=null">lastupdate_date=CURRENT_TIMESTAMP,</if>
+	        <if test="creatBy!=null">creat_by=#{creatBy},</if>
+	        <if test="lastupdateBy!=null">lastupdate_by=#{lastupdateBy},</if>
+	        <if test="poNo!=null">po_no=#{poNo},</if>
+	        <if test="poDesc!=null">po_desc=#{poDesc},</if>
+	        <if test="poStatus!=null">po_status=#{poStatus},</if>
+	        <if test="poInitialTotalManday!=null">po_initial_total_manday=#{poInitialTotalManday},</if>
+	        <if test="poTotalAmountEx!=null">po_total_amount_ex=#{poTotalAmountEx},</if>
+	        <if test="poTotalAmountIn!=null">po_total_amount_in=#{poTotalAmountIn},</if>
+	        <if test="billedAmtIn!=null">billed_amt_in=#{billedAmtIn},</if>
+	        <if test="poAvailableAmtIn!=null">po_available_amt_in=#{poAvailableAmtIn},</if>
+	        <if test="totalBurnedManday!=null">total_burned_manday=#{totalBurnedManday},</if>
+	        <if test="balanceManday!=null">balance_manday=#{balanceManday},</if>
+	        <if test="contentType!=null">content_type=#{contentType},</if>
+	        <if test="vat!=null">vat=#{vat},</if>
+	        <if test="poComment!=null">po_comment=#{poComment},</if>
+        </set>
         WHERE `PO_NO` = #{poNo} AND `DELETE_FLAG` = 1
     </update>
 

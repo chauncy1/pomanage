@@ -82,8 +82,8 @@ public class  ConInfoService {
             RoleInfoEntity roleInfoEntity = roleInfoMapper.queryRoleInfoById(dto.getRoleId());
             roleInfoEntity.setBillableManday(roleInfoEntity.getBillableManday() + dto.getTotalManday());
             roleInfoEntity.setBalanceManday(roleInfoEntity.getBalanceManday() + dto.getTotalManday());
-            roleInfoEntity.setTotalAmount(roleInfoEntity.getTotalAmount() + dto.getTotalAmount());
-            roleInfoEntity.setBalanceAmount(roleInfoEntity.getBalanceAmount() + dto.getTotalAmount());
+            roleInfoEntity.setTotalAmountIn(roleInfoEntity.getTotalAmountIn() + dto.getTotalAmount());
+            roleInfoEntity.setBalanceAmountIn(roleInfoEntity.getBalanceAmountIn() + dto.getTotalAmount());
             roleInfoMapper.updateRoleInfoById(roleInfoEntity);
 
             PoInfoEntity poInfoEntity = poInfoMapper.queryPoInfoById(roleInfoEntity.getPoId());
@@ -186,8 +186,8 @@ public class  ConInfoService {
 
         roleInfoEntity.setBillableManday(roleInfoEntity.getBillableManday() - conInfoEntity.getTotalManday());
         roleInfoEntity.setBalanceManday(roleInfoEntity.getBalanceManday() - conInfoEntity.getTotalManday());
-        roleInfoEntity.setTotalAmount(roleInfoEntity.getTotalAmount() - conInfoEntity.getTotalAmount());
-        roleInfoEntity.setBalanceAmount(roleInfoEntity.getBalanceAmount() - conInfoEntity.getTotalAmount());
+        roleInfoEntity.setTotalAmountIn(roleInfoEntity.getTotalAmountIn() - conInfoEntity.getTotalAmount());
+        roleInfoEntity.setBalanceAmountIn(roleInfoEntity.getBalanceAmountIn() - conInfoEntity.getTotalAmount());
         roleInfoMapper.updateRoleInfoById(roleInfoEntity);
 
         PoInfoEntity poInfoEntity = poInfoMapper.queryPoInfoById(roleInfoEntity.getPoId());

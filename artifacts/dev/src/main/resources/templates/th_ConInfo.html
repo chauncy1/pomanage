@@ -77,8 +77,8 @@
                                     <th style="vertical-align:middle">CONTENT TYPE</th>
                                     <th style="vertical-align:middle">PO INITIAL TOTAL MANDAY</th>
                                     <th style="vertical-align:middle">VAT</th>
-                                    <th style="vertical-align:middle">PO TOTAL AMOUNT(¥)(EXCL.VAT)</th>
-                                    <th style="vertical-align:middle">PO TOTAL AMOUNT(¥)(INCL.VAT)</th>
+                                    <th style="vertical-align:middle">PO TOTAL AMOUNT(楼)(EXCL.VAT)</th>
+                                    <th style="vertical-align:middle">PO TOTAL AMOUNT(楼)(INCL.VAT)</th>
                                 </tr>
                                 </thead>
 
@@ -129,6 +129,7 @@
 
                                         <td style="vertical-align:middle" th:text="${roleinfo.totalAmount}"></td>
 
+										<td style="vertical-align:middle" th:text="${roleinfo.id}" hidden="hidden" class="role_id"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -139,9 +140,9 @@
                                     <tr style="text-align:center">
                                         <th style="vertical-align:middle">CONSULTANT NO</th>
                                         <th style="vertical-align:middle">CONSULTANT NAME</th>
-                                        <th style="vertical-align:middle">RATE(¥/day)</th>
+                                        <th style="vertical-align:middle">RATE(楼/day)</th>
                                         <th style="vertical-align:middle">TOTAL MANDAY(day)</th>
-                                        <th style="vertical-align:middle">TOTAL AMOUNT(¥)</th>
+                                        <th style="vertical-align:middle">TOTAL AMOUNT(楼)</th>
                                         <th style="vertical-align:middle">CONSULTANT TYPE</th>
                                         <th style="vertical-align:middle">CONSULTANT LEVEL</th>
                                         <th style="vertical-align:middle">START DATE</th>
@@ -340,7 +341,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
+                    <span aria-hidden="true">脳</span>
                 </button>
             </div>
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -421,7 +422,7 @@
 
         console.log(data);
 
-        // 录入项目详情信息
+        // 褰曞叆椤圭洰璇︽儏淇℃伅
         $.ajax({
             type: "post",
             url:"adminController/save_con_info",
@@ -475,7 +476,7 @@
 
     $.ajax({
         type: "get",
-        url:"adminController/queryConInfoByRoleId?role_id="+ $(".th_roleinfo_id").text(),
+        url:"adminController/queryConInfoByRoleId?role_id="+ $(".role_id").val(),
         dataType:"json",
         contentType: "application/json; charset=utf-8",
 

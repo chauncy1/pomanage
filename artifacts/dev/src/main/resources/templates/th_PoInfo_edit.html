@@ -77,7 +77,7 @@
 					<div class="form-group">
 						<label for="po_txt_contentType" class="col-sm-4 control-label">CONTENT TYPE</label>
 						<div class="col-sm-6">
-							<input type="text" id="po_txt_contentType" class="form-control" th:value="${poInfo.contentType}" readonly="readonly">
+							<input type="text" id="po_txt_contentType" class="form-control" th:value="${poInfo.contentType}">
 						</div>
 					</div>
 
@@ -92,12 +92,12 @@
 					<div class="form-group">
 						<label for="po_txt_endDate" class="col-sm-4 control-label">END DATE</label>
 						<div class="col-sm-6">
-							<input type="date" id="po_txt_endDate" class="form-control" th:value="${poInfo.endDate}" readonly="readonly">
+							<input type="date" id="po_txt_endDate" class="form-control" th:value="${poInfo.endDate}">
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="po_txt_poTotalAmountEx" class="col-sm-4 control-label">PO TOTAL AMOUNT(¥)(EXCL.VAT)</label>
+						<label for="po_txt_poTotalAmountEx" class="col-sm-4 control-label">PO TOTAL AMOUNT(EXCL.VAT)</label>
 						<div class="col-sm-6">
 							<input type="text" id="po_txt_poTotalAmountEx" class="form-control" th:value="${poInfo.poTotalAmountEx}" readonly="readonly">
 						</div>
@@ -111,44 +111,44 @@
 					</div>
 
 					<div class="form-group">
-						<label for="po_txt_poTotalAmountIn" class="col-sm-4 control-label">PO TOTAL AMOUNT(¥)(INCL.VAT)</label>
+						<label for="po_txt_poTotalAmountIn" class="col-sm-4 control-label">PO TOTAL AMOUNT(INCL.VAT)</label>
 						<div class="col-sm-6">
 							<input type="text" id="po_txt_poTotalAmountIn" class="form-control" th:value="${poInfo.poTotalAmountIn}" readonly="readonly">
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="po_txt_billedAmtIn" class="col-sm-4 control-label">BILLED AMOUNT(¥)(INCL.VAT)</label>
+						<label for="po_txt_billedAmtIn" class="col-sm-4 control-label">BILLED AMOUNT(INCL.VAT)</label>
 						<div class="col-sm-6">
-							<input type="text" id="po_txt_billedAmtIn" class="form-control" th:value="${poInfo.billedAmtIn}" readonly="readonly">
+							<input type="text" id="po_txt_billedAmtIn" class="form-control" th:value="${poInfo.billedAmtIn}">
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="po_txt_poAvailableAmtIn" class="col-sm-4 control-label">AVAILABLE AMOUNT(¥)(INCL.VAT)</label>
+						<label for="po_txt_poAvailableAmtIn" class="col-sm-4 control-label">AVAILABLE AMOUNT(INCL.VAT)</label>
 						<div class="col-sm-6">
-							<input type="text" id="po_txt_poAvailableAmtIn" class="form-control" th:value="${poInfo.poAvailableAmtIn}" readonly="readonly">
+							<input type="text" id="po_txt_poAvailableAmtIn" class="form-control" th:value="${poInfo.poAvailableAmtIn}">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="po_txt_poInitialTotalManday" class="col-sm-4 control-label">PO INITIAL TOTAL MANDAY(day)</label>
 						<div class="col-sm-6">
-							<input type="text" id="po_txt_poInitialTotalManday" class="form-control" th:value="${poInfo.poInitialTotalManday}" readonly="readonly">
+							<input type="text" id="po_txt_poInitialTotalManday" class="form-control" th:value="${poInfo.poInitialTotalManday}">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="po_txt_totalBurnedManday" class="col-sm-4 control-label">TOTAL BURNED MANDAY(day)</label>
 						<div class="col-sm-6">
-							<input type="number" id="po_txt_totalBurnedManday" class="form-control" th:value="${poInfo.totalBurnedManday}" readonly="readonly">
+							<input type="number" id="po_txt_totalBurnedManday" class="form-control" th:value="${poInfo.totalBurnedManday}">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="po_txt_balanceManday" class="col-sm-4 control-label">BALANCE MANDAY(day)</label>
 						<div class="col-sm-6">
-							<input type="text" id="po_txt_balanceManday" class="form-control" th:value="${poInfo.balanceManday}" readonly="readonly">
+							<input type="text" id="po_txt_balanceManday" class="form-control" th:value="${poInfo.balanceManday}">
 						</div>
 					</div>
 
@@ -156,7 +156,6 @@
 						<label for="po_txt_poComment" class="col-sm-4 control-label">COMMENTS</label>
 						<div class="col-sm-6">
 							<input type="txt" id="po_txt_poComment" class="form-control" th:value="${poInfo.poComment}"
-								   onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9 ]/g,'')"
 								   onpaste="value=value.replace(/[^\a-\z\A-\Z0-9 ]/g,'')"
 								   oncontextmenu="value=value.replace(/[^\a-\z\A-\Z0-9 ]/g,'')">
 						</div>
@@ -227,7 +226,7 @@
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
+              <span aria-hidden="true">脳</span>
             </button>
           </div>
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -246,87 +245,87 @@
     function editPoInfo(){
 
         if($("#po_txt_poDesc").val().length > 250){
-            swal("PROJECT DESCRIPTION：Too long!");
+            swal("PROJECT DESCRIPTION锛歍oo long!");
             return
         }
 
         if($("#po_txt_poComment").val().length > 50){
-            swal("COMMENTS：Too long!");
+            swal("COMMENTS锛歍oo long!");
             return
         }
 
         /*if($("#po_txt_poName").val() == null || $("#po_txt_poName").val() == ''){
-            swal("PO NAME：Can not be empty!");
+            swal("PO NAME锛欳an not be empty!");
             return
         }
 
         if($("#po_txt_startDate").val() == null || $("#po_txt_startDate").val() == ''){
-            swal("START DATE：Can not be empty!");
+            swal("START DATE锛欳an not be empty!");
             return
-        }
+        }*/
 
         if($("#po_txt_endDate").val() == null || $("#po_txt_endDate").val() == ''){
-            swal("END DATE：Can not be empty!");
+            swal("END DATE锛欳an not be empty!");
             return
         }
 
         if($("#po_txt_startDate").val() > $("#po_txt_endDate").val()){
-            swal("DATE：START DATE can't be later than END DATE!");
+            swal("DATE锛歋TART DATE can't be later than END DATE!");
             return
         }
-
+        /*
         if($("#po_txt_vat").val() == null || $("#po_txt_vat").val() == ''){
-            swal("VAT：Can not be empty!");
+            swal("VAT锛欳an not be empty!");
             return
         }
 
         if(parseFloat($("#po_txt_vat").val()) < 0 || parseFloat($("#po_txt_vat").val()) > 100){
-            swal("VAT：VAT must range from 0 to 100 percent!");
+            swal("VAT锛歏AT must range from 0 to 100 percent!");
             return
         }
 
         if($("#po_txt_poTotalAmountIn").val() == null || $("#po_txt_poTotalAmountIn").val() == ''){
-            swal("PO TOTAL AMOUNT(INCL.VAT)：Can not be empty!");
+            swal("PO TOTAL AMOUNT(INCL.VAT)锛欳an not be empty!");
             return
-        }
+        }*/
 
         if($("#po_txt_billedAmtIn").val() == null || $("#po_txt_billedAmtIn").val() == ''){
-            swal("BILLED AMT(INCL.VAT)：Can not be empty!");
+            swal("BILLED AMT(INCL.VAT)锛欳an not be empty!");
             return
         }
 
         if($("#po_txt_poAvailableAmtIn").val() == null || $("#po_txt_poAvailableAmtIn").val() == ''){
-            swal("AVAILABLE AMT(INCL.VAT)：Can not be empty!");
+            swal("AVAILABLE AMT(INCL.VAT)锛欳an not be empty!");
             return
-        }
+        }/*
 
-        //总金额 = 已用金额 + 可用金额 （含税）
+        //鎬婚噾棰� = 宸茬敤閲戦 + 鍙敤閲戦 锛堝惈绋庯級
         if(parseFloat($("#po_txt_poTotalAmountIn").val()) != (parseFloat($("#po_txt_poAvailableAmtIn").val()) + parseFloat($("#po_txt_billedAmtIn").val()))){
-            swal("AMOUNT：PO TOTAL AMOUNT(INCL.VAT) must equal BILLED AMT(INCL.VAT) plus AVAILABLE AMT(INCL.VAT)");
+            swal("AMOUNT锛歅O TOTAL AMOUNT(INCL.VAT) must equal BILLED AMT(INCL.VAT) plus AVAILABLE AMT(INCL.VAT)");
             return
         }
 
-        //含税金额 = 不含税金额 * （1+税率）
+        //鍚◣閲戦 = 涓嶅惈绋庨噾棰� * 锛�1+绋庣巼锛�
         if(parseFloat($("#po_txt_poTotalAmountIn").val()) != (parseFloat($("#po_txt_poTotalAmountEx").val()) * (1 + 0.01 * parseFloat($("#po_txt_vat").val())))){
-            swal("AMOUNT：PO TOTAL AMOUNT(INCL.VAT) must equal PO TOTAL AMOUNT(EXCL.VAT) multiply (1+VAT)");
+            swal("AMOUNT锛歅O TOTAL AMOUNT(INCL.VAT) must equal PO TOTAL AMOUNT(EXCL.VAT) multiply (1+VAT)");
             return
-        }
+        }*/
 
         if($("#po_txt_totalBurnedManday").val() == null || $("#po_txt_totalBurnedManday").val() == ''){
-            swal("TOTAL BURNED MANDAY：Can not be empty!");
+            swal("TOTAL BURNED MANDAY锛欳an not be empty!");
             return
         }
 
         if($("#po_txt_balanceManday").val() == null || $("#po_txt_balanceManday").val() == ''){
-            swal("BALANCE MANDAY：Can not be empty!");
+            swal("BALANCE MANDAY锛欳an not be empty!");
             return
         }
 
-        //总人天 = 已用人天 + 可用人天
+        //鎬讳汉澶� = 宸茬敤浜哄ぉ + 鍙敤浜哄ぉ
         if(parseFloat($("#po_txt_poInitialTotalManday").val()) != (parseFloat($("#po_txt_totalBurnedManday").val()) + parseFloat($("#po_txt_balanceManday").val()))){
-            swal("MANDAY：PO INITIAL TOTAL MANDAY must equal TOTAL BURNED MANDAY plus BALANCE MANDAY");
+            swal("MANDAY锛歅O INITIAL TOTAL MANDAY must equal TOTAL BURNED MANDAY plus BALANCE MANDAY");
             return
-        }*/
+        }
 
         var data = {
             "data":[
@@ -359,7 +358,7 @@
 
         console.log(data);
 
-        // 更新PO信息
+        // 鏇存柊PO淇℃伅
         $.ajax({
             type: "post",
             url:"adminController/updatePoByPoNo",

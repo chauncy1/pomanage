@@ -12,6 +12,7 @@ import com.capgemini.dto.request.PoSaveRequest;
 import com.capgemini.dto.request.ProjectSaveRequest;
 import com.capgemini.dto.request.RoleInfoSaveRequest;
 import com.capgemini.dto.response.CommonResponse;
+import com.capgemini.dto.response.ConInfoQueryResponse;
 import com.capgemini.dto.response.PoQueryResponse;
 import com.capgemini.dto.response.RoleInfoQueryResponse;
 import com.capgemini.service.ConInfoService;
@@ -231,6 +232,15 @@ public class AdminRestController {
     ){
 
         return conInfoService.saveConInfo(request);
+
+    }
+    
+    @RequestMapping(value = "/queryConInfoByRoleId", method = RequestMethod.GET)
+    public ConInfoQueryResponse queryConInfoByRoleId(
+    		@RequestParam(value = "role_id") Integer id
+    ){
+
+        return conInfoService.queryConInfoByRoleId(id);
 
     }
 

@@ -33,7 +33,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="roleinfo_txt_rate" class="col-sm-4 control-label">RATE(¥/day)</label>
+						<label for="roleinfo_txt_rate" class="col-sm-4 control-label">RATE(楼/day)</label>
 						<div class="col-sm-6">
 								<input type="number" id="roleinfo_txt_rate" class="form-control" th:value="${RoleInfo.rate}" readonly="readonly"/>
 						</div>
@@ -48,7 +48,7 @@
 					<div class="form-group">
 						<label for="roleinfo_txt_burnedManday" class="col-sm-4 control-label">BURNED MANDAY(day)</label>
 						<div class="col-sm-6">
-                            <input type="number" id="roleinfo_txt_burnedManday" class="form-control" th:value="${RoleInfo.burnedManday} "readonly="readonly"/>
+                            <input type="number" id="roleinfo_txt_burnedManday" class="form-control" th:value="${RoleInfo.burnedManday}" readonly="readonly"/>
 						</div>
 					</div>
 
@@ -86,7 +86,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="roleinfo_txt_totalAmount" class="col-sm-4 control-label">TOTAL AMOUNT(¥)</label>
+                        <label for="roleinfo_txt_totalAmount" class="col-sm-4 control-label">TOTAL AMOUNT</label>
                         <div class="col-sm-6">
                             <!--<input type="date" id="project_txt_startDate" class="form-control" value="2018-08-08" />-->
                             <input type="number" id="roleinfo_txt_totalAmount" class="form-control" th:value="${RoleInfo.totalAmount}" readonly="readonly"/>
@@ -94,7 +94,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="roleinfo_txt_burnedAmount" class="col-sm-4 control-label">BURNED AMOUNT(¥)</label>
+                        <label for="roleinfo_txt_burnedAmount" class="col-sm-4 control-label">BURNED AMOUNT</label>
                         <div class="col-sm-6">
                             <!--<input type="date" id="project_txt_startDate" class="form-control" value="2018-08-08" />-->
                             <input type="number" id="roleinfo_txt_burnedAmount" class="form-control" th:value="${RoleInfo.burnedAmount}" readonly="readonly"/>
@@ -102,7 +102,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="roleinfo_txt_balanceAmount" class="col-sm-4 control-label">BALANCE AMOUNT(¥)</label>
+                        <label for="roleinfo_txt_balanceAmount" class="col-sm-4 control-label">BALANCE AMOUNT</label>
                         <div class="col-sm-6">
                             <!--<input type="date" id="project_txt_startDate" class="form-control" value="2018-08-08" />-->
                             <input type="number" id="roleinfo_txt_balanceAmount" class="form-control" th:value="${RoleInfo.balanceAmount}" readonly="readonly"/>
@@ -208,7 +208,7 @@
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
+              <span aria-hidden="true">脳</span>
             </button>
           </div>
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -261,7 +261,7 @@
 
         console.log(data);
 
-        // 更新项目信息
+        // 鏇存柊椤圭洰淇℃伅
         $.ajax({
             type: "post",
             url:"adminController/updateRoleInfoById",
@@ -272,7 +272,7 @@
             success: function (data) {
                 if (data.code == '200000') {
                     window.location.reload();
-                    swal('Update Success！');
+                    swal('Update Success锛�');
                 } else {
                     swal('Update Failure,Msg:'+ data.msg);
                 }
@@ -293,7 +293,7 @@
             swal("Amount: Can not be empty!");
             return
         }
-        // 更新amount(burne:+,balance:-)
+        // 鏇存柊amount(burne:+,balance:-)
         $.ajax({
             type: "GET",
             url:"adminController/updateRoleInfoAmountById?id=" + id + "&amount=" + burneAmount,

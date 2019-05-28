@@ -75,8 +75,8 @@
                                         <th style="vertical-align:middle">CONTENT TYPE</th>
                                         <th style="vertical-align:middle">PO INITIAL TOTAL MANDAY</th>
                                         <th style="vertical-align:middle">VAT</th>
-                                        <th style="vertical-align:middle">PO TOTAL AMOUNT(¥)(EXCL.VAT)</th>
-                                        <th style="vertical-align:middle">PO TOTAL AMOUNT(¥)(INCL.VAT)</th>
+                                        <th style="vertical-align:middle">PO TOTAL AMOUNT(楼)(EXCL.VAT)</th>
+                                        <th style="vertical-align:middle">PO TOTAL AMOUNT(楼)(INCL.VAT)</th>
                                     </tr>
                                 </thead>
 
@@ -115,10 +115,10 @@
                                         <th style="vertical-align:middle">BILLABLE MANDAY(day)</th>
                                         <th style="vertical-align:middle">BURNED MANDAY(day)</th>
                                         <th style="vertical-align:middle">BALANCE MANDAY(day)</th>
-                                        <th style="vertical-align:middle">RATE(¥/day)</th>
-                                        <th style="vertical-align:middle">ROLE TOTAL AMOUNT(¥)</th>
-                                        <th style="vertical-align:middle">BURNED AMOUNT(¥)</th>
-                                        <th style="vertical-align:middle">BALANCE AMOUNT(¥)</th>
+                                        <th style="vertical-align:middle">RATE</th>
+                                        <th style="vertical-align:middle">ROLE TOTAL AMOUNT</th>
+                                        <th style="vertical-align:middle">BURNED AMOUNT</th>
+                                        <th style="vertical-align:middle">BALANCE AMOUNT</th>
                                         <th style="vertical-align:middle">START DATE</th>
                                         <th style="vertical-align:middle">END DATE</th>
                                         <th style="vertical-align:middle">COMMENTS</th>
@@ -206,15 +206,15 @@
                                     </th>
 
                                     <th>
-                                        <input type="text" width="25" class="roleinfo_txt_billableManday" readonly="readonly" style="background:#E0E0E0;"/>
+                                        <input type="text" width="25" class="roleinfo_txt_billableManday"/>
                                     </th>
 
                                     <th>
-                                        <input type="text" width="25" class="roleinfo_txt_burnedManday" readonly="readonly" style="background:#E0E0E0;"/>
+                                        <input type="text" width="25" class="roleinfo_txt_burnedManday"/>
                                     </th>
 
                                     <th>
-                                        <input type="text" width="25" class="roleinfo_txt_balanceManday" readonly="readonly" style="background:#E0E0E0;"/>
+                                        <input type="text" width="25" class="roleinfo_txt_balanceManday"/>
                                     </th>
 
                                     <th>
@@ -222,15 +222,15 @@
                                     </th>
 
                                     <th>
-                                        <input type="text" width="25" class="roleinfo_txt_totalAmount" readonly="readonly" style="background:#E0E0E0;"/>
+                                        <input type="text" width="25" class="roleinfo_txt_totalAmount"/>
                                     </th>
 
                                     <th>
-                                        <input type="text" width="25" class="roleinfo_txt_burnedAmount" readonly="readonly" style="background:#E0E0E0;"/>
+                                        <input type="text" width="25" class="roleinfo_txt_burnedAmount"/>
                                     </th>
 
                                     <th>
-                                        <input type="text" width="25" class="roleinfo_txt_balanceAmount" readonly="readonly" style="background:#E0E0E0;"/>
+                                        <input type="text" width="25" class="roleinfo_txt_balanceAmount"/>
                                     </th>
 
                                     <th>
@@ -243,7 +243,6 @@
 
                                     <th>
                                         <input type="text" width="25" class="roleinfo_txt_roleComment"
-                                               onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
                                                onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
                                                oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
                                     </th>
@@ -335,7 +334,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
+                    <span aria-hidden="true">脳</span>
                 </button>
             </div>
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -373,6 +372,47 @@
             swal("COMMENTS: Too long!");
             return
         }
+        
+        if($(".roleinfo_txt_billableManday").val() == null || $(".roleinfo_txt_billableManday").val() == ''){
+            swal("BILLABLE MANDAY: Can not be empty!");
+            return
+        }
+        
+        if($(".roleinfo_txt_burnedManday").val() == null || $(".roleinfo_txt_burnedManday").val() == ''){
+            swal("BURNED MANDAY: Can not be empty!");
+            return
+        }
+        
+        if($(".roleinfo_txt_balanceManday").val() == null || $(".roleinfo_txt_balanceManday").val() == ''){
+            swal("BALANCE MANDAY: Can not be empty!");
+            return
+        }
+        
+        if(parseFloat($(".roleinfo_txt_billableManday").val()) != (parseFloat($(".roleinfo_txt_burnedManday").val()) + parseFloat($(".roleinfo_txt_balanceManday").val()))){
+            swal("MANDAYO INITIAL TOTAL MANDAY must equal TOTAL BURNED MANDAY plus BALANCE MANDAY");
+            return
+        }
+        
+        if($(".roleinfo_txt_totalAmount").val() == null || $(".roleinfo_txt_totalAmount").val() == ''){
+            swal("TOTAL AMT(EX.VAT) can not be empty!");
+            return
+        }
+
+        if($(".roleinfo_txt_burnedAmount").val() == null || $(".roleinfo_txt_burnedAmount").val() == ''){
+            swal("BURNED AMT AMT(EX.VAT) can not be empty!");
+            return
+        }
+
+        if($(".roleinfo_txt_balanceAmount").val() == null || $(".roleinfo_txt_balanceAmount").val() == ''){
+            swal("BALANCE AMT(EX.VAT) can not be empty!");
+            return
+        }
+
+        //鎬婚噾棰� = 宸茬敤閲戦 + 鍙敤閲戦 锛堝惈绋庯級
+        if(parseFloat($(".roleinfo_txt_totalAmount").val()) != (parseFloat($(".roleinfo_txt_balanceAmount").val()) + parseFloat($(".roleinfo_txt_burnedAmount").val()))){
+            swal(" TOTAL AMOUNT(EX.VAT) must equal BURNED AMT(INCL.VAT) plus BALANCE AMT(INCL.VAT)");
+            return
+        }
 
         var data = {
             "data":[
@@ -382,14 +422,22 @@
                     "roleComment": $(".roleinfo_txt_roleComment").val(),
                     "poId": $(".po_txt_id").val(),
                     "startDate": $(".roleinfo_txt_startDate").val(),
-                    "endDate": $(".roleinfo_txt_endDate").val()
+                    "endDate": $(".roleinfo_txt_endDate").val(),
+                    
+                    "totalAmount": $(".roleinfo_txt_totalAmount").val(),
+                    "burnedAmount": $(".roleinfo_txt_burnedAmount").val(),
+                    "balanceAmount": $(".roleinfo_txt_balanceAmount").val(),
+                    "billableManday": $(".roleinfo_txt_billableManday").val(),
+                    "burnedManday": $(".roleinfo_txt_burnedManday").val(),
+                    "balanceManday": $(".roleinfo_txt_burnedManday").val()
+                    
                 }
             ]
         };
 
         console.log(data);
 
-        // 录入项目详情信息
+        // 褰曞叆椤圭洰璇︽儏淇℃伅
         $.ajax({
             type: "post",
             url:"adminController/save_role_info",
@@ -497,8 +545,8 @@
             color: ['#3398DB'],
             tooltip : {
                 trigger: 'axis',
-                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer : {            // 鍧愭爣杞存寚绀哄櫒锛屽潗鏍囪酱瑙﹀彂鏈夋晥
+                    type : 'shadow'        // 榛樿涓虹洿绾匡紝鍙�変负锛�'line' | 'shadow'
                 }
             },
             grid: {

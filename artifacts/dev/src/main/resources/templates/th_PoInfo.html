@@ -75,11 +75,11 @@
                       <th style="vertical-align:middle">CONTENT TYPE</th>
 					  <th style="vertical-align:middle">START DATE</th>
 					  <th style="vertical-align:middle">END DATE</th>
-                      <th style="vertical-align:middle">PO TOTAL AMOUNT(¥)(EXCL.VAT)</th>
+                      <th style="vertical-align:middle">PO TOTAL AMOUNT(EXCL.VAT)</th>
                       <th style="vertical-align:middle">VAT(%)</th>
-                      <th style="vertical-align:middle">PO TOTAL AMOUNT(¥)(INCL.VAT)</th>
-                      <th style="vertical-align:middle">BILLED AMOUNT(¥)(INCL.VAT)</th>
-                      <th style="vertical-align:middle">AVAILABLE AMOUNT(¥)(INCL.VAT)</th>
+                      <th style="vertical-align:middle">PO TOTAL AMOUNT(INCL.VAT)</th>
+                      <th style="vertical-align:middle">BILLED AMOUNT(INCL.VAT)</th>
+                      <th style="vertical-align:middle">AVAILABLE AMOUNT(INCL.VAT)</th>
                       <th style="vertical-align:middle">PO INITIAL TOTAL MANDAY(day)</th>
                       <th style="vertical-align:middle">TOTAL BURNED MANDAY(day)</th>
                       <th style="vertical-align:middle">BALANCE MANDAY(day)</th>
@@ -208,10 +208,7 @@
                     </td>
 
                     <td>
-                      <input type="text" width="25" class="po_txt_poDesc"
-                             onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
-                             onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
-                             oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                      <input type="text" width="25" class="po_txt_poDesc"/>
                     </td>
 
                     <td>
@@ -241,7 +238,7 @@
                     </td>
 
                     <td>
-                      <input type="number" width="25" class="po_txt_poTotalAmountEx" readonly="readonly" style="background:#E0E0E0;"/>
+                      <input type="number" width="25" class="po_txt_poTotalAmountEx"/>
                     </td>
 
                     <td>
@@ -249,32 +246,31 @@
                     </td>
 
                     <td>
-                      <input type="number" width="25" class="po_txt_poTotalAmountIn" readonly="readonly" style="background:#E0E0E0;"/>
+                      <input type="number" width="25" class="po_txt_poTotalAmountIn"/>
                     </td>
 
                     <td>
-                      <input type="number" width="25" class="po_txt_billedAmtIn" readonly="readonly" style="background:#E0E0E0;"/>
+                      <input type="number" width="25" class="po_txt_billedAmtIn"/>
                     </td>
 
                     <td>
-                      <input type="number" width="25" class="po_txt_poAvailableAmtIn" readonly="readonly" style="background:#E0E0E0;"/>
+                      <input type="number" width="25" class="po_txt_poAvailableAmtIn"/>
                     </td>
 
                     <td>
-                      <input type="number" width="25" class="po_txt_poInitialTotalManday" readonly="readonly" style="background:#E0E0E0;"/>
+                      <input type="number" width="25" class="po_txt_poInitialTotalManday"/>
                     </td>
 
                     <td>
-                      <input type="number" width="25" class="po_txt_totalBurnedManday" readonly="readonly" style="background:#E0E0E0;"/>
+                      <input type="number" width="25" class="po_txt_totalBurnedManday"/>
                     </td>
 
                     <td>
-                      <input type="number" width="25" class="po_txt_balanceManday" readonly="readonly" style="background:#E0E0E0;"/>
+                      <input type="number" width="25" class="po_txt_balanceManday"/>
                     </td>
 
                     <td>
                       <input type="text" width="25" class="po_txt_poComment"
-                             onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
                              onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
                              oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
                     </td>
@@ -301,7 +297,7 @@
                   </tr>
                 </table>
 
-                <!--用于添加PO信息的表格-->
+                <!--鐢ㄤ簬娣诲姞PO淇℃伅鐨勮〃鏍�-->
                 <!--<table class="table table-bordered" id="poAddTable" width="100%" cellspacing="0">
                   <thead>
                     <tr style="text-align:center">
@@ -466,7 +462,7 @@
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
+              <span aria-hidden="true">脳</span>
             </button>
           </div>
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -503,117 +499,117 @@
               return
           }*/
 
-          if($(".po_txt_poName").val() == null || $(".po_txt_poName").val() == ''){
-            swal("PO NAME：Can not be empty!");
+         if($(".po_txt_poName").val() == null || $(".po_txt_poName").val() == ''){
+            swal("PO NAME锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_poDesc").val().length > 250){
-              swal("PO DESCRIPTION：Too long!");
+              swal("PO DESCRIPTION锛歍oo long!");
               return
           }
 
           if($(".po_txt_poStatus").val() == "selecting"){
-              swal("PO STATUS：Can not be empty!");
+              swal("PO STATUS锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_contentType").val() == "selecting"){
-              swal("CONTENT TYPE：Can not be empty!");
+              swal("CONTENT TYPE锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_startDate").val() == null || $(".po_txt_startDate").val() == ''){
-              swal("START DATE：Can not be empty!");
+              swal("START DATE锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_endDate").val() == null || $(".po_txt_endDate").val() == ''){
-              swal("END DATE：Can not be empty!");
+              swal("END DATE锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_startDate").val() > $(".po_txt_endDate").val()){
-              swal("DATE：START DATE can't be later than END DATE!");
+              swal("DATE锛歋TART DATE can't be later than END DATE!");
               return
           }
 
-         /* if($(".po_txt_poTotalAmountEx").val() == null || $(".po_txt_poTotalAmountEx").val() == ''){
-              swal("PO TOTAL AMOUNT(EXCL.VAT)：Can not be empty!");
+         if($(".po_txt_poTotalAmountEx").val() == null || $(".po_txt_poTotalAmountEx").val() == ''){
+              swal("PO TOTAL AMOUNT(EXCL.VAT)锛欳an not be empty!");
               return
-          }*/
+          }
 
           if($(".po_txt_vat").val() == null || $(".po_txt_vat").val() == ''){
-              swal("VAT：Can not be empty!");
+              swal("VAT锛欳an not be empty!");
               return
           }
 
           if(parseFloat($(".po_txt_vat").val()) < 0 || parseFloat($(".po_txt_vat").val()) > 100){
-              swal("VAT：VAT must range from 0 to 100 percent!");
+              swal("VAT锛歏AT must range from 0 to 100 percent!");
               return
           }
 
-          /*if($(".po_txt_poTotalAmountIn").val() == null || $(".po_txt_poTotalAmountIn").val() == ''){
-              swal("PO TOTAL AMOUNT(INCL.VAT)：Can not be empty!");
+          if($(".po_txt_poTotalAmountIn").val() == null || $(".po_txt_poTotalAmountIn").val() == ''){
+              swal("PO TOTAL AMOUNT(INCL.VAT)锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_billedAmtIn").val() == null || $(".po_txt_billedAmtIn").val() == ''){
-              swal("BILLED AMT(INCL.VAT)：Can not be empty!");
+              swal("BILLED AMT(INCL.VAT)锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_poAvailableAmtIn").val() == null || $(".po_txt_poAvailableAmtIn").val() == ''){
-              swal("AVAILABLE AMT(INCL.VAT)：Can not be empty!");
+              swal("AVAILABLE AMT(INCL.VAT)锛欳an not be empty!");
               return
           }
 
-          //总金额 = 已用金额 + 可用金额 （含税）
+          //鎬婚噾棰� = 宸茬敤閲戦 + 鍙敤閲戦 锛堝惈绋庯級
           if(parseFloat($(".po_txt_poTotalAmountIn").val()) != (parseFloat($(".po_txt_poAvailableAmtIn").val()) + parseFloat($(".po_txt_billedAmtIn").val()))){
-              swal("AMOUNT：PO TOTAL AMOUNT(INCL.VAT) must equal BILLED AMT(INCL.VAT) plus AVAILABLE AMT(INCL.VAT)");
+              swal("AMOUNT锛歅O TOTAL AMOUNT(INCL.VAT) must equal BILLED AMT(INCL.VAT) plus AVAILABLE AMT(INCL.VAT)");
               return
           }
 
-          //含税金额 = 不含税金额 * （1+税率）
+          //鍚◣閲戦 = 涓嶅惈绋庨噾棰� * 锛�1+绋庣巼锛�
           if(parseFloat($(".po_txt_poTotalAmountIn").val()) != (parseFloat($(".po_txt_poTotalAmountEx").val()) * (1 + 0.01 * parseFloat($(".po_txt_vat").val())))){
-              swal("AMOUNT：PO TOTAL AMOUNT(INCL.VAT) must equal PO TOTAL AMOUNT(EXCL.VAT) multiply (1+VAT)");
+              swal("AMOUNT锛歅O TOTAL AMOUNT(INCL.VAT) must equal PO TOTAL AMOUNT(EXCL.VAT) multiply (1+VAT)");
               return
           }
           if($(".po_txt_poInitialTotalManday").val() == null || $(".po_txt_poInitialTotalManday").val() == ''){
-              swal("PO INITIAL TOTAL MANDAY：Can not be empty!");
+              swal("PO INITIAL TOTAL MANDAY锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_totalBurnedManday").val() == null || $(".po_txt_totalBurnedManday").val() == ''){
-              swal("TOTAL BURNED MANDAY：Can not be empty!");
+              swal("TOTAL BURNED MANDAY锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_balanceManday").val() == null || $(".po_txt_balanceManday").val() == ''){
-              swal("BALANCE MANDAY：Can not be empty!");
+              swal("BALANCE MANDAY锛欳an not be empty!");
               return
           }
 
-          //总人天 = 已用人天 + 可用人天
+          //鎬讳汉澶� = 宸茬敤浜哄ぉ + 鍙敤浜哄ぉ
           if(parseFloat($(".po_txt_poInitialTotalManday").val()) != (parseFloat($(".po_txt_totalBurnedManday").val()) + parseFloat($(".po_txt_balanceManday").val()))){
-              swal("MANDAY：PO INITIAL TOTAL MANDAY must equal TOTAL BURNED MANDAY plus BALANCE MANDAY");
+              swal("MANDAY锛歅O INITIAL TOTAL MANDAY must equal TOTAL BURNED MANDAY plus BALANCE MANDAY");
               return
-          }*/
+          }
 
           if($(".po_txt_startDate").val() < $(".project_txt_startDate").val()){
-              swal("DATE：PO's START DATE can't be earlier than PROJECT's START DATE!");
+              swal("DATE锛歅O's START DATE can't be earlier than PROJECT's START DATE!");
               return
           }
 
           if($(".po_txt_poComment").val().length > 50){
-              swal("COMMENTS：Too long!");
+              swal("COMMENTS锛歍oo long!");
               return
           }
 
-          /*if($(".po_txt_endDate").val() > $(".project_txt_endDate").val()){
-              swal("DATE：PO's END DATE can't be later than PROJECT's END DATE!");
+          if($(".po_txt_endDate").val() > $(".project_txt_endDate").val()){
+              swal("DATE锛歅O's END DATE can't be later than PROJECT's END DATE!");
               return
-          }*/
+          }
 
           var data = {
                   "data":[
@@ -643,7 +639,7 @@
 
           console.log(data);
 
-          // 录入项目信息
+          // 褰曞叆椤圭洰淇℃伅
           $.ajax({
               type: "post",
               url:"adminController/save_po_info",
@@ -783,8 +779,8 @@
               color: ['#3398DB'],
               tooltip : {
                   trigger: 'axis',
-                  axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                      type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                  axisPointer : {            // 鍧愭爣杞存寚绀哄櫒锛屽潗鏍囪酱瑙﹀彂鏈夋晥
+                      type : 'shadow'        // 榛樿涓虹洿绾匡紝鍙�変负锛�'line' | 'shadow'
                   }
               },
               grid: {

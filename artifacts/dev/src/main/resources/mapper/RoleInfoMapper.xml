@@ -7,12 +7,51 @@
 
 
     <insert id="saveRoleInfoEntity" parameterType="RoleInfoEntity">
-        insert into
-          role_info (`PO_ROLE`,`RATE`,`START_DATE`,`END_DATE`,`CREATE_DATE`,`LASTUPDATE_DATE`,`CREAT_BY`,`LASTUPDATE_BY`,`ROLE_COMMENT`,`PO_ID`)
-        values
-          (#{poRole},#{rate},#{startDate},#{endDate},#{createDate},#{lastupdateDate},#{creatBy},#{lastupdateBy},#{roleComment},#{poId})
+        insert into role_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+	        <if test="poRole != null">po_role,</if>
+	        
+	        <if test="totalAmountIn != null">total_amount_in,</if>
+	        <if test="burnedAmountIn != null">burned_amount_in,</if>
+	        <if test="balanceAmountIn != null">balance_amount_in,</if>
+	        <if test="rateIn != null">rate_in,</if>
+	        
+	        <if test="billableManday != null">billable_manday,</if>
+	        <if test="burnedManday != null">burned_manday,</if>
+	        <if test="balanceManday != null">balance_manday,</if>
+	        
+	        <if test="roleComment != null">role_comment,</if>
+	        <if test="poId != null">po_id,</if>
+	        <if test="createDate != null">create_date,</if>
+	        <if test="lastupdateDate != null">lastupdate_date,</if>
+	        <if test="creatBy != null">creat_by,</if>
+	        <if test="lastupdateBy != null">lastupdate_by,</if>
+	        <if test="startDate != null">start_date,</if>
+	        <if test="endDate != null">end_date,</if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+        	<if test="poRole != null">#{poRole},</if>
+        	
+	        <if test="totalAmountIn != null">#{totalAmountIn},</if>
+	        <if test="burnedAmountIn != null">#{burnedAmountIn},</if>
+	        <if test="balanceAmountIn != null">#{balanceAmountIn},</if>
+	        <if test="rateIn != null">#{rateIn},</if>
+	        
+	        <if test="billableManday != null">#{billableManday},</if>
+	        <if test="burnedManday != null">#{burnedManday},</if>
+	        <if test="balanceManday != null">#{balanceManday},</if>
+	        
+	        <if test="roleComment != null">#{roleComment},</if>
+	        <if test="poId != null">#{poId},</if>
+	        <if test="createDate != null">CURRENT_TIMESTAMP,</if>
+	        <if test="lastupdateDate != null">CURRENT_TIMESTAMP,</if>
+	        <if test="creatBy != null">#{creatBy},</if>
+	        <if test="lastupdateBy != null">#{lastupdateBy},</if>
+	        <if test="startDate != null">#{startDate},</if>
+	        <if test="endDate != null">#{endDate},</if>
+        </trim>
     </insert>
-
+          
     <select id="queryRoleInfoById" parameterType="Integer" resultType="RoleInfoEntity">
         SELECT
           *
@@ -26,14 +65,28 @@
       WHERE `ID` = #{_parameter}
     </update>
 
-      <update id="updateRoleInfoById" parameterType="RoleInfoEntity">
+    <update id="updateRoleInfoById" parameterType="RoleInfoEntity">
 
-      update role_info
-      set
-        `PO_ROLE` = #{poRole},`BILLABLE_MANDAY`=#{billableManday},`TOTAL_AMOUNT`=#{totalAmount},
-        `BURNED_AMOUNT`=#{burnedAmount},`BALANCE_AMOUNT`=#{balanceAmount},`LASTUPDATE_DATE`=#{lastupdateDate},
-        `BURNED_MANDAY`=#{burnedManday},`BALANCE_MANDAY`=#{balanceManday},`ROLE_COMMENT`=#{roleComment}
-      where `ID` = #{id} AND `DELETE_FLAG` = 1
+    update role_info
+	<set>
+	   		<if test="poRole != null">po_role=#{poRole},</if>
+	        <if test="totalAmountIn != null">total_amount_in = #{totalAmountIn},</if>
+	        <if test="burnedAmountIn != null">burned_amount_in = #{burnedAmountIn},</if>
+	        <if test="balanceAmountIn != null">balance_amount_in = #{balanceAmountIn},</if>
+	        <if test="startDate != null">start_date = #{startDate},</if>
+	        <if test="endDate != null">end_date = #{endDate},</if>
+	        <if test="createDate != null">create_date = #{createDate},</if>
+	        <if test="lastupdateDate != null">lastupdate_date = CURRENT_TIMESTAMP,</if>
+	        <if test="creatBy != null">creat_by = #{creatBy},</if>
+	        <if test="lastupdateBy != null">lastupdate_by = #{lastupdateBy},</if>
+	        <if test="rateIn != null">rate_in = #{rateIn},</if>
+	        <if test="billableManday != null">billable_manday = #{billableManday},</if>
+	        <if test="burnedManday != null">burned_manday = #{burnedManday},</if>
+	        <if test="balanceManday != null">balance_manday = #{balanceManday},</if>
+	        <if test="roleComment != null">role_comment = #{roleComment},</if>
+	        <if test="poId != null">po_id = #{poId},</if>
+    </set>	     
+    where `ID` = #{id} AND `DELETE_FLAG` = 1
     </update>
 
     <!--<update id="updateRoleInfoAmountById" parameterType="RoleInfoEntity">
