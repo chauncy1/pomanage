@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="th_master_page :: header">
+</head>
+<body id="page-top">
+
+<nav th:replace="th_master_page :: navigations" class="navbar navbar-expand navbar-dark bg-dark static-top">
+</nav>
+
+<div id="wrapper">
+
+    <!-- Sidebar
+    <ul th:replace="th_master_page :: sidebar" class="sidebar navbar-nav">
+    </ul> -->
+
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb" style="background-color: orange">
+                <li class="breadcrumb-item active">Expiring PO Info</li>
+            </ol>
+
+            <!-- Expiring PO DataTable -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    Expiring PO
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="expiringPo" width="100%" cellspacing="0">
+                            <thead>
+                                <tr style="text-align:center">
+                                    <th style="vertical-align:middle">CODE</th>
+                                    <th style="vertical-align:middle">PO#</th>
+                                    <th style="vertical-align:middle">PO NAME</th>
+                                    <th style="vertical-align:middle">REMAINING DAYS</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr style="text-align:center" th:each="expiringPoInfo : ${expiringPoInfos}">
+                                    <td style="vertical-align:middle" th:text="${expiringPoInfo.code}"></td>
+                                    <td style="vertical-align:middle" th:text="${expiringPoInfo.poName}"></td>
+                                    <td style="vertical-align:middle" th:text="${expiringPoInfo.poNo}"></td>
+                                    <td style="vertical-align:middle" th:text="${expiringPoInfo.remainingDays}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="card-footer small text-muted">&nbsp;</div>
+            </div>
+
+            <ol class="breadcrumb">
+                <!--<li class="breadcrumb-item">
+                    <a href="#">Dashboard</a>
+                </li>-->
+                <li class="breadcrumb-item active">Project Info</li>
+            </ol>
+
+            <!--  PROJECT DataTable -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    Project List</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr style="text-align:center">
+                                    <!--<th>SELECT</th>-->
+                                    <th style="vertical-align:middle">ACCOUNT</th>
+                                    <th style="vertical-align:middle">CODE</th>
+                                    <th style="vertical-align:middle">PROJECT NAME</th>
+                                    <th style="vertical-align:middle">EM</th>
+                                    <th style="vertical-align:middle">DE</th>
+                                    <th style="vertical-align:middle">PROJECT DESCRIPTION</th>
+                                    <th style="vertical-align:middle">START DATE</th>
+                                    <th style="vertical-align:middle">END DATE</th>
+                                    <th style="vertical-align:middle">CREATE DATE</th>
+                                    <th style="vertical-align:middle">LASTUPDATE DATE</th>
+                                    <th style="vertical-align:middle">CREATE BY</th>
+                                    <th style="vertical-align:middle">LASTUPDATE BY</th>
+                                    <th style="vertical-align:middle">COMMENTS</th>
+                                    <th style="vertical-align:middle">OPERATION</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr style="text-align:center" th:each="project : ${projectinfos}">
+                                    <!--<td><input type="checkbox" /></td>-->
+
+                                    <td style="vertical-align:middle" th:text="${project.account}">
+                                    </td>
+
+                                    <td style="vertical-align:middle">
+                                        <a th:href="@{/PoInfo(code=${project.code})}">
+                                            <span th:text="${project.code}"></span>
+                                        </a>
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${project.projectName}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${project.projectEm}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${project.projectDm}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${project.projectDesc}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${project.startDate}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${project.endDate}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${project.createDate}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${project.lastupdateDate}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="admin">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="admin">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${project.projectComment}">
+                                    </td>
+
+                                    <td style="vertical-align:middle">
+                                        <a th:href="@{/Projectinfo_edit(id=${project.id})}">
+                                            <button type="button" class="btn btn-block btn-primary">EDIT</button>
+                                        </a>
+                                        <p></p>
+                                        <button type="button" class="btn btn-block btn-danger"
+                                                th:onclick="'javascript:delete_project_info(' + ${project.id} + ')'">DELETE</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tr>
+                                <!--<td></td>-->
+
+                                <td>
+                                    <input type="text" width="25" class="project_txt_account"
+                                           onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                           onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                           oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                                </td>
+
+                                <td>
+                                    <input type="number" width="25" class="project_txt_code"/>
+                                </td>
+
+                                <td>
+                                    <input type="text" width="25" class="project_txt_projectName"
+                                           onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                           onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                           oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                                </td>
+
+                                <td>
+                                    <input type="text" width="25" class="project_txt_projectEm"
+                                           onkeyup="value=value.replace(/[^\a-\z\A-\Z ,]/g,'')"
+                                           onpaste="value=value.replace(/[^\a-\z\A-\Z ,]/g,'')"
+                                           oncontextmenu="value=value.replace(/[^\a-\z\A-\Z ,]/g,'')"/>
+                                </td>
+
+                                <td>
+                                    <input type="text" width="25" class="project_txt_projectDm"
+                                           onkeyup="value=value.replace(/[^\a-\z\A-\Z ,]/g,'')"
+                                           onpaste="value=value.replace(/[^\a-\z\A-\Z ,]/g,'')"
+                                           oncontextmenu="value=value.replace(/[^\a-\z\A-\Z ,]/g,'')"/>
+                                </td>
+
+                                <td>
+                                    <input type="text" width="25" class="project_txt_projectDesc"
+                                           onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                           onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                           oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                                </td>
+
+                                <td>
+                                    <input type="date" width="25" class="project_txt_startDate"/>
+                                </td>
+
+                                <td>
+                                    <input type="date" width="25" class="project_txt_endDate"/>
+                                </td>
+
+                                <td>
+                                    <input type="text" width="25" style="background:#E0E0E0;" class="project_txt_createDate" readonly="readonly"/>
+                                </td>
+
+                                <td>
+                                    <input type="text" width="25" style="background:#E0E0E0;" class="project_txt_lastupdateDate" readonly="readonly"/>
+                                </td>
+
+                                <td>
+                                    <input type="text" width="25" style="background:#E0E0E0;" class="po_txt_creatBy" readonly="readonly"/>
+                                </td>
+
+                                <td>
+                                    <input type="text" width="25" style="background:#E0E0E0;" class="po_txt_lastupdateBy" readonly="readonly"/>
+                                </td>
+
+                                <td>
+                                    <input type="text" width="25" class="project_txt_projectComment"
+                                           onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                           onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                           oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                                </td>
+
+                                <td style="text-align:center;vertical-align:middle">
+                                    <button type="button" class="btn btn-block btn-primary col-md-offset-10"
+                                            onclick='save_project_info()'>ADD</button>
+                                </td>
+
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="card-footer small text-muted">&nbsp;</div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer th:replace="th_master_page :: footer" class="sticky-footer">
+        </footer>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="th_master_page :: scriptAtPageEnd">
+
+</div>
+<script type="application/javascript">
+    function save_project_info() {
+        if($(".project_txt_account").val() == null || $(".project_txt_account").val() == ''){
+            swal("ACCOUNT#: Can not be empty!");
+            return
+        }
+
+        if($(".project_txt_code").val() == null || $(".project_txt_code").val() == ''){
+            swal("CODE: Can not be empty!");
+            return
+        }
+
+        if($(".project_txt_code").val().length != 5){
+            swal("CODE: length is 5!");
+            return
+        }
+
+        if($(".project_txt_projectName").val() == null || $(".project_txt_projectName").val() == ''){
+            swal("PROJECT NAME：Can not be empty!");
+            return
+        }
+
+        if($(".project_txt_projectEm").val() == null || $(".project_txt_projectEm").val() == ''){
+            swal("EM：Can not be empty!");
+            return
+        }
+
+        if($(".project_txt_projectDm").val() == null || $(".project_txt_projectDm").val() == ''){
+            swal("DE：Can not be empty!");
+            return
+        }
+
+        if($(".project_txt_projectDesc").val().length > 250){
+            swal("PROJECT DESCRIPTION：Too long!");
+            return
+        }
+
+        if($(".project_txt_startDate").val() == null || $(".project_txt_startDate").val() == ''){
+            swal("START DATE：Can not be empty!");
+            return
+        }
+
+        if($(".project_txt_endDate").val() == null || $(".project_txt_endDate").val() == ''){
+            swal("END DATE：Can not be empty!");
+            return
+        }
+
+        if($(".project_txt_startDate").val() > $(".project_txt_endDate").val()){
+            swal("DATE：START DATE can't be later than END DATE!");
+            return
+        }
+
+        if($(".project_txt_projectComment").val().length > 50){
+            swal("COMMENTS：Too long!");
+            return
+        }
+
+        var data = {
+            "data":[
+                {
+                    "account": $(".project_txt_account").val(),
+                    "code": $(".project_txt_code").val(),
+                    "projectName": $(".project_txt_projectName").val(),
+                    "projectEm": $(".project_txt_projectEm").val(),
+                    "projectDm": $(".project_txt_projectDm").val(),
+                    "projectDesc": $(".project_txt_projectDesc").val(),
+                    "startDate": $(".project_txt_startDate").val(),
+                    "endDate": $(".project_txt_endDate").val(),
+                    "creatBy": $(".project_txt_creatBy").val(),
+                    "lastupdateBy": $(".project_txt_lastupdateBy").val(),
+                    "projectComment": $(".project_txt_projectComment").val()
+                }
+            ]
+        };
+
+        console.log(data);
+
+        // 录入项目信息
+        $.ajax({
+            type: "post",
+            url:"adminController/save_project_info",
+            data: JSON.stringify(data),
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+
+            success: function (data) {
+                if (data.code == '200000') {
+                    window.location.reload();
+                    swal('Success!');
+                } else {
+                    swal('Failed, Msg: '+ data.msg);
+                }
+            }});
+
+    }
+
+    function delete_project_info(id) {
+        swal({
+            title: "Ready to delete?",
+            text: "Once deleted, you will not be able to recover this PROJECT information ["+id+"]!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+                .then((willDelete) => {
+            if (willDelete) {
+            swal("Poof! Your PROJECT information ["+id+"] has been deleted!", {
+                icon: "success",
+            });
+            $.ajax({
+                type: "get",
+                url:"adminController/deleteProjectById?id=" + id,
+                dataType:"json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if (data.code == '200000') {
+                        window.location.reload();
+                        swal('Success!');
+                    } else {
+                        swal('Failure, Msg: '+ data.msg);
+                    }
+                }});
+        } else {
+            swal("Your porject information is safe!");
+        }
+    });
+    }
+</script>
+</body>
+</html>

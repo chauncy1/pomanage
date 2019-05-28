@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="th_master_page :: header">
+</head>
+  <body id="page-top">
+      <nav th:replace="th_master_page :: navigations" class="navbar navbar-expand navbar-dark bg-dark static-top">
+      </nav>
+    <div id="wrapper">
+
+      <!-- Sidebar
+      <ul th:replace="th_master_page :: sidebar" class="sidebar navbar-nav">
+      </ul> -->
+
+      <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+          <!-- Breadcrumbs-->
+          <div class="container">
+
+			<form class="form-horizontal">
+				<fieldset>
+					<legend class="col-lg-offset-1">Edit Project Summary Info</legend>
+                    <br/>
+
+					<!--<div class="form-group">
+						<label for="project_txt_id" class="col-sm-4 control-label">ID</label>
+						<div class="col-sm-6">
+							<input type="text" id="project_txt_id" class="form-control" th:value="${projectInfo.id}" readonly="readonly">
+						</div>
+					</div>-->
+
+					<div class="form-group">
+						<label for="project_txt_account" class="col-sm-4 control-label">ACCOUNT</label>
+						<div class="col-sm-6">
+							<input type="text" id="project_txt_account" class="form-control" th:value="${projectInfo.account}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="project_txt_code" class="col-sm-4 control-label">CODE</label>
+						<div class="col-sm-6">
+							<input type="number" id="project_txt_code" class="form-control" th:value="${projectInfo.code}" readonly="readonly"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="project_txt_projectName" class="col-sm-4 control-label">PROJECT NAME</label>
+						<div class="col-sm-6">
+							<input type="text" id="project_txt_projectName" class="form-control" th:value="${projectInfo.projectName}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="project_txt_projectEm" class="col-sm-4 control-label">EM</label>
+						<div class="col-sm-6">
+							<input type="text" id="project_txt_projectEm" class="form-control" th:value="${projectInfo.projectEm}"
+							onkeyup="value=value.replace(/[^\a-\z\A-\Z ,]/g,'')"
+							onpaste="value=value.replace(/[^\a-\z\A-\Z ,]/g,'')"
+							oncontextmenu="value=value.replace(/[^\a-\z\A-\Z ,]/g,'')">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="project_txt_projectDm" class="col-sm-4 control-label">DE</label>
+						<div class="col-sm-6">
+                            <!--<input type="date" id="project_txt_startDate" class="form-control" value="2018-08-08" />-->
+							<input type="text" id="project_txt_projectDm" class="form-control" th:value="${projectInfo.projectDm}"
+								   onkeyup="value=value.replace(/[^\a-\z\A-\Z ,]/g,'')"
+								   onpaste="value=value.replace(/[^\a-\z\A-\Z ,]/g,'')"
+								   oncontextmenu="value=value.replace(/[^\a-\z\A-\Z ,]/g,'')">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="project_txt_projectDesc" class="col-sm-4 control-label">PROJECT DESCRIPTION</label>
+						<div class="col-sm-6">
+							<input type="text" id="project_txt_projectDesc" class="form-control" th:value="${projectInfo.projectDesc}"
+								   onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+								   onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+								   oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="project_txt_startDate" class="col-sm-4 control-label">START DATE</label>
+						<div class="col-sm-6">
+							<input type="date" id="project_txt_startDate" class="form-control" th:value="${projectInfo.startDate}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="project_txt_endDate" class="col-sm-4 control-label">END DATE</label>
+						<div class="col-sm-6">
+							<input type="date" id="project_txt_endDate" class="form-control" th:value="${projectInfo.endDate}">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="project_txt_createDate" class="col-sm-4 control-label">CREATE DATE</label>
+						<div class="col-sm-6">
+							<input type="date" id="project_txt_createDate" class="form-control" th:value="${projectInfo.createDate}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="project_txt_lastupdateDate" class="col-sm-4 control-label">LASTUPDATE DATE<</label>
+						<div class="col-sm-6">
+							<input type="date" id="project_txt_lastupdateDate" class="form-control" th:value="${projectInfo.lastupdateDate}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="project_txt_creatBy" class="col-sm-4 control-label">CREATE BY</label>
+						<div class="col-sm-6">
+							<input type="text" id="project_txt_creatBy" class="form-control" th:value="admin" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_lastupdateBy" class="col-sm-4 control-label">LASTUPDATE BY</label>
+						<div class="col-sm-6">
+							<input type="text" id="po_txt_lastupdateBy" class="form-control" th:value="admin" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="project_txt_projectComment" class="col-sm-4 control-label">COMMENTS</label>
+						<div class="col-sm-6">
+							<input type="text" id="project_txt_projectComment" class="form-control" th:value="${projectInfo.projectComment}"
+								   onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+								   onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+								   oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-offset-5 col-sm-10">
+							<button type="button" class="btn btn-primary" onclick="editProjectInfo()"  >OK</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+							<button type="reset" class="btn btn-danger" onclick="javascript:window.location.reload();">RELOAD</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="button" class="btn btn-danger" value="RETURN" onclick="javascript:window.location.href='/po-mgmt-system'"/>
+						</div>
+					</div>
+
+				</fieldset>
+			</form>
+
+		</div>
+        <!-- /.container-fluid -->
+        <!-- Sticky Footer -->
+        <footer th:replace="th_master_page :: footer" class="sticky-footer">
+        </footer>
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div th:replace="th_master_page :: scriptAtPageEnd">
+      </div>
+
+<script type="application/javascript">
+    function editProjectInfo(){
+
+        /*if($(".project_txt_projectName").val() == null || $(".project_txt_projectName").val() == ''){
+            swal("PROJECT NAME：Can not be empty!");
+            return
+        }*/
+
+        if($("#project_txt_projectEm").val() == null || $("#project_txt_projectEm").val() == ''){
+            swal("EM：Can not be empty!");
+            return
+        }
+
+        if($("#project_txt_projectDm").val() == null || $("#project_txt_projectDm").val() == ''){
+            swal("DE：Can not be empty!");
+            return
+        }
+
+        if($("#project_txt_startDate").val() > $("#project_txt_endDate").val()){
+            swal("DATE：START DATE can't be later than END DATE!");
+            return
+        }
+
+        if($("#project_txt_projectDesc").val().length > 250){
+            swal("PROJECT DESCRIPTION：Too long!");
+            return
+        }
+
+        if($("#project_txt_projectComment").val().length > 50){
+            swal("COMMENTS：Too long!");
+            return
+        }
+
+        var data = {
+            "data":[
+                {
+                    // "id": $("#project_txt_id").val(),
+                    "account": $("#project_txt_account").val(),
+                    "code": $("#project_txt_code").val(),
+                    "projectName": $("#project_txt_projectName").val(),
+                    "projectEm": $("#project_txt_projectEm").val(),
+                    "projectDm": $("#project_txt_projectDm").val(),
+                    "projectDesc": $("#project_txt_projectDesc").val(),
+                    "startDate": $("#project_txt_startDate").val(),
+                    "endDate": $("#project_txt_endDate").val(),
+                    // "creatBy": $("#project_txt_creatBy").val(),
+                    "createDate": $("#project_txt_createDate").val(),
+                    "lastupdateDate": $("#project_txt_lastupdateDate").val(),
+                    // "lastupdateBy": $("#project_txt_lastupdateBy").val(),
+                    "projectComment": $("#project_txt_projectComment").val()
+                }
+            ]
+        };
+
+        console.log(data);
+
+        // 更新PROJECT信息
+        $.ajax({
+            type: "post",
+            url:"adminController/updateProjectByCode",
+            data: JSON.stringify(data),
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+
+            success: function (data) {
+                if (data.code == '200000') {
+                    window.location.reload();
+                    swal('Success!');
+                } else {
+                  swal('Failed, Msg: '+ data.msg);
+                }
+            }});
+    }
+</script>
+
+  </body>
+
+</html>

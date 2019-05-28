@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.capgemini.mapper.ProjectInfoMapper">
+
+
+    <select id="queryProjectInfoById" parameterType="Integer" resultType="ProjectInfoEntity">
+        SELECT
+        *
+        FROM project_info
+        WHERE `ID` = #{_parameter} AND `DELETE_FLAG` = 1
+    </select>
+
+    <select id="queryProjectInfoByCode" parameterType="String" resultType="ProjectInfoEntity">
+        SELECT
+        *
+        FROM project_info
+        WHERE `CODE` = #{_parameter} AND `DELETE_FLAG` = 1
+    </select>
+
+    <insert id="saveProjectInfoEntity" parameterType="ProjectInfoEntity">
+        insert into
+        project_info(account,code,project_name,project_comment,project_em,project_dm,project_desc,start_date,end_date,
+        create_date,lastupdate_date,creat_by,lastupdate_by)
+        values
+        (#{account},#{code},#{projectName},#{projectComment},#{projectEm},#{projectDm},#{projectDesc},#{startDate},
+        #{endDate},#{createDate},#{lastupdateDate},#{creatBy},#{lastupdateBy})
+    </insert>
+
+    <update id="updateProjectInfoEntity" parameterType="ProjectInfoEntity">
+        UPDATE project_info
+        SET project_comment=#{projectComment},project_em=#{projectEm},project_dm=#{projectDm},project_desc=#{projectDesc},
+        start_date=#{startDate},end_date=#{endDate}
+        WHERE `CODE` = #{code} AND `DELETE_FLAG` = 1
+    </update>
+
+    <update id="deleteProjectInfoById" parameterType="Integer">
+        UPDATE project_info
+        SET delete_flag=0
+        WHERE `ID` = #{_parameter}
+    </update>
+
+    <select id="queryProjectInfos" resultType="ProjectInfoEntity">
+        SELECT
+        *
+        FROM project_info
+        WHERE `DELETE_FLAG` = 1
+        order by create_date desc
+        limit 1000
+    </select>
+
+    <select id="queryProjectInfosByCode" parameterType="String" resultType="ProjectInfoEntity">
+        SELECT
+        *
+        FROM project_info
+        WHERE `DELETE_FLAG` = 1
+        <if test="_parameter != null and _parameter != '' ">
+            AND `CODE` = #{_parameter}
+        </if>
+        order by create_date desc
+        limit 10
+    </select>
+
+</mapper>

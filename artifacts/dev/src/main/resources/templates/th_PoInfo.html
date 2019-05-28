@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="th_master_page :: header">
+</head>
+  <body id="page-top">
+
+    <nav th:replace="th_master_page :: navigations" class="navbar navbar-expand navbar-dark bg-dark static-top">
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar
+      <ul th:replace="th_master_page :: sidebar" class="sidebar navbar-nav">
+      </ul> -->
+
+      <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a th:href="@{/}">Project</a>
+            </li>
+            <li class="breadcrumb-item active">Po Info</li>
+          </ol>
+
+          <!-- DataTables Example -->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              PO List</div>
+            <div class="card-body">
+
+              <div class="table-responsive">
+
+                  <table class="table table-bordered" id="projectTable" width="100%" cellspacing="0">
+                      <thead>
+                      <tr style="text-align:center">
+                          <th style="vertical-align:middle">ACCOUNT</th>
+                          <th style="vertical-align:middle">CODE</th>
+                          <th style="vertical-align:middle">PROJECT NAME</th>
+                          <th style="vertical-align:middle">EM</th>
+                          <th style="vertical-align:middle">DE</th>
+                      </tr>
+                      </thead>
+
+                      <tbody>
+                      <tr style="text-align:center">
+
+                          <td style="vertical-align:middle" th:text="${projectinfo.account}"></td>
+
+                          <td style="vertical-align:middle" th:text="${projectinfo.code}"></td>
+
+                          <td style="vertical-align:middle" th:text="${projectinfo.projectName}"></td>
+
+                          <td style="vertical-align:middle" th:text="${projectinfo.projectEm}"></td>
+
+                          <td style="vertical-align:middle" th:text="${projectinfo.projectDm}"></td>
+
+                      </tr>
+                      </tbody>
+                  </table>
+
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr style="text-align:center">
+                      <!--<th>SELECT</th>-->
+                      <!--<th style="vertical-align:middle">ID</th>-->
+                      <th style="vertical-align:middle">CODE</th>
+                      <th style="vertical-align:middle">PO#</th>
+					  <th style="vertical-align:middle">PO NAME</th>
+                      <th style="vertical-align:middle">PO DESCRIPTION</th>
+                      <th style="vertical-align:middle">PO STATUS</th>
+                      <th style="vertical-align:middle">CONTENT TYPE</th>
+					  <th style="vertical-align:middle">START DATE</th>
+					  <th style="vertical-align:middle">END DATE</th>
+                      <th style="vertical-align:middle">PO TOTAL AMOUNT(¥)(EXCL.VAT)</th>
+                      <th style="vertical-align:middle">VAT(%)</th>
+                      <th style="vertical-align:middle">PO TOTAL AMOUNT(¥)(INCL.VAT)</th>
+                      <th style="vertical-align:middle">BILLED AMOUNT(¥)(INCL.VAT)</th>
+                      <th style="vertical-align:middle">AVAILABLE AMOUNT(¥)(INCL.VAT)</th>
+                      <th style="vertical-align:middle">PO INITIAL TOTAL MANDAY(day)</th>
+                      <th style="vertical-align:middle">TOTAL BURNED MANDAY(day)</th>
+                      <th style="vertical-align:middle">BALANCE MANDAY(day)</th>
+                      <th style="vertical-align:middle">COMMENTS</th>
+                      <th style="vertical-align:middle">CREATE DATE</th>
+                      <th style="vertical-align:middle">CREATE BY</th>
+                      <th style="vertical-align:middle">LASTUPDATE DATE</th>
+                      <th style="vertical-align:middle">LASTUPDATE BY</th>
+					  <th style="vertical-align:middle">OPERATION</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr style="text-align:center" th:each="po : ${poinfos}">
+                      <!--<td><input type="checkbox" /></td>-->
+
+                      <!--<td style="vertical-align:middle" th:text="${po.id}">
+                      </td>-->
+
+                      <td style="vertical-align:middle" th:text="${po.code}">
+                      </td>
+
+                      <td style="vertical-align:middle">
+                        <a th:href="@{/RoleInfo(po_id=${po.id})}">
+                          <span th:text="${po.poNo}"></span>
+                        </a>
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.poName}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.poDesc}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.poStatus}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.contentType}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.startDate}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.endDate}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.poTotalAmountEx}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.vat}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.poTotalAmountIn}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.billedAmtIn}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.poAvailableAmtIn}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.poInitialTotalManday}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.totalBurnedManday}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.balanceManday}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.poComment}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.createDate}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="admin">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="${po.lastupdateDate}">
+                      </td>
+
+                      <td style="vertical-align:middle" th:text="admin">
+                      </td>
+
+                      <td style="vertical-align:middle">
+                        <a th:href="@{/Poinfo_edit(po_id=${po.id})}">
+                          <button type="button" class="btn btn-block btn-primary">EDIT</button>
+                        </a>
+                        <button type="button" class="btn btn-block btn-danger"
+                                th:onclick="'javascript:delete_po_info(' + ${po.id} + ')'">DELETE</button>
+                        <button type="button" class="btn btn-block btn-primary"
+                                th:onclick="'javascript:export_po_info(' + ${po.id} + ')'">EXPORT</button>
+                      </td>
+
+                    </tr>
+                  </tbody>
+
+                  <tr>
+                    <!--<td></td>-->
+
+                    <!--<td>
+                    </td>-->
+
+                    <td hidden="hidden">
+                      <input type="date" class="project_txt_startDate" th:value="${projectinfo.startDate}">
+                    </td>
+
+                    <td hidden="hidden">
+                      <input type="date" class="project_txt_endDate" th:value="${projectinfo.endDate}">
+                    </td>
+
+                    <td>
+                      <input type="number" width="25" class="po_txt_code" th:value="${projectinfo.code}" readonly="readonly"/>
+                    </td>
+
+                    <td>
+                      <input type="number" width="25" class="po_txt_poNo"/>
+                    </td>
+
+                    <td>
+                      <input type="text" width="25" class="po_txt_poName"
+                             onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                             onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                             oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                    </td>
+
+                    <td>
+                      <input type="text" width="25" class="po_txt_poDesc"
+                             onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                             onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                             oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                    </td>
+
+                    <td>
+                      <select width="25" class="po_txt_poStatus">
+                        <option value="selecting" selected="selected">selecting</option>
+                        <option value="OPEN">OPEN</option>
+                        <option value="STOP">STOP</option>
+                        <option value="CLOSE">CLOSE</option>
+                        <option value="NOT RELEASE">NOT RELEASE</option>
+                      </select>
+                    </td>
+
+                    <td>
+                      <select width="25" class="po_txt_contentType">
+                        <option value="selecting" selected="selected">selecting</option>
+                        <option value="FIXED PRICE">FIXED PRICE</option>
+                        <option value="T&M">T&M</option>
+                      </select>
+                    </td>
+
+                    <td>
+                      <input type="date" width="25" class="po_txt_startDate"/>
+                    </td>
+
+                    <td>
+                      <input type="date" width="25" class="po_txt_endDate"/>
+                    </td>
+
+                    <td>
+                      <input type="number" width="25" class="po_txt_poTotalAmountEx" readonly="readonly" style="background:#E0E0E0;"/>
+                    </td>
+
+                    <td>
+                      <input type="number" width="25" class="po_txt_vat"/>
+                    </td>
+
+                    <td>
+                      <input type="number" width="25" class="po_txt_poTotalAmountIn" readonly="readonly" style="background:#E0E0E0;"/>
+                    </td>
+
+                    <td>
+                      <input type="number" width="25" class="po_txt_billedAmtIn" readonly="readonly" style="background:#E0E0E0;"/>
+                    </td>
+
+                    <td>
+                      <input type="number" width="25" class="po_txt_poAvailableAmtIn" readonly="readonly" style="background:#E0E0E0;"/>
+                    </td>
+
+                    <td>
+                      <input type="number" width="25" class="po_txt_poInitialTotalManday" readonly="readonly" style="background:#E0E0E0;"/>
+                    </td>
+
+                    <td>
+                      <input type="number" width="25" class="po_txt_totalBurnedManday" readonly="readonly" style="background:#E0E0E0;"/>
+                    </td>
+
+                    <td>
+                      <input type="number" width="25" class="po_txt_balanceManday" readonly="readonly" style="background:#E0E0E0;"/>
+                    </td>
+
+                    <td>
+                      <input type="text" width="25" class="po_txt_poComment"
+                             onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                             onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                             oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                    </td>
+
+                    <td>
+                        <input type="text" width="25" readonly="readonly" style="background:#E0E0E0;"/>
+                    </td>
+
+                    <td>
+                      <input type="number" width="25" class="po_txt_creatBy" readonly="readonly" style="background:#E0E0E0;"/>
+                    </td>
+
+                    <td>
+                        <input type="text" width="25" readonly="readonly" style="background:#E0E0E0;"/>
+                    </td>
+
+                    <td>
+                      <input type="number" width="25" class="po_txt_lastupdateBy" readonly="readonly" style="background:#E0E0E0;"/>
+                    </td>
+
+                    <td style="text-align:center;vertical-align:middle">
+                        <button type="button" class="btn btn-block btn-primary" onclick='save_po_info()'>ADD</button>
+                    </td>
+                  </tr>
+                </table>
+
+                <!--用于添加PO信息的表格-->
+                <!--<table class="table table-bordered" id="poAddTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr style="text-align:center">
+                      <th style="vertical-align:middle">CODE</th>
+                      <th style="vertical-align:middle">PO#</th>
+                      <th style="vertical-align:middle">PO NAME</th>
+                      <th style="vertical-align:middle">PO DESCRIPTION</th>
+                      <th style="vertical-align:middle">PO STATUS</th>
+                      <th style="vertical-align:middle">CONTENT TYPE</th>
+                      <th style="vertical-align:middle">START DATE</th>
+                      <th style="vertical-align:middle">END DATE</th>
+                      <th style="vertical-align:middle">VAT(%)</th>
+                      <th style="vertical-align:middle">COMMENTS</th>
+                      <th style="vertical-align:middle">OPERATION</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr style="text-align:center">
+
+                      <td hidden="hidden">
+                        <input type="date" class="project_txt_startDate" th:value="${projectinfo.startDate}">
+                      </td>
+
+                      <td>
+                        <input type="number" width="25" class="po_txt_code" th:value="${projectinfo.code}" readonly="readonly"/>
+                      </td>
+
+                      <td>
+                        <input type="number" width="25" class="po_txt_poNo"/>
+                      </td>
+
+                      <td>
+                        <input type="text" width="25" class="po_txt_poName"
+                               onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                               onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                               oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                      </td>
+
+                      <td>
+                        <input type="text" width="25" class="po_txt_poDesc"
+                               onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                               onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                               oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                      </td>
+
+                      <td>
+                        <select width="25" class="po_txt_poStatus">
+                          <option value="selecting" selected="selected">selecting</option>
+                          <option value="OPEN">OPEN</option>
+                          <option value="STOP">STOP</option>
+                          <option value="CLOSE">CLOSE</option>
+                          <option value="NOT RELEASE">NOT RELEASE</option>
+                        </select>
+                      </td>
+
+                      <td>
+                        <select width="25" class="po_txt_contentType">
+                          <option value="selecting" selected="selected">selecting</option>
+                          <option value="FIXED PRICE">FIXED PRICE</option>
+                          <option value="T&M">T&M</option>
+                        </select>
+                      </td>
+
+                      <td>
+                        <input type="date" width="25" class="po_txt_startDate"/>
+                      </td>
+
+                      <td>
+                        <input type="date" width="25" class="po_txt_endDate"/>
+                      </td>
+
+                      <td>
+                        <input type="number" width="25" class="po_txt_vat"/>
+                      </td>
+
+                      <td>
+                        <input type="text" width="25" class="po_txt_poComment"
+                               onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                               onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                               oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                      </td>
+
+                      <td style="text-align:center;vertical-align:middle">
+                        <button type="button" class="btn btn-block btn-primary" onclick='save_po_info()'>ADD</button>
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>-->
+
+                <!--<div style="float: left;">-->
+
+										<!--<button type="button" class="btn btn-primary col-md-offset-10"-->
+											<!--style="margin-left: -10px;" data-toggle="modal"-->
+											<!--data-target="#myModal1" v-on:click='delete_po()'>-->
+											<!--DELETE</button>-->
+									<!--</div>-->
+              </div>
+
+            </div>
+            <div class="card-footer small text-muted">&nbsp;</div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="card mb-3">
+                <div class="card-header">
+                  <i class="fas fa-chart-bar"></i>
+                  Burned Manday Proportion Distribution
+                </div>
+
+                <div class="card-body">
+                  <div id="_container1" style="height: 480px"></div>
+                </div>
+
+                <div class="card-footer small text-muted">&nbsp;</div>
+                <!--<div class="card-body">-->
+                <!--<canvas id="myBarChart" width="100%" height="50"></canvas>-->
+                <!--</div>-->
+                <!--<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>-->
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="card mb-3">
+                <div class="card-header">
+                  <i class="fas fa-chart-pie"></i>
+                  Burned Amount Proportion Distribution</div>
+                <div class="card-body">
+                  <!--<canvas id="myPieChart" width="100%" height="100"></canvas>-->
+                  <div id="_container2" style="height: 480px"></div>
+                </div>
+
+                <div class="card-footer small text-muted">&nbsp;</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer th:replace="th_master_page :: footer" class="sticky-footer">
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div th:replace="th_master_page :: scriptAtPageEnd">
+
+    </div>
+    <script type="application/javascript">
+      function save_po_info() {
+          if($(".po_txt_poNo").val() == null || $(".po_txt_poNo").val() == ''){
+              swal("PO#: Can not be empty!");
+              return
+          }
+
+          if($(".po_txt_poNo").val().length != 10){
+              swal("PO#: PO# length is 10!");
+              return
+          }
+
+          /*if($(".po_txt_code").val() == null || $(".po_txt_code").val() == ''){
+            swal("CODE: Can not be empty!");
+              return
+          }
+
+          if($(".po_txt_code").val().length != 5){
+            swal("CODE: CODE length is 5!");
+              return
+          }*/
+
+          if($(".po_txt_poName").val() == null || $(".po_txt_poName").val() == ''){
+            swal("PO NAME：Can not be empty!");
+              return
+          }
+
+          if($(".po_txt_poDesc").val().length > 250){
+              swal("PO DESCRIPTION：Too long!");
+              return
+          }
+
+          if($(".po_txt_poStatus").val() == "selecting"){
+              swal("PO STATUS：Can not be empty!");
+              return
+          }
+
+          if($(".po_txt_contentType").val() == "selecting"){
+              swal("CONTENT TYPE：Can not be empty!");
+              return
+          }
+
+          if($(".po_txt_startDate").val() == null || $(".po_txt_startDate").val() == ''){
+              swal("START DATE：Can not be empty!");
+              return
+          }
+
+          if($(".po_txt_endDate").val() == null || $(".po_txt_endDate").val() == ''){
+              swal("END DATE：Can not be empty!");
+              return
+          }
+
+          if($(".po_txt_startDate").val() > $(".po_txt_endDate").val()){
+              swal("DATE：START DATE can't be later than END DATE!");
+              return
+          }
+
+         /* if($(".po_txt_poTotalAmountEx").val() == null || $(".po_txt_poTotalAmountEx").val() == ''){
+              swal("PO TOTAL AMOUNT(EXCL.VAT)：Can not be empty!");
+              return
+          }*/
+
+          if($(".po_txt_vat").val() == null || $(".po_txt_vat").val() == ''){
+              swal("VAT：Can not be empty!");
+              return
+          }
+
+          if(parseFloat($(".po_txt_vat").val()) < 0 || parseFloat($(".po_txt_vat").val()) > 100){
+              swal("VAT：VAT must range from 0 to 100 percent!");
+              return
+          }
+
+          /*if($(".po_txt_poTotalAmountIn").val() == null || $(".po_txt_poTotalAmountIn").val() == ''){
+              swal("PO TOTAL AMOUNT(INCL.VAT)：Can not be empty!");
+              return
+          }
+
+          if($(".po_txt_billedAmtIn").val() == null || $(".po_txt_billedAmtIn").val() == ''){
+              swal("BILLED AMT(INCL.VAT)：Can not be empty!");
+              return
+          }
+
+          if($(".po_txt_poAvailableAmtIn").val() == null || $(".po_txt_poAvailableAmtIn").val() == ''){
+              swal("AVAILABLE AMT(INCL.VAT)：Can not be empty!");
+              return
+          }
+
+          //总金额 = 已用金额 + 可用金额 （含税）
+          if(parseFloat($(".po_txt_poTotalAmountIn").val()) != (parseFloat($(".po_txt_poAvailableAmtIn").val()) + parseFloat($(".po_txt_billedAmtIn").val()))){
+              swal("AMOUNT：PO TOTAL AMOUNT(INCL.VAT) must equal BILLED AMT(INCL.VAT) plus AVAILABLE AMT(INCL.VAT)");
+              return
+          }
+
+          //含税金额 = 不含税金额 * （1+税率）
+          if(parseFloat($(".po_txt_poTotalAmountIn").val()) != (parseFloat($(".po_txt_poTotalAmountEx").val()) * (1 + 0.01 * parseFloat($(".po_txt_vat").val())))){
+              swal("AMOUNT：PO TOTAL AMOUNT(INCL.VAT) must equal PO TOTAL AMOUNT(EXCL.VAT) multiply (1+VAT)");
+              return
+          }
+          if($(".po_txt_poInitialTotalManday").val() == null || $(".po_txt_poInitialTotalManday").val() == ''){
+              swal("PO INITIAL TOTAL MANDAY：Can not be empty!");
+              return
+          }
+
+          if($(".po_txt_totalBurnedManday").val() == null || $(".po_txt_totalBurnedManday").val() == ''){
+              swal("TOTAL BURNED MANDAY：Can not be empty!");
+              return
+          }
+
+          if($(".po_txt_balanceManday").val() == null || $(".po_txt_balanceManday").val() == ''){
+              swal("BALANCE MANDAY：Can not be empty!");
+              return
+          }
+
+          //总人天 = 已用人天 + 可用人天
+          if(parseFloat($(".po_txt_poInitialTotalManday").val()) != (parseFloat($(".po_txt_totalBurnedManday").val()) + parseFloat($(".po_txt_balanceManday").val()))){
+              swal("MANDAY：PO INITIAL TOTAL MANDAY must equal TOTAL BURNED MANDAY plus BALANCE MANDAY");
+              return
+          }*/
+
+          if($(".po_txt_startDate").val() < $(".project_txt_startDate").val()){
+              swal("DATE：PO's START DATE can't be earlier than PROJECT's START DATE!");
+              return
+          }
+
+          if($(".po_txt_poComment").val().length > 50){
+              swal("COMMENTS：Too long!");
+              return
+          }
+
+          /*if($(".po_txt_endDate").val() > $(".project_txt_endDate").val()){
+              swal("DATE：PO's END DATE can't be later than PROJECT's END DATE!");
+              return
+          }*/
+
+          var data = {
+                  "data":[
+                      {
+                          "code": $(".po_txt_code").val(),
+                          "poNo": $(".po_txt_poNo").val().toString(),
+                          "poName": $(".po_txt_poName").val(),
+                          "poDesc": $(".po_txt_poDesc").val(),
+                          "poStatus": $(".po_txt_poStatus").val(),
+                          "contentType": $(".po_txt_contentType").val(),
+                          "startDate": $(".po_txt_startDate").val(),
+                          "endDate": $(".po_txt_endDate").val(),
+                          "poTotalAmountEx": $(".po_txt_poTotalAmountEx").val(),
+                          "vat": $(".po_txt_vat").val(),
+                          "poTotalAmountIn": $(".po_txt_poTotalAmountIn").val(),
+                          "billedAmtIn": $(".po_txt_billedAmtIn").val(),
+                          "poAvailableAmtIn": $(".po_txt_poAvailableAmtIn").val(),
+                          "poInitialTotalManday": $(".po_txt_poInitialTotalManday").val(),
+                          "totalBurnedManday": $(".po_txt_totalBurnedManday").val(),
+                          "balanceManday": $(".po_txt_balanceManday").val(),
+                          "poComment": $(".po_txt_poComment").val()
+                          /*"creatBy": $(".po_txt_creatBy").val(),
+                          "lastupdateBy": $(".po_txt_lastupdateBy").val()*/
+                      }
+                  ]
+              };
+
+          console.log(data);
+
+          // 录入项目信息
+          $.ajax({
+              type: "post",
+              url:"adminController/save_po_info",
+              data: JSON.stringify(data),
+              dataType:"json",
+              contentType: "application/json; charset=utf-8",
+
+              success: function (data) {
+                 if (data.code == '200000') {
+                     window.location.reload();
+                     swal('Success!');
+                 } else {
+                  swal('Failed, Msg: '+ data.msg);
+                 }
+          }});
+
+      }
+
+      function delete_po_info(id) {
+        swal({
+                title: "Ready to delete?",
+                text: "Once deleted, you will not be able to recover this PO information ["+id+"]!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    swal("Poof! Your PO information ["+id+"] has been deleted!", {
+                    icon: "success",
+                    });
+                    $.ajax({
+                      type: "get",
+                      url:"adminController/deletePoById?id=" + id,
+                      dataType:"json",
+                      contentType: "application/json; charset=utf-8",
+                      success: function (data) {
+                      if (data.code == '200000') {
+                          window.location.reload();
+                          swal('Success!');
+                      } else {
+                        swal('Failure, Msg: '+ data.msg);
+                      }
+                  }});
+                } else {
+                    swal("Your porject information is safe!");
+                }
+
+          });
+      }
+
+      function export_po_info(id) {
+        // swal({
+        //   title: "Ready to export?",
+        //   text: "Confirm or cancel a Word document to your computer",
+        //   buttons: true
+        // }).then((willExport) => {
+        //   if (willExport) {
+        // var param = {
+        //   "id":id
+        // };
+        $.ajax({
+          type: "GET",
+          url:"adminController/export?id=" + id,
+          traditional:true,
+          // data:param,
+          dataType:"json",
+          contentType: "application/json; charset=utf-8",
+          success: function (data) {
+            console.log("start downloading");
+            // window.location.href = "adminController/exportPoById";
+            swal("Start downloading", {
+              icon: "success",
+            });
+          },
+          error: function (data) {
+            window.location.href = "adminController/exportPoById";
+            swal("Start downloading");
+          }
+
+        });
+      }
+
+      $.ajax({
+          type: "get",
+          url:"adminController/queryPoByCode?code="+ $(".po_txt_code").val(),
+          dataType:"json",
+          contentType: "application/json; charset=utf-8",
+
+          success: function (data) {
+              if (data.code == '200000') {
+                  console.log(data.data)
+
+                  var xArray1 = new Array();
+                  var yArray1 = new Array();
+
+                  $.each(data.data, function(index,value){
+                      var po = value.poName;
+                      xArray1[index] = po;
+
+                      var burnedMandayproportion = value.totalBurnedManday/value.poInitialTotalManday*100;
+                      yArray1[index] = burnedMandayproportion;
+
+                  });
+
+                  var xArray2 = new Array();
+                  var yArray2 = new Array();
+
+                  $.each(data.data, function(index,value){
+                      var po = value.poName;
+                      xArray2[index] = po;
+
+                      var burnedAmountproportion = value.billedAmtIn/value.poTotalAmountIn*100;
+                      yArray2[index] = burnedAmountproportion;
+
+                  });
+
+                  loadCylindricalChart(xArray1, yArray1, '_container1', '(%)');
+                  loadCylindricalChart(xArray2, yArray2, '_container2', '(%)');
+
+              } else {
+                  console.log('Failed load data, Msg: '+ data.msg);
+              }
+          }});
+
+
+      function loadCylindricalChart(xArray, yArray, contain, name) {
+          console.log(xArray)
+          console.log(yArray)
+          var dom = document.getElementById(contain);
+          var myCylindricalChart = echarts.init(dom);
+          var app = {};
+          option = null;
+          app.title = 'Cylindrical Chart';
+
+          option = {
+              color: ['#3398DB'],
+              tooltip : {
+                  trigger: 'axis',
+                  axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                      type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                  }
+              },
+              grid: {
+                  left: '3%',
+                  right: '4%',
+                  bottom: '3%',
+                  containLabel: true
+              },
+              xAxis : [
+                  {
+                      type : 'category',
+                      data : xArray,
+                      axisTick: {
+                          alignWithLabel: true
+                      }
+                  }
+              ],
+              yAxis : [
+                  {
+                      type : 'value',
+                      name:name
+                  }
+              ],
+              series : [
+                  {
+                      name:name,
+                      type:'bar',
+                      barWidth: '60%',
+                      data: yArray
+                  }
+              ]
+          };
+
+          if (option && typeof option === "object") {
+              myCylindricalChart.setOption(option, true);
+          }
+      }
+
+    </script>
+  </body>
+</html>

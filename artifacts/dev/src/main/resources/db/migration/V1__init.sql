@@ -1,0 +1,125 @@
+-- ----------------------------
+--  Table structure for `accrue_records`
+-- ----------------------------
+DROP TABLE IF EXISTS `accrue_records`;
+CREATE TABLE `accrue_records` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `ACCRUE_COMMENTS` varchar(255) NOT NULL COMMENT 'ACCRUE操作备注',
+  `ACCRUE_AMOUNT` float(8,2) NOT NULL COMMENT '操作单次人天变更数量',
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录创建时间',
+  `LASTUPDATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录更新时间',
+  `CREAT_BY` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建者',
+  `LASTUPDATE_BY` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新者',
+  `PO_ID` bigint(20) NOT NULL COMMENT 'PO主表ID',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- ----------------------------
+--  Table structure for `project_info`
+-- ----------------------------
+DROP TABLE IF EXISTS `project_info`;
+CREATE TABLE `project_info` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `ACCOUNT` varchar(50) NOT NULL COMMENT '珊瑚岛',
+  `CODE` bigint(20) NOT NULL COMMENT 'CODE',
+  `PROJECT_NAME` varchar(50) NOT NULL COMMENT '项目名称',
+  `PROJECT_COMMENT` varchar(50) COMMENT '项目备注',
+  `PROJECT_EM` varchar(20) NOT NULL COMMENT '项目经理',
+  `PROJECT_DM` varchar(20) NOT NULL COMMENT '项目总监',
+  `PROJECT_DESC` varchar(250) COMMENT '项目描述',
+  `START_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '项目开始时间',
+  `END_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '项目结束时间',
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录创建时间',
+  `LASTUPDATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录更新时间',
+  `CREAT_BY` bigint(20) NOT NULL DEFAULT 0 COMMENT '创建者',
+  `LASTUPDATE_BY` bigint(20) NOT NULL DEFAULT 0 COMMENT '更新者',
+  `DELETE_FLAG` int(2) NOT NULL DEFAULT 1 COMMENT '删除标志位，1为有效，0为无效',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
+-- ------------------------------
+--  Table structure for `po_info`
+-- ----------------------------
+DROP TABLE IF EXISTS `po_info`;
+CREATE TABLE `po_info` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `CODE` bigint(20) NOT NULL COMMENT 'CODE',
+  `PO_NAME` varchar(50) NOT NULL COMMENT 'PO名称',
+  `START_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'PO开始时间',
+  `END_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'PO结束时间',
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录创建时间',
+  `LASTUPDATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录更新时间',
+  `CREAT_BY` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建者',
+  `LASTUPDATE_BY` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新者',
+  `PO_NO` varchar(10) NOT NULL DEFAULT '0' COMMENT '订单代码',
+  `PO_DESC` varchar(250) NOT NULL DEFAULT 'NULL' COMMENT 'PO描述',
+  `CONTENT_TYPE` varchar(200) NOT NULL DEFAULT 'NULL' COMMENT 'PO类型',
+  `PO_STATUS` varchar(12) NOT NULL DEFAULT 'Close' COMMENT 'PO状态',
+  `PO_INITIAL_TOTAL_MANDAY` float(8,2) NOT NULL DEFAULT '0.00' COMMENT 'PO初始总人天',
+  `PO_TOTAL_AMOUNT_EX` float(8,2) NOT NULL DEFAULT '0.00' COMMENT 'PO总金额（不含税)',
+  `PO_TOTAL_AMOUNT_IN` float(8,2) NOT NULL DEFAULT '0.00' COMMENT 'PO总金额（含税)',
+  `BILLED_AMT_IN` float(8,2) NOT NULL DEFAULT '0.00' COMMENT '已用金额（含税）',
+  `PO_AVAILABLE_AMT_IN` float(8,2) NOT NULL DEFAULT '0.00' COMMENT '可用金额（含税）',
+  `TOTAL_BURNED_MANDAY` float(8,2) NOT NULL DEFAULT '0.00' COMMENT '总使用人天',
+  `BALANCE_MANDAY` float(8,2) NOT NULL DEFAULT '0.00' COMMENT '未使用人天',
+  `VAT` float(8,2) NOT NULL DEFAULT '0.00' COMMENT '税率',
+  `PO_COMMENT` varchar(50) COMMENT 'PO备注',
+  `DELETE_FLAG` int(2) NOT NULL DEFAULT 1 COMMENT '删除标志位，1为有效，0为无效',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+
+-- ----------------------------
+--  Table structure for `role_info`
+-- ----------------------------
+DROP TABLE IF EXISTS `role_info`;
+CREATE TABLE `role_info` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `PO_ROLE` varchar(50) NOT NULL COMMENT '项目成员角色',
+  `TOTAL_AMOUNT` float(8,2) NOT NULL DEFAULT '0.00' COMMENT '总金额',
+  `BURNED_AMOUNT` float(8,2) NOT NULL DEFAULT '0.00' COMMENT '已消耗金额',
+  `BALANCE_AMOUNT` float(8,2) NOT NULL DEFAULT '0.00' COMMENT '剩余金额',
+  `START_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'role开始时间',
+  `END_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'role结束时间',
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录创建时间',
+  `LASTUPDATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录更新时间',
+  `CREAT_BY` bigint(20) NOT NULL DEFAULT '0' COMMENT '创建者',
+  `LASTUPDATE_BY` bigint(20) NOT NULL DEFAULT '0' COMMENT '更新者',
+  `RATE` float(8,2) NOT NULL DEFAULT '0.00' COMMENT '人天单价',
+  `BILLABLE_MANDAY` float(8,2) NOT NULL DEFAULT '0.00' COMMENT 'ROLE总人天',
+  `BURNED_MANDAY` float(8,2) NOT NULL DEFAULT '0.00' COMMENT '已用人天',
+  `BALANCE_MANDAY` float(8,2) NOT NULL DEFAULT '0.00' COMMENT '剩余人天',
+  `ROLE_COMMENT` varchar(50) COMMENT 'ROLE备注',
+  `PO_ID` bigint(20) NOT NULL COMMENT 'PO主表ID',
+  `DELETE_FLAG` int(2) NOT NULL DEFAULT 1 COMMENT '删除标志位，1为有效，0为无效',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+
+-- ----------------------------
+--  Table structure for `consultant_info`
+-- ----------------------------
+DROP TABLE IF EXISTS `consultant_info`;
+CREATE TABLE `consultant_info` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `EMP_NAME` varchar(50) NOT NULL COMMENT '顾问名',
+  `EMP_NO` varchar(10) NOT NULL COMMENT '顾问NO',
+  `EMP_RATE` float(8,2) NOT NULL DEFAULT '0.00' COMMENT '顾问RATE',
+  `EMP_TYPE` varchar(25) NOT NULL COMMENT '顾问类型',
+  `TOTAL_MANDAY` float(8,2) NOT NULL DEFAULT '0.00' COMMENT '顾问总人天',
+  `TOTAL_AMOUNT` float(8,2) NOT NULL DEFAULT '0.00' COMMENT '顾问总金额',
+  `EMP_LEVEL` varchar(25) NOT NULL COMMENT '顾问等级',
+  `EMP_COMMENT` varchar(50) COMMENT '顾问COMMENT',
+  `START_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'consultant开始时间',
+  `END_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'consultant结束时间',
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录创建时间',
+  `LASTUPDATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录更新时间',
+  `CREAT_BY` bigint(20) NOT NULL DEFAULT 0 COMMENT '创建者',
+  `LASTUPDATE_BY` bigint(20) NOT NULL DEFAULT 0 COMMENT '更新者',
+  `ROLE_ID` bigint(20) NOT NULL COMMENT 'ROLE主表ID',
+  `DELETE_FLAG` int(2) NOT NULL DEFAULT 1 COMMENT '删除标志位，1为有效，0为无效',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

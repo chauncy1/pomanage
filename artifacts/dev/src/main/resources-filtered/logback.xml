@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configuration file for logback -->
+<configuration scan="true" scanPeriod="60 seconds">
+	<property resource="po-management-system-logging.properties" />
+	<property name="appname" value="po-management-system" />
+	<property name="logPath" value="@logback.dataprocessor.common.logpath@" />
+	<!-- <include resource="io/oasp/logging/logback/appenders-file-all.xml" />-->
+	<include resource="io/oasp/logging/logback/appender-console.xml" />
+	
+	<root level="@logback.loglevel@">
+		<!-- <appender-ref ref="ERROR_APPENDER" />
+		<appender-ref ref="INFO_APPENDER" />
+		<appender-ref ref="DEBUG_APPENDER" />-->
+		<appender-ref ref="CONSOLE_APPENDER" />
+	</root>
+
+	<!-- Minimize infrastructure debug logs for dev -->
+	<logger name="org.springframework.boot" level="ERROR"/>
+	<logger name="org.springframework.core" level="ERROR"/>
+	<logger name="org.springframework.beans.factory" level="ERROR"/>
+	<logger name="org.springframework.context.annotation" level="ERROR"/>
+	<logger name="org.springframework.aop" level="ERROR"/>
+	<logger name="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" level="ERROR"/>
+	<logger name="org.springframework.boot.actuate.endpoint" level="ERROR" />
+	<logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="ERROR" />
+	<logger name="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource" level="ERROR"/>
+	<logger name="org.mybatis.spring.transaction.SpringManagedTransaction" />
+	<logger name="org.apache.ibatis.io.ResolverUtil" level="ERROR"/>
+	<logger name="org.apache.catalina" level="ERROR" />
+	<logger name="org.springframework.jmx" level="ERROR" />
+	<logger name="org.mybatis.spring.mapper.ClassPathMapperScanner" level="ERROR"/>
+	<logger name="org.mybatis.spring.SqlSessionUtils" level="ERROR" />
+	<logger name="org.springframework.web.context.support.StandardServletEnvironment" level="ERROR" />
+	<logger name="org.hibernate" level="ERROR" />
+	<logger name="org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor" level="ERROR" />
+	<logger name="org.apache.http" level="ERROR" />
+	<logger name="com.capgemini.pomanagement.mapper" level="ERROR" />
+	<logger name="com.amazonaws" level="ERROR" />
+	<logger name="org.dozer" level="ERROR" />
+	<logger name="org.apache.tomcat.jdbc" level="ERROR" />
+	<logger name="org.springframework.jdbc.datasource" level="ERROR" />
+	<logger name="org.flywaydb.core.internal.dbsupport.DbSupportFactory" level="ERROR"/>
+</configuration>

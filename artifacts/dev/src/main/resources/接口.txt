@@ -1,0 +1,81 @@
+## 页面
+PO信息：http://localhost:8081/po-mgmt-system/PoInfo
+
+Role信息：http://localhost:8081/po-mgmt-system/RoleInfo
+
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+## 录入PO信息(主体)  POST
+http://localhost:8081/po-mgmt-system/adminController/save_po_info
+
+{
+    "data":[
+        {
+            "code":"201835",
+            "poName":"2018-JLR-CIL-name",
+            "startDate":"2018-12-01",
+            "endDate":"2018-12-01",
+            "createDate":"2018-12-01",
+            "lastupdateDate":"2018-12-01",
+            "creatBy":1,
+            "lastupdateBy":1
+        }
+    ]
+}
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+## 模糊查询PO信息 GET
+http://localhost:8081/po-mgmt-system/adminController/queryPoByCode?code=57281
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+## 录入ROlE信息  POST
+http://localhost:8081/po-mgmt-system/adminController/save_role_info
+
+
+{
+    "data":[
+        {
+            "poRole": "PM",
+            "totalAmount": 45.00,
+            "burnedAmount": 1.00,
+            "balanceAmount": 44.00,
+            "createDate":"2018-12-03",
+            "lastupdateDate":"2018-12-03",
+            "creatBy":1,
+            "lastupdateBy":1,
+            "poId":2
+        },
+        {
+            "poRole": "BA",
+            "totalAmount": 15.00,
+            "burnedAmount": 2.00,
+            "balanceAmount": 13.00,
+            "createDate":"2018-12-03",
+            "lastupdateDate":"2018-12-03",
+            "creatBy":1,
+            "lastupdateBy":1,
+            "poId":2
+        },
+        {
+            "poRole": "DEV",
+            "totalAmount": 60.00,
+            "burnedAmount": 10.00,
+            "balanceAmount": 50.00,
+            "createDate":"2018-12-03",
+            "lastupdateDate":"2018-12-03",
+            "creatBy":1,
+            "lastupdateBy":1,
+            "poId":2
+        }
+
+    ]
+}
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+## PO编号 --> 获取ROLE信息  GET
+http://localhost:8081/po-mgmt-system/adminController/queryRoleInfoByPoId?po_id=2
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+## Role编号 --> 获取ROLE信息  GET
+http://localhost:8081/po-mgmt-system/adminController/queryRoleInfoById?id=1
+

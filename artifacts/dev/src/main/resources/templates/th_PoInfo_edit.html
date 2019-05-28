@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="th_master_page :: header">
+</head>
+  <body id="page-top">
+      <nav th:replace="th_master_page :: navigations" class="navbar navbar-expand navbar-dark bg-dark static-top">
+      </nav>
+    <div id="wrapper">
+
+      <!-- Sidebar
+      <ul th:replace="th_master_page :: sidebar" class="sidebar navbar-nav">
+      </ul> -->
+
+      <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+          <!-- Breadcrumbs-->
+          <div class="container">
+
+			<form class="form-horizontal">
+				<fieldset>
+					<legend class="col-lg-offset-1">Edit Po Summary Info</legend>
+                    <br/>
+
+					<!--<div class="form-group">
+						<label for="po_txt_id" class="col-sm-4 control-label">ID</label>
+						<div class="col-sm-6">
+							<input type="text" id="po_txt_id" class="form-control" th:value="${poInfo.id}" readonly="readonly">
+						</div>
+					</div>-->
+
+					<div class="form-group">
+						<label for="po_txt_poNo" class="col-sm-4 control-label">PO#</label>
+						<div class="col-sm-6">
+							<input type="text" id="po_txt_poNo" class="form-control" th:value="${poInfo.poNo}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_code" class="col-sm-4 control-label">CODE</label>
+						<div class="col-sm-6">
+							<input type="text" id="po_txt_code" class="form-control" th:value="${poInfo.code}" readonly="readonly"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_poName" class="col-sm-4 control-label">PO NAME</label>
+						<div class="col-sm-6">
+								<input type="text" id="po_txt_poName" class="form-control" th:value="${poInfo.poName}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_poDesc" class="col-sm-4 control-label">PO DESCRIPTION</label>
+						<div class="col-sm-6">
+							<input type="text" id="po_txt_poDesc" class="form-control" th:value="${poInfo.poDesc}"
+								   onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9 ]/g,'')"
+								   onpaste="value=value.replace(/[^\a-\z\A-\Z0-9 ]/g,'')"
+								   oncontextmenu="value=value.replace(/[^\a-\z\A-\Z0-9 ]/g,'')">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_poStatus" class="col-sm-4 control-label">PO STATUS</label>
+						<div class="col-sm-6">
+							<select type="text" id="po_txt_poStatus" class="form-control" th:value="${poInfo.poStatus}">
+								<option value="selected" th:text="${poInfo.poStatus}"></option>
+								<option value="OPEN">OPEN</option>
+								<option value="STOP">STOP</option>
+								<option value="CLOSE">CLOSE</option>
+								<option value="NOT RELEASE">NOT RELEASE</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_contentType" class="col-sm-4 control-label">CONTENT TYPE</label>
+						<div class="col-sm-6">
+							<input type="text" id="po_txt_contentType" class="form-control" th:value="${poInfo.contentType}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_startDate" class="col-sm-4 control-label">START DATE</label>
+						<div class="col-sm-6">
+                            <!--<input type="date" id="project_txt_startDate" class="form-control" value="2018-08-08" />-->
+								<input type="date" id="po_txt_startDate" class="form-control" th:value="${poInfo.startDate}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_endDate" class="col-sm-4 control-label">END DATE</label>
+						<div class="col-sm-6">
+							<input type="date" id="po_txt_endDate" class="form-control" th:value="${poInfo.endDate}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_poTotalAmountEx" class="col-sm-4 control-label">PO TOTAL AMOUNT(¥)(EXCL.VAT)</label>
+						<div class="col-sm-6">
+							<input type="text" id="po_txt_poTotalAmountEx" class="form-control" th:value="${poInfo.poTotalAmountEx}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_vat" class="col-sm-4 control-label">VAT</label>
+						<div class="col-sm-6">
+							<input type="text" id="po_txt_vat" class="form-control" th:value="${poInfo.vat}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_poTotalAmountIn" class="col-sm-4 control-label">PO TOTAL AMOUNT(¥)(INCL.VAT)</label>
+						<div class="col-sm-6">
+							<input type="text" id="po_txt_poTotalAmountIn" class="form-control" th:value="${poInfo.poTotalAmountIn}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_billedAmtIn" class="col-sm-4 control-label">BILLED AMOUNT(¥)(INCL.VAT)</label>
+						<div class="col-sm-6">
+							<input type="text" id="po_txt_billedAmtIn" class="form-control" th:value="${poInfo.billedAmtIn}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_poAvailableAmtIn" class="col-sm-4 control-label">AVAILABLE AMOUNT(¥)(INCL.VAT)</label>
+						<div class="col-sm-6">
+							<input type="text" id="po_txt_poAvailableAmtIn" class="form-control" th:value="${poInfo.poAvailableAmtIn}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_poInitialTotalManday" class="col-sm-4 control-label">PO INITIAL TOTAL MANDAY(day)</label>
+						<div class="col-sm-6">
+							<input type="text" id="po_txt_poInitialTotalManday" class="form-control" th:value="${poInfo.poInitialTotalManday}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_totalBurnedManday" class="col-sm-4 control-label">TOTAL BURNED MANDAY(day)</label>
+						<div class="col-sm-6">
+							<input type="number" id="po_txt_totalBurnedManday" class="form-control" th:value="${poInfo.totalBurnedManday}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_balanceManday" class="col-sm-4 control-label">BALANCE MANDAY(day)</label>
+						<div class="col-sm-6">
+							<input type="text" id="po_txt_balanceManday" class="form-control" th:value="${poInfo.balanceManday}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_poComment" class="col-sm-4 control-label">COMMENTS</label>
+						<div class="col-sm-6">
+							<input type="txt" id="po_txt_poComment" class="form-control" th:value="${poInfo.poComment}"
+								   onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9 ]/g,'')"
+								   onpaste="value=value.replace(/[^\a-\z\A-\Z0-9 ]/g,'')"
+								   oncontextmenu="value=value.replace(/[^\a-\z\A-\Z0-9 ]/g,'')">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_createDate" class="col-sm-4 control-label">CREATE DATE</label>
+						<div class="col-sm-6">
+							<input type="date" id="po_txt_createDate" class="form-control" th:value="${poInfo.createDate}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_creatBy" class="col-sm-4 control-label">CREATE BY</label>
+						<div class="col-sm-6">
+							<input type="text" id="po_txt_creatBy" class="form-control" th:value="admin" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_lastupdateDate" class="col-sm-4 control-label">LASTUPDATE DATE</label>
+						<div class="col-sm-6">
+							<input type="date" id="po_txt_lastupdateDate" class="form-control" th:value="${poInfo.lastupdateDate}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="po_txt_lastupdateBy" class="col-sm-4 control-label">LASTUPDATE BY</label>
+						<div class="col-sm-6">
+							<input type="text" id="po_txt_lastupdateBy" class="form-control" th:value="admin" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-offset-5 col-sm-10">
+							<button type="button" class="btn btn-primary" onclick="editPoInfo()"  >OK</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+							<button type="reset" class="btn btn-danger" onclick="javascript:window.location.reload();">RELOAD</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+							<!--<input type="button" class="btn btn-danger" value="RETURN" onclick="javascript:window.location.href='/po-mgmt-system/PoInfo'"/>-->
+							<a class="btn btn-danger" th:href="@{/PoInfo(code=${poInfo.code})}">RETURN</a>
+						</div>
+					</div>
+
+				</fieldset>
+			</form>
+
+		</div>
+        <!-- /.container-fluid -->
+        <!-- Sticky Footer -->
+        <footer th:replace="th_master_page :: footer" class="sticky-footer">
+        </footer>
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div th:replace="th_master_page :: scriptAtPageEnd">
+      </div>
+
+<script type="application/javascript">
+    function editPoInfo(){
+
+        if($("#po_txt_poDesc").val().length > 250){
+            swal("PROJECT DESCRIPTION：Too long!");
+            return
+        }
+
+        if($("#po_txt_poComment").val().length > 50){
+            swal("COMMENTS：Too long!");
+            return
+        }
+
+        /*if($("#po_txt_poName").val() == null || $("#po_txt_poName").val() == ''){
+            swal("PO NAME：Can not be empty!");
+            return
+        }
+
+        if($("#po_txt_startDate").val() == null || $("#po_txt_startDate").val() == ''){
+            swal("START DATE：Can not be empty!");
+            return
+        }
+
+        if($("#po_txt_endDate").val() == null || $("#po_txt_endDate").val() == ''){
+            swal("END DATE：Can not be empty!");
+            return
+        }
+
+        if($("#po_txt_startDate").val() > $("#po_txt_endDate").val()){
+            swal("DATE：START DATE can't be later than END DATE!");
+            return
+        }
+
+        if($("#po_txt_vat").val() == null || $("#po_txt_vat").val() == ''){
+            swal("VAT：Can not be empty!");
+            return
+        }
+
+        if(parseFloat($("#po_txt_vat").val()) < 0 || parseFloat($("#po_txt_vat").val()) > 100){
+            swal("VAT：VAT must range from 0 to 100 percent!");
+            return
+        }
+
+        if($("#po_txt_poTotalAmountIn").val() == null || $("#po_txt_poTotalAmountIn").val() == ''){
+            swal("PO TOTAL AMOUNT(INCL.VAT)：Can not be empty!");
+            return
+        }
+
+        if($("#po_txt_billedAmtIn").val() == null || $("#po_txt_billedAmtIn").val() == ''){
+            swal("BILLED AMT(INCL.VAT)：Can not be empty!");
+            return
+        }
+
+        if($("#po_txt_poAvailableAmtIn").val() == null || $("#po_txt_poAvailableAmtIn").val() == ''){
+            swal("AVAILABLE AMT(INCL.VAT)：Can not be empty!");
+            return
+        }
+
+        //总金额 = 已用金额 + 可用金额 （含税）
+        if(parseFloat($("#po_txt_poTotalAmountIn").val()) != (parseFloat($("#po_txt_poAvailableAmtIn").val()) + parseFloat($("#po_txt_billedAmtIn").val()))){
+            swal("AMOUNT：PO TOTAL AMOUNT(INCL.VAT) must equal BILLED AMT(INCL.VAT) plus AVAILABLE AMT(INCL.VAT)");
+            return
+        }
+
+        //含税金额 = 不含税金额 * （1+税率）
+        if(parseFloat($("#po_txt_poTotalAmountIn").val()) != (parseFloat($("#po_txt_poTotalAmountEx").val()) * (1 + 0.01 * parseFloat($("#po_txt_vat").val())))){
+            swal("AMOUNT：PO TOTAL AMOUNT(INCL.VAT) must equal PO TOTAL AMOUNT(EXCL.VAT) multiply (1+VAT)");
+            return
+        }
+
+        if($("#po_txt_totalBurnedManday").val() == null || $("#po_txt_totalBurnedManday").val() == ''){
+            swal("TOTAL BURNED MANDAY：Can not be empty!");
+            return
+        }
+
+        if($("#po_txt_balanceManday").val() == null || $("#po_txt_balanceManday").val() == ''){
+            swal("BALANCE MANDAY：Can not be empty!");
+            return
+        }
+
+        //总人天 = 已用人天 + 可用人天
+        if(parseFloat($("#po_txt_poInitialTotalManday").val()) != (parseFloat($("#po_txt_totalBurnedManday").val()) + parseFloat($("#po_txt_balanceManday").val()))){
+            swal("MANDAY：PO INITIAL TOTAL MANDAY must equal TOTAL BURNED MANDAY plus BALANCE MANDAY");
+            return
+        }*/
+
+        var data = {
+            "data":[
+                {
+                    "id": $("#po_txt_id").val(),
+                    "poNo": $("#po_txt_poNo").val(),
+                    "code": $("#po_txt_code").val(),
+                    "poName": $("#po_txt_poName").val(),
+                    "poDesc": $("#po_txt_poDesc").val(),
+                    "poStatus": $("#po_txt_poStatus").val(),
+					"contentType": $("#po_txt_contentType").val(),
+                    "startDate": $("#po_txt_startDate").val(),
+                    "endDate": $("#po_txt_endDate").val(),
+                    "poTotalAmountEx": $("#po_txt_poTotalAmountEx").val(),
+                    "vat": $("#po_txt_vat").val(),
+                    "poTotalAmountIn": $("#po_txt_poTotalAmountIn").val(),
+                    "billedAmtIn": $("#po_txt_billedAmtIn").val(),
+                    "poAvailableAmtIn": $("#po_txt_poAvailableAmtIn").val(),
+                    "poInitialTotalManday": $("#po_txt_poInitialTotalManday").val(),
+                    "totalBurnedManday": $("#po_txt_totalBurnedManday").val(),
+                    "balanceManday": $("#po_txt_balanceManday").val(),
+					"poComment": $("#po_txt_poComment").val(),
+                    "createDate": $("#po_txt_createDate").val(),
+                    // "creatBy": $("#po_txt_creatBy").val(),
+                    "lastupdateDate": $("#po_txt_lastupdateDate").val(),
+                    // "lastupdateBy": $("#po_txt_lastupdateBy").val()
+                }
+            ]
+        };
+
+        console.log(data);
+
+        // 更新PO信息
+        $.ajax({
+            type: "post",
+            url:"adminController/updatePoByPoNo",
+            data: JSON.stringify(data),
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+
+            success: function (data) {
+                if (data.code == '200000') {
+                    window.location.reload();
+                    swal('Success!');
+                } else {
+                  swal('Failed, Msg: '+ data.msg);
+                }
+            }});
+    }
+</script>
+
+  </body>
+
+</html>

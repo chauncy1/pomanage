@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.capgemini.mapper.PoInfoMapper">
+
+
+    <select id="queryPoInfoById" parameterType="Integer" resultType="PoInfoEntity">
+        SELECT
+        *
+        FROM po_info
+        WHERE `ID` = #{_parameter} AND `DELETE_FLAG` = 1
+    </select>
+
+    <select id="queryPoInfoByPoNo" parameterType="String" resultType="PoInfoEntity">
+        SELECT
+        *
+        FROM po_info
+        WHERE `PO_NO` = #{_parameter} AND `DELETE_FLAG` = 1
+    </select>
+
+    <insert id="savePoInfoEntity" parameterType="PoInfoEntity">
+        insert into
+          po_info(code,po_name,start_date,end_date,create_date,lastupdate_date,creat_by,lastupdate_by,po_no,po_desc,
+          po_status,content_type,vat,po_comment)
+         values
+        (#{code},#{poName},#{startDate},#{endDate},#{createDate},#{lastupdateDate},#{creatBy},#{lastupdateBy},#{poNo},
+        #{poDesc},#{poStatus},#{contentType},#{vat},#{poComment})
+    </insert>
+
+    <update id="updatePoInfoEntity" parameterType="PoInfoEntity">
+        UPDATE po_info
+        SET po_name=#{poName},start_date=#{startDate}, end_date=#{endDate},create_date=#{createDate},
+          lastupdate_date=#{lastupdateDate},creat_by=#{creatBy},lastupdate_by=#{lastupdateBy},
+          po_no=#{poNo},po_desc=#{poDesc},po_status=#{poStatus},po_initial_total_manday=#{poInitialTotalManday},
+          po_total_amount_ex=#{poTotalAmountEx},po_total_amount_in=#{poTotalAmountIn},billed_amt_in=#{billedAmtIn},
+          po_available_amt_in=#{poAvailableAmtIn},total_burned_manday=#{totalBurnedManday},balance_manday=#{balanceManday},
+          content_type=#{contentType},vat=#{vat},po_comment=#{poComment}
+        WHERE `PO_NO` = #{poNo} AND `DELETE_FLAG` = 1
+    </update>
+
+    <update id="deletePoInfoByCode" parameterType="String">
+        UPDATE po_info
+        SET delete_flag=0
+        WHERE `CODE` = #{_parameter}
+    </update>
+
+    <update id="deletePoInfoById" parameterType="Integer">
+        UPDATE po_info
+        SET delete_flag=0
+        WHERE `ID` = #{_parameter}
+    </update>
+
+    <select id="queryPoInfos" resultType="PoInfoEntity">
+        SELECT
+        *
+        FROM po_info
+        WHERE `DELETE_FLAG` = 1
+        order by create_date desc
+        limit 1000
+    </select>
+
+    <select id="queryPoInfosByCode" parameterType="String" resultType="PoInfoEntity">
+      SELECT
+        *
+      FROM po_info
+        WHERE `DELETE_FLAG` = 1
+        <if test="_parameter != null and _parameter != '' ">
+            AND `CODE` = #{_parameter}
+        </if>
+      order by create_date desc
+      limit 10
+    </select>
+
+</mapper>

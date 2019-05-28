@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="th_master_page :: header">
+</head>
+
+<body id="page-top">
+        <nav th:replace="th_master_page :: navigations" class="navbar navbar-expand navbar-dark bg-dark static-top">
+        </nav>
+<div id="wrapper">
+
+    <!-- Sidebar
+      <ul th:replace="th_master_page :: sidebar" class="sidebar navbar-nav">
+      </ul> -->
+
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a th:href="@{/}">Project</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a th:href="@{/PoInfo(code=${poinfo.code})}">PO</a>
+                </li>
+                <li class="breadcrumb-item active">Role Info</li>
+            </ol>
+
+            <!-- Area Chart Example-->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-chart-area"></i>
+                    Role Information</div>
+                <div class="card-body">
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered" id="projectTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr style="text-align:center">
+                                        <th style="vertical-align:middle">ACCOUNT</th>
+                                        <th style="vertical-align:middle">CODE</th>
+                                        <th style="vertical-align:middle">PROJECT NAME</th>
+                                        <th style="vertical-align:middle">EM</th>
+                                        <th style="vertical-align:middle">DE</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr style="text-align:center">
+
+                                        <td style="vertical-align:middle" th:text="${projectinfo.account}"></td>
+
+                                        <td style="vertical-align:middle" th:text="${projectinfo.code}"></td>
+
+                                        <td style="vertical-align:middle" th:text="${projectinfo.projectName}"></td>
+
+                                        <td style="vertical-align:middle" th:text="${projectinfo.projectEm}"></td>
+
+                                        <td style="vertical-align:middle" th:text="${projectinfo.projectDm}"></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="table table-bordered" id="poTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr style="text-align:center">
+                                        <!--<th style="vertical-align:middle">ID</th>-->
+                                        <th style="vertical-align:middle">CODE</th>
+                                        <th style="vertical-align:middle">PO#</th>
+                                        <th style="vertical-align:middle">PO NAME</th>
+                                        <th style="vertical-align:middle">PO STATUS</th>
+                                        <th style="vertical-align:middle">CONTENT TYPE</th>
+                                        <th style="vertical-align:middle">PO INITIAL TOTAL MANDAY</th>
+                                        <th style="vertical-align:middle">VAT</th>
+                                        <th style="vertical-align:middle">PO TOTAL AMOUNT(¥)(EXCL.VAT)</th>
+                                        <th style="vertical-align:middle">PO TOTAL AMOUNT(¥)(INCL.VAT)</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr style="text-align:center">
+
+                                        <!--<td style="vertical-align:middle" th:text="${poinfo.id}"></td>-->
+
+                                        <td style="vertical-align:middle" th:text="${poinfo.code}"></td>
+
+                                        <td style="vertical-align:middle" th:text="${poinfo.poNo}"></td>
+
+                                        <td style="vertical-align:middle" th:text="${poinfo.poName}"></td>
+
+                                        <td style="vertical-align:middle" th:text="${poinfo.poStatus}"></td>
+
+                                        <td style="vertical-align:middle" th:text="${poinfo.contentType}"></td>
+
+                                        <td style="vertical-align:middle" th:text="${poinfo.poInitialTotalManday}"></td>
+
+                                        <td style="vertical-align:middle" th:text="${poinfo.vat}"></td>
+
+                                        <td style="vertical-align:middle" th:text="${poinfo.poTotalAmountEx}"></td>
+
+                                        <td style="vertical-align:middle" th:text="${poinfo.poTotalAmountIn}"></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr style="text-align:center">
+                                        <th style="vertical-align:middle">ROLE</th>
+                                        <th style="vertical-align:middle">BILLABLE MANDAY(day)</th>
+                                        <th style="vertical-align:middle">BURNED MANDAY(day)</th>
+                                        <th style="vertical-align:middle">BALANCE MANDAY(day)</th>
+                                        <th style="vertical-align:middle">RATE(¥/day)</th>
+                                        <th style="vertical-align:middle">ROLE TOTAL AMOUNT(¥)</th>
+                                        <th style="vertical-align:middle">BURNED AMOUNT(¥)</th>
+                                        <th style="vertical-align:middle">BALANCE AMOUNT(¥)</th>
+                                        <th style="vertical-align:middle">START DATE</th>
+                                        <th style="vertical-align:middle">END DATE</th>
+                                        <th style="vertical-align:middle">COMMENTS</th>
+                                        <th style="vertical-align:middle">CREATE DATE</th>
+                                        <th style="vertical-align:middle">CREATE BY</th>
+                                        <th style="vertical-align:middle">LASTUPDATE DATE</th>
+                                        <th style="vertical-align:middle">LASTUPDATE BY</th>
+                                        <th style="vertical-align:middle">OPERATION</th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr style="text-align:center" th:each="roleinfo : ${roleinfo}">
+
+                                    <td style="vertical-align:middle">
+                                        <a th:href="@{/ConsultantInfo(role_id=${roleinfo.id})}">
+                                            <span th:text="${roleinfo.poRole}"></span>
+                                        </a>
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${roleinfo.billableManday}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${roleinfo.burnedManday}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${roleinfo.balanceManday}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${roleinfo.rate}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${roleinfo.totalAmount}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${roleinfo.burnedAmount}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${roleinfo.balanceAmount}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${poinfo.startDate}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${poinfo.endDate}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${roleinfo.roleComment}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${roleinfo.createDate}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="admin">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="${roleinfo.lastupdateDate}">
+                                    </td>
+
+                                    <td style="vertical-align:middle" th:text="admin">
+                                    </td>
+
+                                    <td style="vertical-align:middle">
+                                        <a th:href="@{/Roleinfo_edit(role_id=${roleinfo.id})}" style="text-decoration:none">
+                                            <button type="button" class="btn btn-block btn-primary">EDIT</button>&emsp;
+                                        </a>
+                                        <button type="button" class="btn btn-block btn-danger"
+                                                th:onclick="'javascript:delete_role_info('+${roleinfo.id} + ')'">DELETE</button>&emsp;
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <th hidden="hidden">
+                                        <input type="text" width="25" th:value="${poinfo.id}" class="po_txt_id" readonly="readonly"/>
+                                    </th>
+
+                                    <th>
+                                        <input type="text" width="25" class="roleinfo_txt_poRole"
+                                               onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                               onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                               oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                                    </th>
+
+                                    <th>
+                                        <input type="text" width="25" class="roleinfo_txt_billableManday" readonly="readonly" style="background:#E0E0E0;"/>
+                                    </th>
+
+                                    <th>
+                                        <input type="text" width="25" class="roleinfo_txt_burnedManday" readonly="readonly" style="background:#E0E0E0;"/>
+                                    </th>
+
+                                    <th>
+                                        <input type="text" width="25" class="roleinfo_txt_balanceManday" readonly="readonly" style="background:#E0E0E0;"/>
+                                    </th>
+
+                                    <th>
+                                        <input type="number" width="25" class="roleinfo_txt_rate"/>
+                                    </th>
+
+                                    <th>
+                                        <input type="text" width="25" class="roleinfo_txt_totalAmount" readonly="readonly" style="background:#E0E0E0;"/>
+                                    </th>
+
+                                    <th>
+                                        <input type="text" width="25" class="roleinfo_txt_burnedAmount" readonly="readonly" style="background:#E0E0E0;"/>
+                                    </th>
+
+                                    <th>
+                                        <input type="text" width="25" class="roleinfo_txt_balanceAmount" readonly="readonly" style="background:#E0E0E0;"/>
+                                    </th>
+
+                                    <th>
+                                        <input type="date" width="25" class="roleinfo_txt_startDate" readonly="readonly" th:value="${poinfo.startDate}"/>
+                                    </th>
+
+                                    <th>
+                                        <input type="date" width="25" class="roleinfo_txt_endDate" readonly="readonly" th:value="${poinfo.endDate}"/>
+                                    </th>
+
+                                    <th>
+                                        <input type="text" width="25" class="roleinfo_txt_roleComment"
+                                               onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                               onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                               oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                                    </th>
+
+                                    <td>
+                                        <input type="text" width="25" readonly="readonly" style="background:#E0E0E0;"/>
+                                    </td>
+
+                                    <td>
+                                        <input type="number" width="25" class="roleinfo_txt_creatBy" readonly="readonly" style="background:#E0E0E0;"/>
+                                    </td>
+
+                                    <td>
+                                        <input type="text" width="25" readonly="readonly" style="background:#E0E0E0;"/>
+                                    </td>
+
+                                    <td>
+                                        <input type="number" width="25" class="roleinfo_txt_lastupdateBy" readonly="readonly" style="background:#E0E0E0;"/>
+                                    </td>
+
+                                    <td style="text-align:center;vertical-align:middle">
+                                        <button type="button" class="btn btn-block btn-primary" onclick='save_role_info()'>ADD</button>&emsp;
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-footer small text-muted">&nbsp;</div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar"></i>
+                            Burned Manday Distribution
+                        </div>
+
+                        <div class="card-body">
+                            <div id="_container1" style="height: 480px"></div>
+                        </div>
+
+                        <div class="card-footer small text-muted">&nbsp;</div>
+                        <!--<div class="card-body">-->
+                            <!--<canvas id="myBarChart" width="100%" height="50"></canvas>-->
+                        <!--</div>-->
+                        <!--<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>-->
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fas fa-chart-pie"></i>
+                            Burned Manday Proportion Distribution</div>
+                        <div class="card-body">
+                            <!--<canvas id="myPieChart" width="100%" height="100"></canvas>-->
+                            <div id="_container2" style="height: 480px"></div>
+                        </div>
+
+                        <div class="card-footer small text-muted">&nbsp;</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+        <!-- Sticky Footer -->
+        <footer th:replace="th_master_page :: footer" class="sticky-footer">
+        </footer>
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="th_master_page :: scriptAtPageEnd">
+</div>
+<script type="application/javascript">
+    Number.prototype.add = function(arg){
+        var r1,r2,m;
+        try{r1=this.toString().split(".")[1].length}catch(e){r1=0}
+        try{r2=arg.toString().split(".")[1].length}catch(e){r2=0}
+        m=Math.pow(10,Math.max(r1,r2))
+        return (this*m+arg*m)/m
+    }
+
+    function save_role_info() {
+        if($(".roleinfo_txt_poRole").val() == null || $(".roleinfo_txt_poRole").val() == ''){
+            swal("ROLE: Can not be empty!");
+            return
+        }
+
+        if($(".roleinfo_txt_rate").val() == null || $(".roleinfo_txt_rate").val() == ''){
+            swal("RATE: Can not be empty!");
+            return
+        }
+
+        if($(".roleinfo_txt_roleComment").val().length > 50){
+            swal("COMMENTS: Too long!");
+            return
+        }
+
+        var data = {
+            "data":[
+                {
+                    "poRole": $(".roleinfo_txt_poRole").val(),
+                    "rate": $(".roleinfo_txt_rate").val(),
+                    "roleComment": $(".roleinfo_txt_roleComment").val(),
+                    "poId": $(".po_txt_id").val(),
+                    "startDate": $(".roleinfo_txt_startDate").val(),
+                    "endDate": $(".roleinfo_txt_endDate").val()
+                }
+            ]
+        };
+
+        console.log(data);
+
+        // 录入项目详情信息
+        $.ajax({
+            type: "post",
+            url:"adminController/save_role_info",
+            data: JSON.stringify(data),
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+
+            success: function (data) {
+                if (data.code == '200000') {
+                    swal('Success!');
+                    window.location.reload();
+                } else {
+                    swal('Failed, Msg: '+ data.msg);
+                }
+            }});
+
+    }
+
+    function delete_role_info(id) {
+                swal({
+                title: "Ready to delete?",
+                text: "Once deleted, you will not be able to recover this porject information details ["+id+"]!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {    
+                    swal("Poof! Your porject information details ["+id+"] has been deleted!", {
+                    icon: "success",
+                    });
+                    $.ajax({
+                    type: "get",
+                    url:"adminController/deleteRoleInfoById?id=" + id,
+                    dataType:"json",
+                    contentType: "application/json; charset=utf-8",
+
+                    success: function (data) {
+                        if (data.code == '200000') {
+                            window.location.reload();
+                            swal('Success!');
+                        } else {
+                            swal('Failed, Msg: '+ data.msg);
+                        }
+                    }});
+                } else {
+                    swal("Your porject information details is safe!");
+                }
+                });
+    }
+
+    $.ajax({
+        type: "get",
+        url:"adminController/queryRoleInfoByPoId?po_id="+ $(".po_txt_id").val(),
+        dataType:"json",
+        contentType: "application/json; charset=utf-8",
+
+        success: function (data) {
+            if (data.code == '200000') {
+                console.log(data.data)
+
+                var xArray1 = new Array();
+                var yArray1 = new Array();
+
+                $.each(data.data, function(index,value){
+                    var role = value.poRole;
+                    xArray1[index] = role;
+
+                    var burnedManday = value.burnedManday;
+                    yArray1[index] = burnedManday;
+
+                });
+
+                var xArray2 = new Array();
+                var yArray2 = new Array();
+
+                $.each(data.data, function(index,value){
+                    var role = value.poRole;
+                    xArray2[index] = role;
+
+                    var burnedMandayproportion = value.burnedManday/value.billableManday*100;
+                    yArray2[index] = burnedMandayproportion;
+
+                });
+
+                loadCylindricalChart(xArray1, yArray1, '_container1', '(day)');
+                loadCylindricalChart(xArray2, yArray2, '_container2', '(%)');
+
+            } else {
+                console.log('Failed load data, Msg: '+ data.msg);
+            }
+        }});
+
+
+    function loadCylindricalChart(xArray, yArray, contain, name) {
+        console.log(xArray)
+        console.log(yArray)
+        var dom = document.getElementById(contain);
+        var myCylindricalChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        app.title = 'Cylindrical Chart';
+
+        option = {
+            color: ['#3398DB'],
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis : [
+                {
+                    type : 'category',
+                    data : xArray,
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    name:name
+                }
+            ],
+            series : [
+                {
+                    name:name,
+                    type:'bar',
+                    barWidth: '60%',
+                    data: yArray
+                }
+            ]
+        };
+
+        if (option && typeof option === "object") {
+            myCylindricalChart.setOption(option, true);
+        }
+    }
+
+    /*function loadRoundChart(xArray, dataArray) {
+        var dom = document.getElementById("round_container");
+        var myRoundChart = echarts.init(dom);
+        var app = {};
+        app.title = 'Round Chart';
+
+
+        option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'left',
+                data: xArray
+            },
+            series: [
+                {
+                    name:'Billable Manday',
+                    type:'pie',
+                    radius: ['50%', '70%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '30',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data: dataArray
+                }
+            ]
+        };
+
+        if (option && typeof option === "object") {
+            myRoundChart.setOption(option, true);
+        }
+    }*/
+</script>
+</body>
+
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="th_master_page :: header">
+</head>
+
+  <body id="page-top">
+      <nav th:replace="th_master_page :: navigations" class="navbar navbar-expand navbar-dark bg-dark static-top">
+      </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar
+      <ul th:replace="th_master_page :: sidebar" class="sidebar navbar-nav">
+      </ul> -->
+
+      <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+          <!-- Breadcrumbs-->
+          <div class="container">
+
+			<form class="form-horizontal">
+				<fieldset>
+					<legend class="col-lg-offset-1">Edit Role-base Amount</legend>
+                    <br/>
+					<div class="form-group">
+                        <input type="text" hidden="hidden" id="roleinfo_txt_id" class="form-control" th:value="${RoleInfo.id}" readonly="readonly"/>
+                        <input type="text" hidden="hidden" id="roleinfo_txt_poId" class="form-control" th:value="${RoleInfo.poId}" readonly="readonly"/>
+						<label for="roleinfo_txt_role" class="col-sm-4 control-label">ROLE</label>
+						<div class="col-sm-6">
+							<input type="text" id="roleinfo_txt_role" class="form-control" th:value="${RoleInfo.poRole}" readonly="readonly"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="roleinfo_txt_rate" class="col-sm-4 control-label">RATE(¥/day)</label>
+						<div class="col-sm-6">
+								<input type="number" id="roleinfo_txt_rate" class="form-control" th:value="${RoleInfo.rate}" readonly="readonly"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="roleinfo_txt_billableManday" class="col-sm-4 control-label">BILLABLE MANDAY(day)</label>
+						<div class="col-sm-6">
+							<input type="number" id="roleinfo_txt_billableManday" class="form-control" th:value="${RoleInfo.billableManday}" readonly="readonly"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="roleinfo_txt_burnedManday" class="col-sm-4 control-label">BURNED MANDAY(day)</label>
+						<div class="col-sm-6">
+                            <input type="number" id="roleinfo_txt_burnedManday" class="form-control" th:value="${RoleInfo.burnedManday} "readonly="readonly"/>
+						</div>
+					</div>
+
+                    <div class="form-group">
+                        <label for="roleinfo_txt_accrueManday" class="col-sm-4 control-label">ACCRUE MANDAY(day)</label>
+                        <br/>
+                        <label for="roleinfo_txt_accrueManday" class="col-sm-4 control-label">(Click OK,add the value to BURNED MANDAY)</label>
+                        <div class="col-sm-6">
+                            <input type="number" id="roleinfo_txt_accrueManday" class="form-control" value="0"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roleinfo_txt_balanceManday" class="col-sm-4 control-label">BALANCE MANDAY(day)</label>
+                        <div class="col-sm-6">
+                            <!--<input type="date" id="project_txt_startDate" class="form-control" value="2018-08-08" />-->
+                            <input type="number" id="roleinfo_txt_balanceManday" class="form-control" th:value="${RoleInfo.balanceManday}" readonly="readonly"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roleinfo_txt_startDate" class="col-sm-4 control-label">START DATE</label>
+                        <div class="col-sm-6">
+                            <!--<input type="date" id="project_txt_startDate" class="form-control" value="2018-08-08" />-->
+                            <input type="number" id="roleinfo_txt_startDate" class="form-control" th:value="${RoleInfo.startDate}" readonly="readonly"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roleinfo_txt_endDate" class="col-sm-4 control-label">END DATE</label>
+                        <div class="col-sm-6">
+                            <!--<input type="date" id="project_txt_startDate" class="form-control" value="2018-08-08" />-->
+                            <input type="number" id="roleinfo_txt_endDate" class="form-control" th:value="${RoleInfo.endDate}" readonly="readonly"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roleinfo_txt_totalAmount" class="col-sm-4 control-label">TOTAL AMOUNT(¥)</label>
+                        <div class="col-sm-6">
+                            <!--<input type="date" id="project_txt_startDate" class="form-control" value="2018-08-08" />-->
+                            <input type="number" id="roleinfo_txt_totalAmount" class="form-control" th:value="${RoleInfo.totalAmount}" readonly="readonly"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roleinfo_txt_burnedAmount" class="col-sm-4 control-label">BURNED AMOUNT(¥)</label>
+                        <div class="col-sm-6">
+                            <!--<input type="date" id="project_txt_startDate" class="form-control" value="2018-08-08" />-->
+                            <input type="number" id="roleinfo_txt_burnedAmount" class="form-control" th:value="${RoleInfo.burnedAmount}" readonly="readonly"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roleinfo_txt_balanceAmount" class="col-sm-4 control-label">BALANCE AMOUNT(¥)</label>
+                        <div class="col-sm-6">
+                            <!--<input type="date" id="project_txt_startDate" class="form-control" value="2018-08-08" />-->
+                            <input type="number" id="roleinfo_txt_balanceAmount" class="form-control" th:value="${RoleInfo.balanceAmount}" readonly="readonly"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roleinfo_txt_roleComment" class="col-sm-4 control-label">COMMENTS</label>
+                        <div class="col-sm-6">
+                            <!--<input type="date" id="project_txt_startDate" class="form-control" value="2018-08-08" />-->
+                            <input type="text" id="roleinfo_txt_roleComment" class="form-control" th:value="${RoleInfo.roleComment}"
+                                   onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                   onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                   oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roleinfo_txt_createDate" class="col-sm-4 control-label">CREATE DATE</label>
+                        <div class="col-sm-6">
+                            <input type="date" id="roleinfo_txt_createDate" class="form-control" th:value="${RoleInfo.createDate}" readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roleinfo_txt_creatBy" class="col-sm-4 control-label">CREATE BY</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="roleinfo_txt_creatBy" class="form-control" th:value="admin" readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roleinfo_txt_lastupdateDate" class="col-sm-4 control-label">LASTUPDATE DATE</label>
+                        <div class="col-sm-6">
+                            <input type="date" id="roleinfo_txt_lastupdateDate" class="form-control" th:value="${RoleInfo.lastupdateDate}" readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roleinfo_txt_lastupdateBy" class="col-sm-4 control-label">LASTUPDATE BY</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="roleinfo_txt_lastupdateBy" class="form-control" th:value="admin" readonly="readonly">
+                        </div>
+                    </div>
+
+					<div class="form-group">
+						<div class="col-sm-offset-5 col-sm-10">
+                          <button type="button" class="btn btn-primary" onclick="editRoleInfo()">OK</button>
+                          <!--<button type="button" class="btn btn-primary" data-target="#accrueModal" data-toggle="modal">ACCRUE</button>-->
+							<button type="reset" class="btn btn-danger" onclick="javascript:window.location.reload();">RELOAD</button>
+							<!--<input type="button" class="btn btn-danger" value="Return"-->
+                            <!--th:onclick="'javascript:window.location.href=/po-mgmt-system/ProjectDetail?project_id='+${projectDetail.projectId} + ''"-->
+                            <!--/>-->
+                            <input type="button" class="btn btn-danger" value="RETURN"
+                                   th:onclick="'javascript:return_role_info('+${RoleInfo.poId} + ')'"/>
+						</div>
+					</div>
+
+				</fieldset>
+			</form>
+
+		</div>
+        <!-- /.container-fluid -->
+      <!-- Sticky Footer -->
+      <footer th:replace="th_master_page :: footer" class="sticky-footer">
+      </footer>
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!--Accrue Modal-->
+    <div class="modal fade" id="accrueModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Please accrue the to-be burned man-day numbers</h5>
+            </div>
+            <div class="modal-body">
+                <div class="md-form mb-5">
+                    <i class="fa fa-user prefix grey-text"></i>
+                    <input type="number" id="accrued-man-day-numbers" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="accrued-man-day-numbers">Amount</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+              <button class="btn btn-primary" type="button" onclick="accrueBurne();">Confirmed</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div th:replace="th_master_page :: scriptAtPageEnd">
+      </div>
+
+<script type="application/javascript">
+    function editRoleInfo(){
+
+        if($("#roleinfo_txt_roleComment").val().length > 50){
+            swal("COMMENTS: Too long!");
+            return
+        }
+
+        if(parseFloat($("#roleinfo_txt_accrueManday").val()) + parseFloat($("#roleinfo_txt_burnedManday").val()) > parseFloat($("#roleinfo_txt_billableManday").val())){
+            swal("ACCRUE MANDAY: Too large!");
+            return
+        }
+
+        var data = {
+            "data":[
+                {
+                    "id": $("#roleinfo_txt_id").val(),
+                    "poRole": $("#roleinfo_txt_role").val(),
+                    "rate": $("#roleinfo_txt_rate").val(),
+                    "billableManday": $("#roleinfo_txt_billableManday").val(),
+                    "burnedManday": $("#roleinfo_txt_burnedManday").val(),
+                    "accrueManday": $("#roleinfo_txt_accrueManday").val(),
+                    "balanceManday": $("#roleinfo_txt_balanceManday").val(),
+                    "totalAmount": $("#roleinfo_txt_totalAmount").val(),
+                    "burnedAmount": $("#roleinfo_txt_burnedAmount").val(),
+                    "balanceAmount": $("#roleinfo_txt_balanceAmount").val(),
+                    "createDate": $("#roleinfo_txt_createDate").val(),
+                    // "creatBy": $("#roleinfo_txt_creatBy").val(),
+                    "lastupdateDate": $("#roleinfo_txt_lastupdateDate").val(),
+                    // "lastupdateBy": $("#roleinfo_txt_lastupdateBy").val(),
+                    "roleComment": $("#roleinfo_txt_roleComment").val(),
+                    "poId": $("#roleinfo_txt_poId").val()
+                }
+            ]
+        };
+
+        console.log(data);
+
+        // 更新项目信息
+        $.ajax({
+            type: "post",
+            url:"adminController/updateRoleInfoById",
+            data: JSON.stringify(data),
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+
+            success: function (data) {
+                if (data.code == '200000') {
+                    window.location.reload();
+                    swal('Update Success！');
+                } else {
+                    swal('Update Failure,Msg:'+ data.msg);
+                }
+            }});
+    }
+
+    function return_role_info(poId) {
+        window.location.href='/po-mgmt-system/RoleInfo?po_id=' + poId;
+    }
+
+    function accrueBurne() {
+        var id = $("#roleinfo_txt_id").val();
+        console.log(id);
+
+        var burneAmount = $("#accrued-man-day-numbers").val();
+        console.log(burneAmount);
+        if(burneAmount == null || burneAmount == ''){
+            swal("Amount: Can not be empty!");
+            return
+        }
+        // 更新amount(burne:+,balance:-)
+        $.ajax({
+            type: "GET",
+            url:"adminController/updateRoleInfoAmountById?id=" + id + "&amount=" + burneAmount,
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+
+            success: function (data) {
+                if (data.code == '200000') {
+                    window.location.reload();
+                    swal('Success!');
+                } else {
+                    swal('Failed, Msg: '+ data.msg);
+                }
+            }
+        });
+
+    }
+</script>
+  </body>
+</html>

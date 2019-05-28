@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.capgemini.mapper.RoleInfoMapper">
+
+
+    <insert id="saveRoleInfoEntity" parameterType="RoleInfoEntity">
+        insert into
+          role_info (`PO_ROLE`,`RATE`,`START_DATE`,`END_DATE`,`CREATE_DATE`,`LASTUPDATE_DATE`,`CREAT_BY`,`LASTUPDATE_BY`,`ROLE_COMMENT`,`PO_ID`)
+        values
+          (#{poRole},#{rate},#{startDate},#{endDate},#{createDate},#{lastupdateDate},#{creatBy},#{lastupdateBy},#{roleComment},#{poId})
+    </insert>
+
+    <select id="queryRoleInfoById" parameterType="Integer" resultType="RoleInfoEntity">
+        SELECT
+          *
+        FROM role_info
+        WHERE `ID` = #{_parameter} AND `DELETE_FLAG` = 1
+    </select>
+
+    <update id="deleteRoleInfoById" parameterType="Integer">
+      UPDATE role_info
+      SET delete_flag=0
+      WHERE `ID` = #{_parameter}
+    </update>
+
+      <update id="updateRoleInfoById" parameterType="RoleInfoEntity">
+
+      update role_info
+      set
+        `PO_ROLE` = #{poRole},`BILLABLE_MANDAY`=#{billableManday},`TOTAL_AMOUNT`=#{totalAmount},
+        `BURNED_AMOUNT`=#{burnedAmount},`BALANCE_AMOUNT`=#{balanceAmount},`LASTUPDATE_DATE`=#{lastupdateDate},
+        `BURNED_MANDAY`=#{burnedManday},`BALANCE_MANDAY`=#{balanceManday},`ROLE_COMMENT`=#{roleComment}
+      where `ID` = #{id} AND `DELETE_FLAG` = 1
+    </update>
+
+    <!--<update id="updateRoleInfoAmountById" parameterType="RoleInfoEntity">
+      update role_info
+      set
+        `BURNED_AMOUNT`=`BURNED_AMOUNT`+#{burnedAmount}, `BALANCE_AMOUNT`=`BALANCE_AMOUNT`-#{burnedAmount},
+        `LASTUPDATE_DATE`=#{lastupdateDate}, `LASTUPDATE_BY`=#{lastupdateBy}
+      where `ID` = #{id}
+    </update>-->
+
+    <select id="queryRoleInfoByPoId" parameterType="Integer" resultType="RoleInfoEntity">
+        SELECT
+        *
+        FROM role_info
+        WHERE `PO_ID` = #{_parameter} AND `DELETE_FLAG` = 1
+    </select>
+
+</mapper>

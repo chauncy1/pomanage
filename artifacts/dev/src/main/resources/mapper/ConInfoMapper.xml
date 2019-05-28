@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <mapper namespace="com.capgemini.mapper.ConInfoMapper">
+        <insert parameterType="ConInfoEntity" id="saveConInfoEntity">
+           insert into
+           consultant_info (`EMP_NAME`,`EMP_NO`,`EMP_RATE`,`EMP_TYPE`,`TOTAL_MANDAY`,`TOTAL_AMOUNT`,`EMP_LEVEL`,`START_DATE`,
+           `END_DATE`,`EMP_COMMENT`,`CREATE_DATE`,`LASTUPDATE_DATE`,`ROLE_ID`)
+            values (#{empName},#{empNo},#{empRate},#{empType},#{totalManday},#{totalAmount},#{empLevel},#{startDate},
+            #{endDate},#{empComment},#{createDate},#{lastupdateDate},#{roleId})
+        </insert>
+
+        <select parameterType="String" id="queryConInfoByEmpNo" resultType="ConInfoEntity">
+        SELECT *
+        FROM consultant_info
+        WHERE `EMP_NO` = #{_parameter} AND `DELETE_FLAG` = 1
+        </select>
+
+        <select parameterType="Integer" id="queryConInfoById" resultType="ConInfoEntity">
+        SELECT *
+        FROM consultant_info
+        WHERE `ID` = #{_parameter} AND `DELETE_FLAG` = 1
+        </select>
+
+        <update parameterType="Integer" id="deleteConInfoById">
+          UPDATE consultant_info
+          SET delete_flag=0
+          WHERE `ID` = #{_parameter}
+        </update>
+
+        <update parameterType="ConInfoEntity" id="updateConInfoById">
+        update consultant_info set `EMP_NAME` = #{empName}, `EMP_NO`=#{empNo},`EMP_RATE`=#{empRate},`EMP_TYPE`=#{empType},
+        `TOTAL_MANDAY`=#{totalManday}, `EMP_LEVEL`=#{empLevel},`EMP_COMMENT`=#{empComment}, `LASTUPDATE_DATE`=#{lastupdateDate},
+         `ROLE_ID`=#{roleId}
+         where `ID` = #{id} AND `DELETE_FLAG` = 1
+        </update>
+
+        <select parameterType="Integer" id="queryConInfoByRoleId" resultType="ConInfoEntity">
+          SELECT *
+          FROM consultant_info
+          WHERE `ROLE_ID` = #{_parameter} AND `DELETE_FLAG` = 1
+        </select>
+</mapper>

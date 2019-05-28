@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="th_master_page :: header">
+</head>
+
+<body id="page-top">
+<nav th:replace="th_master_page :: navigations" class="navbar navbar-expand navbar-dark bg-dark static-top">
+</nav>
+<div id="wrapper">
+
+    <!-- Sidebar
+      <ul th:replace="th_master_page :: sidebar" class="sidebar navbar-nav">
+      </ul> -->
+
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a th:href="@{/}">Project</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a th:href="@{/PoInfo(code=${poinfo.code})}">PO</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a th:href="@{/RoleInfo(po_id=${roleinfo.poId})}">Role</a>
+                </li>
+                <li class="breadcrumb-item active">Concultant Info</li>
+            </ol>
+
+            <!-- Area Chart Example-->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-chart-area"></i>
+                    Consultant Information</div>
+                <div class="card-body">
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered" id="projectTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr style="text-align:center">
+                                    <th style="vertical-align:middle">ACCOUNT</th>
+                                    <th style="vertical-align:middle">CODE</th>
+                                    <th style="vertical-align:middle">PROJECT NAME</th>
+                                    <th style="vertical-align:middle">EM</th>
+                                    <th style="vertical-align:middle">DE</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr style="text-align:center">
+
+                                    <td style="vertical-align:middle" th:text="${projectinfo.account}"></td>
+
+                                    <td style="vertical-align:middle" th:text="${projectinfo.code}"></td>
+
+                                    <td style="vertical-align:middle" th:text="${projectinfo.projectName}"></td>
+
+                                    <td style="vertical-align:middle" th:text="${projectinfo.projectEm}"></td>
+
+                                    <td style="vertical-align:middle" th:text="${projectinfo.projectDm}"></td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="table table-bordered" id="poTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr style="text-align:center">
+                                    <th style="vertical-align:middle">CODE</th>
+                                    <th style="vertical-align:middle">PO#</th>
+                                    <th style="vertical-align:middle">PO NAME</th>
+                                    <th style="vertical-align:middle">PO STATUS</th>
+                                    <th style="vertical-align:middle">CONTENT TYPE</th>
+                                    <th style="vertical-align:middle">PO INITIAL TOTAL MANDAY</th>
+                                    <th style="vertical-align:middle">VAT</th>
+                                    <th style="vertical-align:middle">PO TOTAL AMOUNT(¥)(EXCL.VAT)</th>
+                                    <th style="vertical-align:middle">PO TOTAL AMOUNT(¥)(INCL.VAT)</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr style="text-align:center">
+
+                                    <td style="vertical-align:middle" hidden="hidden" th:text="${poinfo.id}" class="po_txt_id"></td>
+
+                                    <td style="vertical-align:middle" th:text="${poinfo.code}"></td>
+
+                                    <td style="vertical-align:middle" th:text="${poinfo.poNo}"></td>
+
+                                    <td style="vertical-align:middle" th:text="${poinfo.poName}"></td>
+
+                                    <td style="vertical-align:middle" th:text="${poinfo.poStatus}"></td>
+
+                                    <td style="vertical-align:middle" th:text="${poinfo.contentType}"></td>
+
+                                    <td style="vertical-align:middle" th:text="${poinfo.poInitialTotalManday}"></td>
+
+                                    <td style="vertical-align:middle" th:text="${poinfo.vat}"></td>
+
+                                    <td style="vertical-align:middle" th:text="${poinfo.poTotalAmountEx}"></td>
+
+                                    <td style="vertical-align:middle" th:text="${poinfo.poTotalAmountIn}"></td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="table table-bordered" id="roleTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr style="text-align:center">
+                                        <th style="vertical-align:middle">ROLE</th>
+                                        <th style="vertical-align:middle">RATE(EXCL.VAT)</th>
+                                        <th style="vertical-align:middle">BILLABLE MANDAY</th>
+                                        <th style="vertical-align:middle">TOTAL AMOUNT</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr style="text-align:center">
+                                        <td style="vertical-align:middle" th:text="${roleinfo.poRole}"></td>
+
+                                        <td style="vertical-align:middle" th:text="${roleinfo.rate}"></td>
+
+                                        <td style="vertical-align:middle" th:text="${roleinfo.billableManday}"></td>
+
+                                        <td style="vertical-align:middle" th:text="${roleinfo.totalAmount}"></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr style="text-align:center">
+                                        <th style="vertical-align:middle">CONSULTANT NO</th>
+                                        <th style="vertical-align:middle">CONSULTANT NAME</th>
+                                        <th style="vertical-align:middle">RATE(¥/day)</th>
+                                        <th style="vertical-align:middle">TOTAL MANDAY(day)</th>
+                                        <th style="vertical-align:middle">TOTAL AMOUNT(¥)</th>
+                                        <th style="vertical-align:middle">CONSULTANT TYPE</th>
+                                        <th style="vertical-align:middle">CONSULTANT LEVEL</th>
+                                        <th style="vertical-align:middle">START DATE</th>
+                                        <th style="vertical-align:middle">END DATE</th>
+                                        <th style="vertical-align:middle">COMMENTS</th>
+                                        <th style="vertical-align:middle">CREATE DATE</th>
+                                        <th style="vertical-align:middle">CREATE BY</th>
+                                        <th style="vertical-align:middle">LASTUPDATE DATE</th>
+                                        <th style="vertical-align:middle">LASTUPDATE BY</th>
+                                        <th style="vertical-align:middle">OPERATION</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr style="text-align:center" th:each="conInfo : ${coninfo}">
+
+                                        <td style="vertical-align:middle" th:text="${conInfo.empNo}">
+                                        </td>
+
+                                        <td style="vertical-align:middle" th:text="${conInfo.empName}">
+                                        </td>
+
+                                        <td style="vertical-align:middle" th:text="${conInfo.empRate}">
+                                        </td>
+
+                                        <td style="vertical-align:middle" th:text="${conInfo.totalManday}">
+                                        </td>
+
+                                        <td style="vertical-align:middle" th:text="${conInfo.totalAmount}">
+                                        </td>
+
+                                        <td style="vertical-align:middle" th:text="${conInfo.empType}">
+                                        </td>
+
+                                        <td style="vertical-align:middle" th:text="${conInfo.empLevel}">
+                                        </td>
+
+                                        <td style="vertical-align:middle" th:text="${poinfo.startDate}">
+                                        </td>
+
+                                        <td style="vertical-align:middle" th:text="${poinfo.endDate}">
+                                        </td>
+
+                                        <td style="vertical-align:middle" th:text="${conInfo.empComment}">
+                                        </td>
+
+                                        <td style="vertical-align:middle" th:text="${conInfo.createDate}">
+                                        </td>
+
+                                        <td style="vertical-align:middle" th:text="admin">
+                                        </td>
+
+                                        <td style="vertical-align:middle" th:text="${conInfo.lastupdateDate}">
+                                        </td>
+
+                                        <td style="vertical-align:middle" th:text="admin">
+                                        </td>
+
+                                        <td style="vertical-align:middle">
+                                            <a th:href="@{/Coninfo_edit(con_id=${conInfo.id})}" style="text-decoration:none">
+                                                <button type="button" class="btn btn-block btn-primary">EDIT</button>&emsp;
+                                            </a>
+
+                                            <button type="button" class="btn btn-block btn-danger"
+                                                    th:onclick="'javascript:delete_con_info('+${conInfo.id} + ')'">DELETE</button>&emsp;
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td hidden="hidden">
+                                            <input type="number" width="25" th:value="${roleinfo.rate}" class="role_txt_rate"/>
+                                        </td>
+
+                                        <td hidden="hidden">
+                                            <input type="number" width="25" th:value="${roleinfo.id}" class="role_txt_id"/>
+                                        </td>
+
+                                        <td>
+                                            <input type="text" width="25" class="consultant_txt_empNo"
+                                                   onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
+                                                   onpaste="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
+                                                   oncontextmenu="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"/>
+                                        </td>
+
+                                        <td>
+                                            <input type="text" width="25" class="consultant_txt_empName"
+                                                   onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                                   onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                                   oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                                        </td>
+
+                                        <td>
+                                            <input type="number" width="25" th:value="${roleinfo.rate}" class="consultant_txt_empRate" readonly="readonly"/>
+                                        </td>
+
+                                        <td>
+                                            <input type="number" width="25" class="consultant_txt_totalManday"/>
+                                        </td>
+
+                                        <td>
+                                            <input type="number" width="25" class="consultant_txt_totalAmount" readonly="readonly" style="background:#E0E0E0;"/>
+                                        </td>
+
+                                        <td>
+                                            <select width="25" class="consultant_txt_empType">
+                                                <option value="selecting" selected="selected">selecting</option>
+                                                <option value="JTP">JTP</option>
+                                                <option value="OWN">OWN</option>
+                                                <option value="SUBCON">SUBCON</option>
+                                            </select>
+                                        </td>
+
+                                        <td>
+                                            <select width="25" class="consultant_txt_empLevel"/>
+                                            <option value="selecting" selected="selected">selecting</option>
+                                            <option value="E2">E2</option>
+                                            <option value="E1">E1</option>
+                                            <option value="D2">D2</option>
+                                            <option value="D1">D1</option>
+                                            <option value="C2">C2</option>
+                                            <option value="C1">C1</option>
+                                            <option value="B2">B2</option>
+                                            <option value="B1">B1</option>
+                                            <option value="A5">A5</option>
+                                            <option value="A4">A4</option>
+                                            <option value="A3">A3</option>
+                                            <option value="X3">X3</option>
+                                            <option value="X2">X2</option>
+                                            <option value="X1">X1</option>
+                                            </select>
+                                        </td>
+
+                                        <td>
+                                            <input type="date" width="25" class="consultant_txt_startDate" readonly="readonly" th:value="${poinfo.startDate}"/>
+                                        </td>
+
+                                        <td>
+                                            <input type="date" width="25" class="consultant_txt_endDate" readonly="readonly" th:value="${poinfo.endDate}"/>
+                                        </td>
+
+                                        <td>
+                                            <input type="text" width="25" class="consultant_txt_empComment"
+                                                   onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                                   onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                                   oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                                        </td>
+
+                                        <td>
+                                            <input type="text" width="25" readonly="readonly" style="background:#E0E0E0;"/>
+                                        </td>
+
+                                        <td>
+                                            <input type="number" width="25" class="consultant_txt_creatBy" readonly="readonly" style="background:#E0E0E0;"/>
+                                        </td>
+
+                                        <td>
+                                            <input type="text" width="25" readonly="readonly" style="background:#E0E0E0;"/>
+                                        </td>
+
+                                        <td>
+                                            <input type="number" width="25" class="consultant_txt_lastupdateBy" readonly="readonly" style="background:#E0E0E0;"/>
+                                        </td>
+
+                                        <td style="text-align:center;vertical-align:middle">
+                                            <button type="button" class="btn btn-block btn-primary" onclick='save_con_info()'>ADD</button>&emsp;
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-footer small text-muted">&nbsp;</div>
+            </div>
+
+        <footer th:replace="th_master_page :: footer" class="sticky-footer">
+        </footer>
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="th_master_page :: scriptAtPageEnd">
+</div>
+<script type="application/javascript">
+    Number.prototype.add = function(arg){
+        var r1,r2,m;
+        try{r1=this.toString().split(".")[1].length}catch(e){r1=0}
+        try{r2=arg.toString().split(".")[1].length}catch(e){r2=0}
+        m=Math.pow(10,Math.max(r1,r2))
+        return (this*m+arg*m)/m
+    }
+
+
+
+    function save_con_info() {
+
+        if($(".consultant_txt_empNo").val() == null || $(".consultant_txt_empNo").val() == ''){
+            swal("EMP NO: Can not be empty!");
+            return
+        }
+        if($(".consultant_txt_empNo").val().length != 6){
+            swal("EMP NO: EMP NO length is 6!");
+            return
+        }
+
+        if($(".consultant_txt_empName").val() == null || $(".consultant_txt_empName").val() == ''){
+            swal("EMP: Can not be empty!");
+            return
+        }
+
+        if($(".consultant_txt_totalManday").val() == null || $(".consultant_txt_totalManday").val() == ''){
+            swal("TOTAL MANDAY: Can not be empty!");
+            return
+        }
+
+        if($(".consultant_txt_empType").val() == "selecting"){
+            swal("EMP TYPE: Can not be empty!");
+            return
+        }
+
+        if($(".consultant_txt_empLevel").val() == "selecting"){
+            swal("EMP LEVEL: Can not be empty!");
+            return
+        }
+
+        if($(".consultant_txt_empComment").val().length > 50){
+            swal("COMMENTS: Too long!");
+            return
+        }
+
+        var data = {
+            "data":[
+                {
+                    "empNo": $(".consultant_txt_empNo").val(),
+                    "empName": $(".consultant_txt_empName").val(),
+                    "empRate": $(".role_txt_rate").val(),
+                    "totalManday": $(".consultant_txt_totalManday").val(),
+                    "totalAmount": parseFloat($(".role_txt_rate").val()) * parseFloat($(".consultant_txt_totalManday").val()),
+                    "empType": $(".consultant_txt_empType").val(),
+                    "empLevel": $(".consultant_txt_empLevel").val(),
+                    "empComment": $(".consultant_txt_empComment").val(),
+                    "roleId": $(".role_txt_id").val(),
+                    "startDate": $(".consultant_txt_startDate").val(),
+                    "endDate": $(".consultant_txt_endDate").val()
+                }
+            ]
+        };
+
+        console.log(data);
+
+        // 录入项目详情信息
+        $.ajax({
+            type: "post",
+            url:"adminController/save_con_info",
+            data: JSON.stringify(data),
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+
+            success: function (data) {
+                if (data.code == '200000') {
+                    window.location.reload();
+                    swal('Success!');
+                } else {
+                    swal('Failed, Msg: ' +data.msg);
+                }
+            }});
+
+    }
+
+    function delete_con_info(id) {
+        swal({
+            title: "Ready to delete?",
+            text: "Once deleted, you will not be able to recover this porject information details ["+id+"]!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+            if (willDelete) {
+                swal("Poof! Your porject information details ["+id+"] has been deleted!", {
+                    icon: "success",
+                });
+                $.ajax({
+                    type: "get",
+                    url:"adminController/deleteConInfoById?id=" + id,
+                    dataType:"json",
+                    contentType: "application/json; charset=utf-8",
+
+                    success: function (data) {
+                        if (data.code == '200000') {
+                            window.location.reload();
+                            swal('Delete Success!');
+                        } else {
+                            swal('Failed, Msg: '+ data.msg);
+                        }
+                    }});
+            } else {
+                swal("Your porject information details is safe!");
+    }
+    });
+    }
+
+    $.ajax({
+        type: "get",
+        url:"adminController/queryConInfoByRoleId?role_id="+ $(".th_roleinfo_id").text(),
+        dataType:"json",
+        contentType: "application/json; charset=utf-8",
+
+        success: function (data) {
+            if (data.code == '200000') {
+                console.log(data.data)
+
+                var xArray = new Array();
+                var yArray = new Array();
+                var dataArray = new Array();
+
+                $.each(data.data, function(index,value){
+                    var role = value.poRole;
+                    xArray[index] = role;
+
+                    var balance = value.balanceAmount;
+                    yArray[index] = balance;
+
+                    var object = {value:value.burnedAmount, name:role};
+                    dataArray[index] = object;
+                    console.log(dataArray)
+                });
+
+                loadCylindricalChart(xArray, yArray);
+
+                loadRoundChart(xArray, dataArray);
+            } else {
+                console.log('Failed load data, Msg: '+ data.msg);
+            }
+        }});
+</script>
+</body>
+
+</html>

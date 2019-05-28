@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="th_master_page :: header">
+</head>
+
+<body id="page-top">
+<nav th:replace="th_master_page :: navigations" class="navbar navbar-expand navbar-dark bg-dark static-top">
+</nav>
+
+<div id="wrapper">
+
+    <!-- Sidebar
+    <ul th:replace="th_master_page :: sidebar" class="sidebar navbar-nav">
+    </ul> -->
+
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <div class="container">
+
+                <form class="form-horizontal">
+                    <fieldset>
+                        <legend class="col-lg-offset-1">Edit Consultant</legend>
+                        <br/>
+
+                        <div class="form-group" hidden="hidden">
+                            <label for="consultant_txt_id" class="col-sm-4 control-label">ID</label>
+                            <div class="col-sm-6">
+                                <input type="number" id="consultant_txt_roleId" class="form-control"
+                                       th:value="${coninfo.roleId}" readonly="readonly"/>
+                                <input type="number" id="consultant_txt_id" class="form-control"
+                                       th:value="${coninfo.id}" readonly="readonly"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consultant_txt_empNo" class="col-sm-4 control-label">EMP NO</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="consultant_txt_empNo" class="form-control"
+                                       th:value="${coninfo.empNo}" readonly="readonly"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consultant_txt_empName" class="col-sm-4 control-label">EMP NAME</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="consultant_txt_empName" class="form-control" th:value="${coninfo.empName}"
+                                       readonly="readonly"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consultant_txt_empRate" class="col-sm-4 control-label">RATE(¥/day)</label>
+                            <div class="col-sm-6">
+                                <input type="number" id="consultant_txt_empRate" class="form-control" th:value="${coninfo.empRate}"
+                                       readonly="readonly"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consultant_txt_totalManday" class="col-sm-4 control-label">TOTAL MANDAY(day)</label>
+                            <div class="col-sm-6">
+                                <input type="number" id="consultant_txt_totalManday" class="form-control"
+                                       th:value="${coninfo.totalManday}" readonly="readonly"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consultant_txt_totalAmount" class="col-sm-4 control-label">TOTAL AMOUNT(¥)</label>
+                            <div class="col-sm-6">
+                                <input type="number" id="consultant_txt_totalAmount" class="form-control"
+                                       th:value="${coninfo.totalAmount}" readonly="readonly"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consultant_txt_empType" class="col-sm-4 control-label">EMP TYPE</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="consultant_txt_empType" class="form-control"
+                                       th:value="${coninfo.empType}" readonly="readonly"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consultant_txt_empLevel" class="col-sm-4 control-label">EMP LEVEL</label>
+                            <div class="col-sm-6">
+                                <select width="25" id="consultant_txt_empLevel" class="form-control" th:value="${coninfo.empLevel}"/>
+                                    <option value="selected" th:text="${coninfo.empLevel}"></option>
+                                    <option value="E1">E1</option>
+                                    <option value="D2">D2</option>
+                                    <option value="D1">D1</option>
+                                    <option value="C2">C2</option>
+                                    <option value="C1">C1</option>
+                                    <option value="B2">B2</option>
+                                    <option value="B1">B1</option>
+                                    <option value="A5">A5</option>
+                                    <option value="A4">A4</option>
+                                    <option value="A3">A3</option>
+                                    <option value="X3">X3</option>
+                                    <option value="X2">X2</option>
+                                    <option value="X1">X1</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consultant_txt_startDate" class="col-sm-4 control-label">START DATE</label>
+                            <div class="col-sm-6">
+                                <input type="date" id="consultant_txt_startDate" class="form-control" th:value="${coninfo.startDate}" readonly="readonly">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consultant_txt_endDate" class="col-sm-4 control-label">END DATE</label>
+                            <div class="col-sm-6">
+                                <input type="date" id="consultant_txt_endDate" class="form-control" th:value="${coninfo.endDate}" readonly="readonly">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consultant_txt_empComment" class="col-sm-4 control-label">COMMENTS</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="consultant_txt_empComment" class="form-control"
+                                       th:value="${coninfo.empComment}"
+                                       onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                       onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
+                                       oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consultant_txt_createDate" class="col-sm-4 control-label">CREATE DATE</label>
+                            <div class="col-sm-6">
+                                <input type="date" id="consultant_txt_createDate" class="form-control" th:value="${coninfo.createDate}" readonly="readonly">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consultant_txt_creatBy" class="col-sm-4 control-label">CREATE BY</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="consultant_txt_creatBy" class="form-control" th:value="admin" readonly="readonly">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consultant_txt_lastupdateDate" class="col-sm-4 control-label">LASTUPDATE DATE</label>
+                            <div class="col-sm-6">
+                                <input type="date" id="consultant_txt_lastupdateDate" class="form-control" th:value="${coninfo.lastupdateDate}" readonly="readonly">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consultant_txt_lastupdateBy" class="col-sm-4 control-label">LASTUPDATE BY</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="consultant_txt_lastupdateBy" class="form-control" th:value="admin" readonly="readonly">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-5 col-sm-10">
+                                <button type="button" class="btn btn-primary" onclick="editConInfo()">OK</button>
+                                <button type="reset" class="btn btn-danger"
+                                        onclick="javascript:window.location.reload();">RELOAD
+                                </button>
+                                <!--<input type="button" class="btn btn-danger" value="Return"-->
+                                <!--th:onclick="'javascript:window.location.href=/po-mgmt-system/ProjectDetail?project_id='+${projectDetail.projectId} + ''"-->
+                                <!--/>-->
+                                <input type="button" class="btn btn-danger" value="RETURN"
+                                       th:onclick="'javascript:return_con_info('+${coninfo.roleId} + ')'"/>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+
+            </div>
+            <!-- /.container-fluid -->
+            <!-- Sticky Footer -->
+            <footer th:replace="th_master_page :: footer" class="sticky-footer">
+            </footer>
+        </div>
+        <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!--Accrue Modal-->
+    <div class="modal fade" id="accrueModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Please accrue the to-be burned man-day numbers</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="md-form mb-5">
+                        <i class="fa fa-user prefix grey-text"></i>
+                        <input type="number" id="accrued-man-day-numbers" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="accrued-man-day-numbers">Amount</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="button" onclick="accrueBurne();">Confirmed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="th_master_page :: scriptAtPageEnd">
+    </div>
+
+    <script type="application/javascript">
+        function editConInfo() {
+
+            if($("#consultant_txt_empComment").val().length > 50){
+                swal("COMMENTS: Too long!");
+                return
+            }
+
+            var data = {
+                "data": [
+                    {
+                        "id": $("#consultant_txt_id").val(),
+                        "empNo": $("#consultant_txt_empNo").val(),
+                        "empName": $("#consultant_txt_empName").val(),
+                        "empType": $("#consultant_txt_empType").val(),
+                        "empRate": $("#consultant_txt_empRate").val(),
+                        "totalManday": $("#consultant_txt_totalManday").val(),
+                        "totalAmount": $("#consultant_txt_totalAmount").val(),
+                        "empLevel": $("#consultant_txt_empLevel").val(),
+                        "roleId": $("#consultant_txt_roleId").val(),
+                        "empComment": $("#consultant_txt_empComment").val(),
+                        "createDate": $("#consultant_txt_createDate").val(),
+                        "lastupdateDate": $("#consultant_txt_lastupdateDate").val()
+                    }
+                ]
+            };
+
+            console.log(data);
+
+
+
+            // 更新项目信息
+            $.ajax({
+                type: "post",
+                url: "adminController/updateConInfoById",
+                data: JSON.stringify(data),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+
+                success: function (data) {
+                    if (data.code == '200000') {
+                        window.location.reload();
+                        swal('Update Success！');
+                    } else {
+                        swal('Update Failure,Msg:' + data.msg);
+                    }
+                }
+            });
+        }
+
+        function return_con_info(id) {
+            window.location.href = '/po-mgmt-system/ConsultantInfo?role_id=' + id;
+        }
+
+
+    </script>
+</body>
+</html>
