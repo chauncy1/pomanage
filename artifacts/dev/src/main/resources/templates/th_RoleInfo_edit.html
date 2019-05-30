@@ -114,7 +114,6 @@
                         <div class="col-sm-6">
                             <!--<input type="date" id="project_txt_startDate" class="form-control" value="2018-08-08" />-->
                             <input type="text" id="roleinfo_txt_roleComment" class="form-control" th:value="${RoleInfo.roleComment}"
-                                   onkeyup="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
                                    onpaste="value=value.replace(/[\u4E00-\u9FA5]/g,'')"
                                    oncontextmenu="value=value.replace(/[\u4E00-\u9FA5]/g,'')"/>
                         </div>
@@ -227,12 +226,12 @@
     function editRoleInfo(){
 
         if($("#roleinfo_txt_roleComment").val().length > 50){
-            swal("COMMENTS: Too long!");
+            alert("COMMENTS: Too long!");
             return
         }
 
         if(parseFloat($("#roleinfo_txt_accrueManday").val()) + parseFloat($("#roleinfo_txt_burnedManday").val()) > parseFloat($("#roleinfo_txt_billableManday").val())){
-            swal("ACCRUE MANDAY: Too large!");
+            alert("ACCRUE MANDAY: Too large!");
             return
         }
 
@@ -272,9 +271,9 @@
             success: function (data) {
                 if (data.code == '200000') {
                     window.location.reload();
-                    swal('Update Success锛�');
+                    alert('Update Success');
                 } else {
-                    swal('Update Failure,Msg:'+ data.msg);
+                	alert('Update Failure,Msg:'+ data.msg);
                 }
             }});
     }
@@ -290,7 +289,7 @@
         var burneAmount = $("#accrued-man-day-numbers").val();
         console.log(burneAmount);
         if(burneAmount == null || burneAmount == ''){
-            swal("Amount: Can not be empty!");
+            alert("Amount: Can not be empty!");
             return
         }
         // 鏇存柊amount(burne:+,balance:-)
@@ -303,9 +302,9 @@
             success: function (data) {
                 if (data.code == '200000') {
                     window.location.reload();
-                    swal('Success!');
+                    alert('Success!');
                 } else {
-                    swal('Failed, Msg: '+ data.msg);
+                    alert('Failed, Msg: '+ data.msg);
                 }
             }
         });

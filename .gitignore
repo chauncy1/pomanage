@@ -7,6 +7,7 @@ bin/
 # Others
 target/
 logs/
+
 #idea project files
 .idea/
 *.iml

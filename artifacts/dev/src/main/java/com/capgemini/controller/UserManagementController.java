@@ -1,4 +1,4 @@
-package com.capgemini.controller.admin;
+package com.capgemini.controller;
 
 import com.capgemini.dto.request.PoSaveRequest;
 import com.capgemini.dto.request.RoleInfoSaveRequest;

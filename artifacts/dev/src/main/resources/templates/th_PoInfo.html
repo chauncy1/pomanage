@@ -167,12 +167,13 @@
 
                       <td style="vertical-align:middle">
                         <a th:href="@{/Poinfo_edit(po_id=${po.id})}">
-                          <button type="button" class="btn btn-block btn-primary">EDIT</button>
+                          <button type="button" class="btn btn-block btn-primary btn-sm">EDIT</button>
                         </a>
-                        <button type="button" class="btn btn-block btn-danger"
+                        <p></p>
+                        <button type="button" class="btn btn-block btn-danger btn-sm"
                                 th:onclick="'javascript:delete_po_info(' + ${po.id} + ')'">DELETE</button>
-                        <button type="button" class="btn btn-block btn-primary"
-                                th:onclick="'javascript:export_po_info(' + ${po.id} + ')'">EXPORT</button>
+                        <!-- <button type="button" class="btn btn-block btn-primary"
+                                th:onclick="'javascript:export_po_info(' + ${po.id} + ')'">EXPORT</button> -->
                       </td>
 
                     </tr>
@@ -480,134 +481,134 @@
     <script type="application/javascript">
       function save_po_info() {
           if($(".po_txt_poNo").val() == null || $(".po_txt_poNo").val() == ''){
-              swal("PO#: Can not be empty!");
+              alert("PO#: Can not be empty!");
               return
           }
 
           if($(".po_txt_poNo").val().length != 10){
-              swal("PO#: PO# length is 10!");
+              alert("PO#: PO# length is 10!");
               return
           }
 
           /*if($(".po_txt_code").val() == null || $(".po_txt_code").val() == ''){
-            swal("CODE: Can not be empty!");
+            alert("CODE: Can not be empty!");
               return
           }
 
           if($(".po_txt_code").val().length != 5){
-            swal("CODE: CODE length is 5!");
+            alert("CODE: CODE length is 5!");
               return
           }*/
 
          if($(".po_txt_poName").val() == null || $(".po_txt_poName").val() == ''){
-            swal("PO NAME锛欳an not be empty!");
+            alert("PO NAME锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_poDesc").val().length > 250){
-              swal("PO DESCRIPTION锛歍oo long!");
+              alert("PO DESCRIPTION锛歍oo long!");
               return
           }
 
           if($(".po_txt_poStatus").val() == "selecting"){
-              swal("PO STATUS锛欳an not be empty!");
+              alert("PO STATUS锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_contentType").val() == "selecting"){
-              swal("CONTENT TYPE锛欳an not be empty!");
+              alert("CONTENT TYPE锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_startDate").val() == null || $(".po_txt_startDate").val() == ''){
-              swal("START DATE锛欳an not be empty!");
+              alert("START DATE锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_endDate").val() == null || $(".po_txt_endDate").val() == ''){
-              swal("END DATE锛欳an not be empty!");
+              alert("END DATE锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_startDate").val() > $(".po_txt_endDate").val()){
-              swal("DATE锛歋TART DATE can't be later than END DATE!");
+              alert("DATE锛歋TART DATE can't be later than END DATE!");
               return
           }
 
          if($(".po_txt_poTotalAmountEx").val() == null || $(".po_txt_poTotalAmountEx").val() == ''){
-              swal("PO TOTAL AMOUNT(EXCL.VAT)锛欳an not be empty!");
+              alert("PO TOTAL AMOUNT(EXCL.VAT)锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_vat").val() == null || $(".po_txt_vat").val() == ''){
-              swal("VAT锛欳an not be empty!");
+              alert("VAT锛欳an not be empty!");
               return
           }
 
           if(parseFloat($(".po_txt_vat").val()) < 0 || parseFloat($(".po_txt_vat").val()) > 100){
-              swal("VAT锛歏AT must range from 0 to 100 percent!");
+              alert("VAT锛歏AT must range from 0 to 100 percent!");
               return
           }
 
           if($(".po_txt_poTotalAmountIn").val() == null || $(".po_txt_poTotalAmountIn").val() == ''){
-              swal("PO TOTAL AMOUNT(INCL.VAT)锛欳an not be empty!");
+              alert("PO TOTAL AMOUNT(INCL.VAT)锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_billedAmtIn").val() == null || $(".po_txt_billedAmtIn").val() == ''){
-              swal("BILLED AMT(INCL.VAT)锛欳an not be empty!");
+              alert("BILLED AMT(INCL.VAT)锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_poAvailableAmtIn").val() == null || $(".po_txt_poAvailableAmtIn").val() == ''){
-              swal("AVAILABLE AMT(INCL.VAT)锛欳an not be empty!");
+              alert("AVAILABLE AMT(INCL.VAT)锛欳an not be empty!");
               return
           }
 
           //鎬婚噾棰� = 宸茬敤閲戦 + 鍙敤閲戦 锛堝惈绋庯級
           if(parseFloat($(".po_txt_poTotalAmountIn").val()) != (parseFloat($(".po_txt_poAvailableAmtIn").val()) + parseFloat($(".po_txt_billedAmtIn").val()))){
-              swal("AMOUNT锛歅O TOTAL AMOUNT(INCL.VAT) must equal BILLED AMT(INCL.VAT) plus AVAILABLE AMT(INCL.VAT)");
+              alert("AMOUNT锛歅O TOTAL AMOUNT(INCL.VAT) must equal BILLED AMT(INCL.VAT) plus AVAILABLE AMT(INCL.VAT)");
               return
           }
 
           //鍚◣閲戦 = 涓嶅惈绋庨噾棰� * 锛�1+绋庣巼锛�
           if(parseFloat($(".po_txt_poTotalAmountIn").val()) != (parseFloat($(".po_txt_poTotalAmountEx").val()) * (1 + 0.01 * parseFloat($(".po_txt_vat").val())))){
-              swal("AMOUNT锛歅O TOTAL AMOUNT(INCL.VAT) must equal PO TOTAL AMOUNT(EXCL.VAT) multiply (1+VAT)");
+              alert("AMOUNT锛歅O TOTAL AMOUNT(INCL.VAT) must equal PO TOTAL AMOUNT(EXCL.VAT) multiply (1+VAT)");
               return
           }
           if($(".po_txt_poInitialTotalManday").val() == null || $(".po_txt_poInitialTotalManday").val() == ''){
-              swal("PO INITIAL TOTAL MANDAY锛欳an not be empty!");
+              alert("PO INITIAL TOTAL MANDAY锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_totalBurnedManday").val() == null || $(".po_txt_totalBurnedManday").val() == ''){
-              swal("TOTAL BURNED MANDAY锛欳an not be empty!");
+              alert("TOTAL BURNED MANDAY锛欳an not be empty!");
               return
           }
 
           if($(".po_txt_balanceManday").val() == null || $(".po_txt_balanceManday").val() == ''){
-              swal("BALANCE MANDAY锛欳an not be empty!");
+              alert("BALANCE MANDAY锛欳an not be empty!");
               return
           }
 
           //鎬讳汉澶� = 宸茬敤浜哄ぉ + 鍙敤浜哄ぉ
           if(parseFloat($(".po_txt_poInitialTotalManday").val()) != (parseFloat($(".po_txt_totalBurnedManday").val()) + parseFloat($(".po_txt_balanceManday").val()))){
-              swal("MANDAY锛歅O INITIAL TOTAL MANDAY must equal TOTAL BURNED MANDAY plus BALANCE MANDAY");
+              alert("MANDAY锛歅O INITIAL TOTAL MANDAY must equal TOTAL BURNED MANDAY plus BALANCE MANDAY");
               return
           }
 
           if($(".po_txt_startDate").val() < $(".project_txt_startDate").val()){
-              swal("DATE锛歅O's START DATE can't be earlier than PROJECT's START DATE!");
+              alert("DATE锛歅O's START DATE can't be earlier than PROJECT's START DATE!");
               return
           }
 
           if($(".po_txt_poComment").val().length > 50){
-              swal("COMMENTS锛歍oo long!");
+              alert("COMMENTS锛歍oo long!");
               return
           }
 
           if($(".po_txt_endDate").val() > $(".project_txt_endDate").val()){
-              swal("DATE锛歅O's END DATE can't be later than PROJECT's END DATE!");
+              alert("DATE锛歅O's END DATE can't be later than PROJECT's END DATE!");
               return
           }
 
@@ -650,16 +651,16 @@
               success: function (data) {
                  if (data.code == '200000') {
                      window.location.reload();
-                     swal('Success!');
+                     alert('Success!');
                  } else {
-                  swal('Failed, Msg: '+ data.msg);
+                  alert('Failed, Msg: '+ data.msg);
                  }
           }});
 
       }
 
       function delete_po_info(id) {
-        swal({
+        alert({
                 title: "Ready to delete?",
                 text: "Once deleted, you will not be able to recover this PO information ["+id+"]!",
                 icon: "warning",
@@ -668,7 +669,7 @@
                 })
                 .then((willDelete) => {
                 if (willDelete) {
-                    swal("Poof! Your PO information ["+id+"] has been deleted!", {
+                    alert("Poof! Your PO information ["+id+"] has been deleted!", {
                     icon: "success",
                     });
                     $.ajax({
@@ -679,20 +680,20 @@
                       success: function (data) {
                       if (data.code == '200000') {
                           window.location.reload();
-                          swal('Success!');
+                          alert('Success!');
                       } else {
-                        swal('Failure, Msg: '+ data.msg);
+                        alert('Failure, Msg: '+ data.msg);
                       }
                   }});
                 } else {
-                    swal("Your porject information is safe!");
+                    alert("Your porject information is safe!");
                 }
 
           });
       }
 
       function export_po_info(id) {
-        // swal({
+        // alert({
         //   title: "Ready to export?",
         //   text: "Confirm or cancel a Word document to your computer",
         //   buttons: true
@@ -711,13 +712,13 @@
           success: function (data) {
             console.log("start downloading");
             // window.location.href = "adminController/exportPoById";
-            swal("Start downloading", {
+            alert("Start downloading", {
               icon: "success",
             });
           },
           error: function (data) {
             window.location.href = "adminController/exportPoById";
-            swal("Start downloading");
+            alert("Start downloading");
           }
 
         });

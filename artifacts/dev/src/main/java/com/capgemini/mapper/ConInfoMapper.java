@@ -6,9 +6,6 @@ import java.util.List;
 
 import com.capgemini.entity.ConInfoEntity;
 
-/**
- * Created by flying on 2018/11/27.
- */
 public interface ConInfoMapper {
     //  新建项目主体
     void saveConInfoEntity(ConInfoEntity conInfoEntity);

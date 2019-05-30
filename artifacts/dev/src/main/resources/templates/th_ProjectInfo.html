@@ -69,7 +69,7 @@
                     Project List</div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr style="text-align:center">
                                     <!--<th>SELECT</th>-->
@@ -138,10 +138,10 @@
 
                                     <td style="vertical-align:middle">
                                         <a th:href="@{/Projectinfo_edit(id=${project.id})}">
-                                            <button type="button" class="btn btn-block btn-primary">EDIT</button>
+                                            <button type="button" class="btn btn-block btn-primary btn-sm">EDIT</button>
                                         </a>
                                         <p></p>
-                                        <button type="button" class="btn btn-block btn-danger"
+                                        <button type="button" class="btn btn-block btn-danger btn-sm"
                                                 th:onclick="'javascript:delete_project_info(' + ${project.id} + ')'">DELETE</button>
                                     </td>
                                 </tr>

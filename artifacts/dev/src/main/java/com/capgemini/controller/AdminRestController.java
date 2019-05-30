@@ -1,4 +1,4 @@
-package com.capgemini.controller.admin;
+package com.capgemini.controller;
 
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -58,7 +58,7 @@ public class AdminRestController {
     public String exportPoById(HttpServletRequest request, HttpServletResponse response){
 //    public String exportPoById(@RequestParam(value = "id") Integer id, HttpServletResponse response){
 
-//        String poExportIdString = request.getSession().getAttribute("poExportId").toString();
+//     String poExportIdString = request.getSession().getAttribute("poExportId").toString();
         Integer poExportId = Integer.parseInt(request.getSession().getAttribute("poExportId").toString());
 
         response.setContentType("application/octet-stream");

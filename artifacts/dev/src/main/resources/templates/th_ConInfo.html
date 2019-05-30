@@ -27,7 +27,7 @@
                 <li class="breadcrumb-item">
                     <a th:href="@{/RoleInfo(po_id=${roleinfo.poId})}">Role</a>
                 </li>
-                <li class="breadcrumb-item active">Concultant Info</li>
+                <li class="breadcrumb-item active">Consultant Info</li>
             </ol>
 
             <!-- Area Chart Example-->
@@ -203,11 +203,10 @@
 
                                         <td style="vertical-align:middle">
                                             <a th:href="@{/Coninfo_edit(con_id=${conInfo.id})}" style="text-decoration:none">
-                                                <button type="button" class="btn btn-block btn-primary">EDIT</button>&emsp;
+                                                <button type="button" class="btn btn-block btn-primary btn-sm">EDIT</button>&emsp;
                                             </a>
-
-                                            <button type="button" class="btn btn-block btn-danger"
-                                                    th:onclick="'javascript:delete_con_info('+${conInfo.id} + ')'">DELETE</button>&emsp;
+                                            <button type="button" class="btn btn-block btn-danger btn-sm"
+                                                    th:onclick="'javascript:delete_con_info('+${conInfo.id} + ')'">DELETE</button>
                                         </td>
 
                                     </tr>
@@ -369,36 +368,36 @@
     function save_con_info() {
 
         if($(".consultant_txt_empNo").val() == null || $(".consultant_txt_empNo").val() == ''){
-            swal("EMP NO: Can not be empty!");
+            alert("EMP NO: Can not be empty!");
             return
         }
         if($(".consultant_txt_empNo").val().length != 6){
-            swal("EMP NO: EMP NO length is 6!");
+            alert("EMP NO: EMP NO length is 6!");
             return
         }
 
         if($(".consultant_txt_empName").val() == null || $(".consultant_txt_empName").val() == ''){
-            swal("EMP: Can not be empty!");
+            alert("EMP: Can not be empty!");
             return
         }
 
         if($(".consultant_txt_totalManday").val() == null || $(".consultant_txt_totalManday").val() == ''){
-            swal("TOTAL MANDAY: Can not be empty!");
+            alert("TOTAL MANDAY: Can not be empty!");
             return
         }
 
         if($(".consultant_txt_empType").val() == "selecting"){
-            swal("EMP TYPE: Can not be empty!");
+            alert("EMP TYPE: Can not be empty!");
             return
         }
 
         if($(".consultant_txt_empLevel").val() == "selecting"){
-            swal("EMP LEVEL: Can not be empty!");
+            alert("EMP LEVEL: Can not be empty!");
             return
         }
 
         if($(".consultant_txt_empComment").val().length > 50){
-            swal("COMMENTS: Too long!");
+            alert("COMMENTS: Too long!");
             return
         }
 
@@ -433,16 +432,16 @@
             success: function (data) {
                 if (data.code == '200000') {
                     window.location.reload();
-                    swal('Success!');
+                    alert('Success!');
                 } else {
-                    swal('Failed, Msg: ' +data.msg);
+                    alert('Failed, Msg: ' +data.msg);
                 }
             }});
 
     }
 
     function delete_con_info(id) {
-        swal({
+        alert({
             title: "Ready to delete?",
             text: "Once deleted, you will not be able to recover this porject information details ["+id+"]!",
             icon: "warning",
@@ -451,7 +450,7 @@
         })
             .then((willDelete) => {
             if (willDelete) {
-                swal("Poof! Your porject information details ["+id+"] has been deleted!", {
+                alert("Poof! Your porject information details ["+id+"] has been deleted!", {
                     icon: "success",
                 });
                 $.ajax({
@@ -463,13 +462,13 @@
                     success: function (data) {
                         if (data.code == '200000') {
                             window.location.reload();
-                            swal('Delete Success!');
+                            alert('Delete Success!');
                         } else {
-                            swal('Failed, Msg: '+ data.msg);
+                            alert('Failed, Msg: '+ data.msg);
                         }
                     }});
             } else {
-                swal("Your porject information details is safe!");
+                alert("Your porject information details is safe!");
     }
     });
     }

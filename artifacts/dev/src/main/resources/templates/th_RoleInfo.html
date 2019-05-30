@@ -184,10 +184,10 @@
 
                                     <td style="vertical-align:middle">
                                         <a th:href="@{/Roleinfo_edit(role_id=${roleinfo.id})}" style="text-decoration:none">
-                                            <button type="button" class="btn btn-block btn-primary">EDIT</button>&emsp;
+                                            <button type="button" class="btn btn-block btn-primary btn-sm">EDIT</button>&emsp;
                                         </a>
-                                        <button type="button" class="btn btn-block btn-danger"
-                                                th:onclick="'javascript:delete_role_info('+${roleinfo.id} + ')'">DELETE</button>&emsp;
+                                        <button type="button" class="btn btn-block btn-danger btn-sm"
+                                                th:onclick="'javascript:delete_role_info('+${roleinfo.id} + ')'">DELETE</button>
                                     </td>
 
                                 </tr>
@@ -359,58 +359,58 @@
 
     function save_role_info() {
         if($(".roleinfo_txt_poRole").val() == null || $(".roleinfo_txt_poRole").val() == ''){
-            swal("ROLE: Can not be empty!");
+            alert("ROLE: Can not be empty!");
             return
         }
 
         if($(".roleinfo_txt_rate").val() == null || $(".roleinfo_txt_rate").val() == ''){
-            swal("RATE: Can not be empty!");
+            alert("RATE: Can not be empty!");
             return
         }
 
         if($(".roleinfo_txt_roleComment").val().length > 50){
-            swal("COMMENTS: Too long!");
+            alert("COMMENTS: Too long!");
             return
         }
         
         if($(".roleinfo_txt_billableManday").val() == null || $(".roleinfo_txt_billableManday").val() == ''){
-            swal("BILLABLE MANDAY: Can not be empty!");
+            alert("BILLABLE MANDAY: Can not be empty!");
             return
         }
         
         if($(".roleinfo_txt_burnedManday").val() == null || $(".roleinfo_txt_burnedManday").val() == ''){
-            swal("BURNED MANDAY: Can not be empty!");
+            alert("BURNED MANDAY: Can not be empty!");
             return
         }
         
         if($(".roleinfo_txt_balanceManday").val() == null || $(".roleinfo_txt_balanceManday").val() == ''){
-            swal("BALANCE MANDAY: Can not be empty!");
+            alert("BALANCE MANDAY: Can not be empty!");
             return
         }
         
         if(parseFloat($(".roleinfo_txt_billableManday").val()) != (parseFloat($(".roleinfo_txt_burnedManday").val()) + parseFloat($(".roleinfo_txt_balanceManday").val()))){
-            swal("MANDAYO INITIAL TOTAL MANDAY must equal TOTAL BURNED MANDAY plus BALANCE MANDAY");
+            alert("MANDAYO INITIAL TOTAL MANDAY must equal TOTAL BURNED MANDAY plus BALANCE MANDAY");
             return
         }
         
         if($(".roleinfo_txt_totalAmount").val() == null || $(".roleinfo_txt_totalAmount").val() == ''){
-            swal("TOTAL AMT(EX.VAT) can not be empty!");
+            alert("TOTAL AMT(EX.VAT) can not be empty!");
             return
         }
 
         if($(".roleinfo_txt_burnedAmount").val() == null || $(".roleinfo_txt_burnedAmount").val() == ''){
-            swal("BURNED AMT AMT(EX.VAT) can not be empty!");
+            alert("BURNED AMT AMT(EX.VAT) can not be empty!");
             return
         }
 
         if($(".roleinfo_txt_balanceAmount").val() == null || $(".roleinfo_txt_balanceAmount").val() == ''){
-            swal("BALANCE AMT(EX.VAT) can not be empty!");
+            alert("BALANCE AMT(EX.VAT) can not be empty!");
             return
         }
 
         //鎬婚噾棰� = 宸茬敤閲戦 + 鍙敤閲戦 锛堝惈绋庯級
         if(parseFloat($(".roleinfo_txt_totalAmount").val()) != (parseFloat($(".roleinfo_txt_balanceAmount").val()) + parseFloat($(".roleinfo_txt_burnedAmount").val()))){
-            swal(" TOTAL AMOUNT(EX.VAT) must equal BURNED AMT(INCL.VAT) plus BALANCE AMT(INCL.VAT)");
+            alert(" TOTAL AMOUNT(EX.VAT) must equal BURNED AMT(INCL.VAT) plus BALANCE AMT(INCL.VAT)");
             return
         }
 
@@ -447,17 +447,17 @@
 
             success: function (data) {
                 if (data.code == '200000') {
-                    swal('Success!');
+                    alert('Success!');
                     window.location.reload();
                 } else {
-                    swal('Failed, Msg: '+ data.msg);
+                    alert('Failed, Msg: '+ data.msg);
                 }
             }});
 
     }
 
     function delete_role_info(id) {
-                swal({
+                alert({
                 title: "Ready to delete?",
                 text: "Once deleted, you will not be able to recover this porject information details ["+id+"]!",
                 icon: "warning",
@@ -466,7 +466,7 @@
                 })
                 .then((willDelete) => {
                 if (willDelete) {    
-                    swal("Poof! Your porject information details ["+id+"] has been deleted!", {
+                    alert("Poof! Your porject information details ["+id+"] has been deleted!", {
                     icon: "success",
                     });
                     $.ajax({
@@ -478,13 +478,13 @@
                     success: function (data) {
                         if (data.code == '200000') {
                             window.location.reload();
-                            swal('Success!');
+                            alert('Success!');
                         } else {
-                            swal('Failed, Msg: '+ data.msg);
+                            alert('Failed, Msg: '+ data.msg);
                         }
                     }});
                 } else {
-                    swal("Your porject information details is safe!");
+                    alert("Your porject information details is safe!");
                 }
                 });
     }

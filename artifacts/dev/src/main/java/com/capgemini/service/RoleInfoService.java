@@ -1,19 +1,8 @@
 package com.capgemini.service;
 
-import com.capgemini.dto.ProjectInfoDto;
-import com.capgemini.dto.RoleInfoDto;
-import com.capgemini.dto.request.ConInfoSaveRequest;
-import com.capgemini.dto.request.RoleInfoSaveRequest;
-import com.capgemini.dto.response.CommonResponse;
-import com.capgemini.dto.response.RoleInfoQueryResponse;
-import com.capgemini.entity.ConInfoEntity;
-import com.capgemini.entity.PoInfoEntity;
-import com.capgemini.entity.ProjectInfoEntity;
-import com.capgemini.entity.RoleInfoEntity;
-import com.capgemini.mapper.ConInfoMapper;
-import com.capgemini.mapper.PoInfoMapper;
-import com.capgemini.mapper.RoleInfoMapper;
-import com.capgemini.utils.DateUtil;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
+import com.capgemini.dto.RoleInfoDto;
+import com.capgemini.dto.request.RoleInfoSaveRequest;
+import com.capgemini.dto.response.CommonResponse;
+import com.capgemini.dto.response.RoleInfoQueryResponse;
+import com.capgemini.entity.AccrueRecordsEntity;
+import com.capgemini.entity.ConInfoEntity;
+import com.capgemini.entity.PoInfoEntity;
+import com.capgemini.entity.RoleInfoEntity;
+import com.capgemini.mapper.AccrueRecordsMapper;
+import com.capgemini.mapper.ConInfoMapper;
+import com.capgemini.mapper.PoInfoMapper;
+import com.capgemini.mapper.RoleInfoMapper;
+import com.capgemini.utils.DateUtil;
 
 
 /**
@@ -47,6 +45,9 @@ public class RoleInfoService {
 
     @Autowired
     private ConInfoMapper conInfoMapper;
+    
+    @Autowired
+    private AccrueRecordsMapper accrueRecordsMapper;
 
 
     public CommonResponse saveRoleInfo(RoleInfoSaveRequest request){
@@ -184,6 +185,13 @@ public class RoleInfoService {
 
             roleInfoMapper.updateRoleInfoById(roleInfoEntity);
             poInfoMapper.updatePoInfoEntity(poInfoEntity);
+            
+            //更新增加记录表
+            AccrueRecordsEntity accrueRecordsEntity = new AccrueRecordsEntity();
+            accrueRecordsEntity.setAccrueAmount(dto.getAccrueManday());
+            accrueRecordsEntity.setAccrueComments(dto.getRoleComment());
+            accrueRecordsEntity.setPoId(dto.getPoId());
+            accrueRecordsMapper.saveAccrueRecords(accrueRecordsEntity);
         }
 
         response.setCode("200000");
