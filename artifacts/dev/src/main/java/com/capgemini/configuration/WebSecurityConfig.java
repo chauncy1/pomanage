@@ -22,11 +22,12 @@ public class WebSecurityConfig implements WebMvcConfigurer {
 
     @Bean
     public UserDetailsService userDetailsService() throws Exception {
-        // ensure the passwords are encoded properly
-        UserBuilder users = User.withDefaultPasswordEncoder();
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(users.username(uname).password(password).roles("USER","ADMIN").build());
-        return manager;
+    	return new InMemoryUserDetailsManager(User
+    			.withDefaultPasswordEncoder()
+    			.username(uname)
+    			.password(password)
+    			.roles("USER","ADMIN")
+    			.build());
     }
     
 }
