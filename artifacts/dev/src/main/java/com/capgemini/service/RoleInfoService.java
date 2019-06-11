@@ -25,12 +25,6 @@ import com.capgemini.mapper.RoleInfoMapper;
 import com.capgemini.utils.DateUtil;
 
 
-/**
- * @author zexuan.jin@capgemini.com(Jason)
- * @date 17/11/2018 2:33 AM
- * @description
- */
-
 @Service
 @Transactional
 public class RoleInfoService {

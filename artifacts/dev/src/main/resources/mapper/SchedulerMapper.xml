@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <mapper namespace="com.capgemini.mapper.ConInfoMapper">
+        
+        <delete id="deleteExpiredRecord">
+        	delete from accrue_records
+        	where 
+        	TO_DAYS(NOW())-TO_DAYS(CREATE_DATE)>365
+        </delete>
+        
+        <delete id="deleteExpiredProject">
+        	delete from project_info
+        	where 
+        	TO_DAYS(NOW())-TO_DAYS(LASTUPDATE_DATE)>365
+        	AND
+        	DELETE_FLAG=0
+        </delete>
+        
+        <delete id="deleteExpiredPo">
+        	delete from po_info
+        	where 
+        	TO_DAYS(NOW())-TO_DAYS(LASTUPDATE_DATE)>365
+        	AND
+        	DELETE_FLAG=0
+        </delete>
+        
+        <delete id="deleteExpiredRole">
+        	delete from role_info
+        	where 
+        	TO_DAYS(NOW())-TO_DAYS(LASTUPDATE_DATE)>365
+        	AND
+        	DELETE_FLAG=0
+        </delete>
+        
+        <delete id="deleteExpiredConsultant">
+        	delete from consultant_info
+        	where 
+        	TO_DAYS(NOW())-TO_DAYS(LASTUPDATE_DATE)>365
+        	AND
+        	DELETE_FLAG=0
+        </delete>
+</mapper>

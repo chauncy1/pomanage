@@ -3,6 +3,9 @@ package com.capgemini.dto;
 
 import java.io.Serializable;
 
+import lombok.Data;
+
+@Data
 public class ExpiringPoInfoDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -21,38 +24,6 @@ public class ExpiringPoInfoDto implements Serializable {
 
     public static long getSerialversionuid() {
         return serialVersionUID;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getPoName() {
-        return poName;
-    }
-
-    public void setPoName(String poName) {
-        this.poName = poName;
-    }
-
-    public String getPoNo() {
-        return poNo;
-    }
-
-    public void setPoNo(String poNo) {
-        this.poNo = poNo;
-    }
-
-    public Integer getRemainingDays() {
-        return remainingDays;
-    }
-
-    public void setRemainingDays(Integer remainingDays) {
-        this.remainingDays = remainingDays;
     }
 
 }

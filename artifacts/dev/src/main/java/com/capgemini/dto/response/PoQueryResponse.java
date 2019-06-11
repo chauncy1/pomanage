@@ -6,11 +6,6 @@ import java.util.List;
 
 import com.capgemini.dto.PoInfoDto;
 
-/**
- * @author wenxue.mei@capgemini.com(bruce)
- * @date 03/11/2018 1:15 PM
- * @description
- */
 public class PoQueryResponse implements Serializable {
 
     private static final long serialVersionUID = 1L;

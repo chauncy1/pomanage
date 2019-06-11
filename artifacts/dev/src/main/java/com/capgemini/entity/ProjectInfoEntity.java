@@ -1,8 +1,9 @@
 package com.capgemini.entity;
 import java.sql.Timestamp;
-/**
- * Created by dell on 2018/11/27.
- */
+
+import lombok.Data;
+
+@Data
 public class ProjectInfoEntity {
     //Sprint 2 创建字段
 
@@ -48,115 +49,4 @@ public class ProjectInfoEntity {
     //更新者
     private Integer lastupdateBy = -1;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public String getProjectComment() {
-        return projectComment;
-    }
-
-    public void setProjectComment(String projectComment) {
-        this.projectComment = projectComment;
-    }
-
-    public String getProjectEm() {
-        return projectEm;
-    }
-
-    public void setProjectEm(String projectEm) {
-        this.projectEm = projectEm;
-    }
-
-    public String getProjectDm() {
-        return projectDm;
-    }
-
-    public void setProjectDm(String projectDm) {
-        this.projectDm = projectDm;
-    }
-
-    public String getProjectDesc() {
-        return projectDesc;
-    }
-
-    public void setProjectDesc(String projectDesc) {
-        this.projectDesc = projectDesc;
-    }
-
-    public Timestamp getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Timestamp startDate) {
-        this.startDate = startDate;
-    }
-
-    public Timestamp getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Timestamp endDate) {
-        this.endDate = endDate;
-    }
-
-    public Timestamp getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Timestamp createDate) {
-        this.createDate = createDate;
-    }
-
-    public Timestamp getLastupdateDate() {
-        return lastupdateDate;
-    }
-
-    public void setLastupdateDate(Timestamp lastupdateDate) {
-        this.lastupdateDate = lastupdateDate;
-    }
-
-    public Integer getCreatBy() {
-        return creatBy;
-    }
-
-    public void setCreatBy(Integer creatBy) {
-        this.creatBy = creatBy;
-    }
-
-    public Integer getLastupdateBy() {
-        return lastupdateBy;
-    }
-
-    public void setLastupdateBy(Integer lastupdateBy) {
-        this.lastupdateBy = lastupdateBy;
-    }
 }

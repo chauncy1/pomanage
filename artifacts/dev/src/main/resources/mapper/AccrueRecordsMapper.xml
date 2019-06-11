@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <mapper namespace="com.capgemini.mapper.AccrueRecordsMapper">
+        
+        <insert parameterType="AccrueRecordsEntity" id="saveAccrueRecords">
+           insert into accrue_records
+           <trim prefix="(" suffix=")" suffixOverrides=",">
+           		<if test="id!=null">id,</if>
+		        <if test="accrueComments!=null">ACCRUE_COMMENTS,</if>
+		        <if test="accrueAmount!=null">ACCRUE_AMOUNT,</if>
+		        <if test="createDate!=null">CREATE_DATE,</if>
+		        <if test="creatBy!=null">CREAT_BY,</if>
+		        <if test="poId!=null">PO_ID,</if>
+           </trim>
+           <trim prefix="values(" suffix=")" suffixOverrides=",">
+        	<if test="id!=null">id,</if>
+        		<if test="id != null">#{id},</if>
+		        <if test="accrueComments != null">#{accrueComments},</if>
+		        <if test="accrueAmount != null">#{accrueAmount},</if>
+		        <if test="createDate != null">CURRENT_TIMESTAMP,</if>
+		        <if test="creatBy != null">'-1',</if>
+		        <if test="poId != null">#{poId},</if>
+        </trim>
+        </insert>
+
+</mapper>

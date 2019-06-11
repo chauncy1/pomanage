@@ -23,9 +23,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by flying on 2018/11/29.
- */
 @Service
 @Transactional
 public class  ConInfoService {

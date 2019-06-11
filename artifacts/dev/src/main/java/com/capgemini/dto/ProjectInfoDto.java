@@ -3,9 +3,9 @@ package com.capgemini.dto;
 
 import java.io.Serializable;
 
-/**
- * Created by dell on 2018/11/27.
- */
+import lombok.Data;
+
+@Data
 public class ProjectInfoDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,115 +57,4 @@ public class ProjectInfoDto implements Serializable {
         return serialVersionUID;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public String getProjectComment() {
-        return projectComment;
-    }
-
-    public void setProjectComment(String projectComment) {
-        this.projectComment = projectComment;
-    }
-
-    public String getProjectEm() {
-        return projectEm;
-    }
-
-    public void setProjectEm(String projectEm) {
-        this.projectEm = projectEm;
-    }
-
-    public String getProjectDm() {
-        return projectDm;
-    }
-
-    public void setProjectDm(String projectDm) {
-        this.projectDm = projectDm;
-    }
-
-    public String getProjectDesc() {
-        return projectDesc;
-    }
-
-    public void setProjectDesc(String projectDesc) {
-        this.projectDesc = projectDesc;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getLastupdateDate() {
-        return lastupdateDate;
-    }
-
-    public void setLastupdateDate(String lastupdateDate) {
-        this.lastupdateDate = lastupdateDate;
-    }
-
-    public Integer getCreatBy() {
-        return creatBy;
-    }
-
-    public void setCreatBy(Integer creatBy) {
-        this.creatBy = creatBy;
-    }
-
-    public Integer getLastupdateBy() {
-        return lastupdateBy;
-    }
-
-    public void setLastupdateBy(Integer lastupdateBy) {
-        this.lastupdateBy = lastupdateBy;
-    }
 }

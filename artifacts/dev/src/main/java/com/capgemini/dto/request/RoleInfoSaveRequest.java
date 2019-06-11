@@ -5,12 +5,6 @@ import java.util.List;
 
 import com.capgemini.dto.RoleInfoDto;
 
-
-/**
- * @author zexuan.jin@capgemini.com(Jason)
- * @date 17/11/2018 2:33 AM
- * @description
- */
 public class RoleInfoSaveRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;

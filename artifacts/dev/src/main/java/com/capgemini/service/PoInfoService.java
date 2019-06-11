@@ -32,12 +32,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @author zexuan.jin@capgemini.com(Jason)
- * @date 17/11/2018 2:33 AM
- * @description
- */
-
 @Service
 @Transactional
 public class PoInfoService {

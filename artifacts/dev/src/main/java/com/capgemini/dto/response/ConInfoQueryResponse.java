@@ -5,9 +5,6 @@ import java.util.List;
 
 import com.capgemini.dto.ConInfoDto;
 
-/**
- * Created by flying on 2018/11/29.
- */
 public class ConInfoQueryResponse {
     private static final long serialVersionUID = 1L;
 

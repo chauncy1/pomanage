@@ -2,11 +2,6 @@ package com.capgemini.dto.response;
 
 import java.io.Serializable;
 
-/**
- * @author wenxue.mei@capgemini.com(bruce)
- * @date 03/11/2018 1:31 PM
- * @description
- */
 public class CommonResponse implements Serializable {
 
     private static final long serialVersionUID = 1L;

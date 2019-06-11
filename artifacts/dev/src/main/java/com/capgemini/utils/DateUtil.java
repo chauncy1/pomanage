@@ -9,11 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-/**
- * @author wenxue.mei@capgemini.com(bruce)
- * @date 07/11/2018 5:35 PM
- * @description
- */
 public class DateUtil {
 
     private final static Logger logger = LoggerFactory.getLogger(DateUtil.class);

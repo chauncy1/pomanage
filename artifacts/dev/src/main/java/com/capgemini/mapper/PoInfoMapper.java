@@ -5,11 +5,6 @@ import java.util.List;
 
 import com.capgemini.entity.PoInfoEntity;
 
-/**
- * @author zexuan.jin@capgemini.com(Jason)
- * @date 17/11/2018 2:33 AM
- * @description
- */
 public interface PoInfoMapper {
 
     PoInfoEntity queryPoInfoById(Integer id);

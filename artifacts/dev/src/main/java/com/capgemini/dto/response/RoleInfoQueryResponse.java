@@ -6,11 +6,6 @@ import java.util.List;
 
 import com.capgemini.dto.RoleInfoDto;
 
-/**
- * @author wenxue.mei@capgemini.com(bruce)
- * @date 03/11/2018 2:23 PM
- * @description
- */
 public class RoleInfoQueryResponse implements Serializable {
 
     private static final long serialVersionUID = 1L;

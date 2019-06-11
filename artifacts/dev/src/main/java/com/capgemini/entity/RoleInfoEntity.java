@@ -4,11 +4,7 @@ package com.capgemini.entity;
 import java.sql.Timestamp;
 
 import lombok.Data;
-/**
- * @author zexuan.jin@capgemini.com(Jason)
- * @date 17/11/2018 2:33 AM
- * @description
- */
+
 @Data
 public class RoleInfoEntity {
 
